@@ -1,7 +1,9 @@
 # Functions for running OU paper simulations
 
+#----------------------------------
 # Simulating trees
 # Using diversitree function: trees
+#----------------------------------
 
 # Rename tip labels so they match other functions
 rename.tips <- function(phy) {
@@ -46,10 +48,42 @@ bdhigh.trees <- function(ntaxa) {
   simulate.trees(lambda = 1, mu = 0.75, ntaxa)
 }
 
-# Running all tree simulations
-all.trees <- function(ntaxa) {
-  yule.trees(ntaxa)
-  bdlow.trees(ntaxa)
-  bdmid.trees(ntaxa)
-  bdhigh.trees(ntaxa)
+# Outputs
+write.tree(tr, file="output/yule25.tre", append=TRUE)
+
+#--------------------------------------------------
+# Adding error to branches leading to tips of trees
+#--------------------------------------------------
+
+id.tip.branches <- function(phy) {
+  match(1:Ntip(phy), phy$edge[,2])
 }
+
+get.error <- function(phy, error) {
+  error * max(node.depth.edgelength(phy))
+}
+
+get.tree.with.error <- function(phy, error) {
+  phy.error <- phy
+  phy.error$edge.length[id.tip.branches(phy.error)] <- phy.error$edge.length[id.tip.branches(phy.error)] 
+                                                        + get.error(phy, error)
+  return(phy.error)
+}
+
+#-----------------
+# Simulating data
+#-----------------
+
+# Simulating data under Brownian model
+bm.data <- function(phy, sigma) {
+  rTraitCont(phy, model = "BM", sigma = sigma)
+}
+
+# Simulating data under OU model
+# For now theta is hard coded as 0, same as the root state
+# This matches the GEIGER model which does not estimate theta
+# and instead uses the same theta as the root
+ou.data <- function(phy, sigma, alpha) {
+  rTraitCont(phy, model = "OU", sigma = sigma, alpha = alpha, theta = 0)
+}
+
