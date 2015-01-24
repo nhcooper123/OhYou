@@ -87,3 +87,9 @@ ou.data <- function(phy, sigma, alpha) {
   rTraitCont(phy, model = "OU", sigma = sigma, alpha = alpha, theta = 0)
 }
 
+#------------------------------------------------------
+# Fitting BM and OU models to simulated trees and data
+# ML and Bayesian models if possible
+#------------------------------------------------------
+
+
