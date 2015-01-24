@@ -28,28 +28,43 @@ simulate.trees <- function(lambda, mu, ntaxa) {
   return(tree.sim)
 }
 
+# Write trees to file for later use
+write.trees <- function(phy, ntaxa, treetype) {
+  write.tree(phy, file = paste(treetype, ntaxa, ".tre", sep = ""), 
+             append = TRUE)
+}
+
 # Yule tree simulations
-yule.trees <- function(ntaxa) {
-  simulate.trees(lambda = 1, mu = 0, ntaxa)
+yule.trees <- function(ntaxa, write.tree = FALSE) {
+  tree.sim <- simulate.trees(lambda = 1, mu = 0, ntaxa)
+  if(write.tree = TRUE) {
+    write.trees(tree.sim, ntaxa, "yule")
+  }
 }
 
 # Birth death tree simulations with low mu
-bdlow.trees <- function(ntaxa) {
+bdlow.trees <- function(ntaxa, write.tree = FALSE) {
   simulate.trees(lambda = 1, mu = 0.25, ntaxa)
+  if(write.tree = TRUE) {
+    write.trees(tree.sim, ntaxa, "bdlow")
+  }
 }
 
 # Birth death tree simulations with medium mu
-bdmid.trees <- function(ntaxa) {
+bdmid.trees <- function(ntaxa, write.tree = FALSE) {
   simulate.trees(lambda = 1, mu = 0.5, ntaxa)
+  if(write.tree = TRUE) {
+    write.trees(tree.sim, ntaxa, "bdmid")
+  }
 }
 
 # Birth death tree simulations with high mu
-bdhigh.trees <- function(ntaxa) {
+bdhigh.trees <- function(ntaxa, write.tree = FALSE) {
   simulate.trees(lambda = 1, mu = 0.75, ntaxa)
+  if(write.tree = TRUE) {
+    write.trees(tree.sim, ntaxa, "bdhigh")
+  }
 }
-
-# Outputs
-write.tree(tr, file="output/yule25.tre", append=TRUE)
 
 #--------------------------------------------------
 # Adding error to branches leading to tips of trees
