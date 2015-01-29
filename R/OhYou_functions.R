@@ -84,13 +84,19 @@ get.error <- function(phy, error) {
 }
 
 # Adds error to tip branches
-get.tree.with.error <- function(phy, error) {
+get.tree.with.error <- function(phy, error, treetype, write.tree = FALSE) {
   phy.error <- phy
   phy.error$edge.length[id.tip.branches(phy)] <- 
     (phy.error$edge.length[id.tip.branches(phy)] 
      + get.error(phy, error))
+  if(write.tree == TRUE) {
+    ntaxa <- Ntip(phy)
+    write.trees(phy.error, paste(ntaxa, "_", error, sep = ""), treetype)
+  }
   return(phy.error)
 }
+
+# need to write out error trees
 
 #-----------------
 # Simulating data
@@ -108,6 +114,18 @@ bm.data <- function(phy, sigma) {
 ou.data <- function(phy, sigma, alpha) {
   rTraitCont(phy, model = "OU", sigma = sigma, alpha = alpha, theta = 0)
 }
+
+#-----------------------------------
+# Simulating data and trees together
+#-----------------------------------
+
+bm.sim <- function()
+
+bm.data(phy, sigma)
+
+
+
+
 
 #------------------------------------------------------
 # Fitting BM and OU models to simulated trees and data
