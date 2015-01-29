@@ -96,8 +96,6 @@ get.tree.with.error <- function(phy, error, treetype, write.tree = FALSE) {
   return(phy.error)
 }
 
-# need to write out error trees
-
 #-----------------
 # Simulating data
 #-----------------
