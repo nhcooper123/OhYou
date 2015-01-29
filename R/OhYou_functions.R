@@ -45,8 +45,8 @@ yule.trees <- function(ntaxa, write.tree = FALSE) {
 
 # Birth death tree simulations with low mu
 bdlow.trees <- function(ntaxa, write.tree = FALSE) {
-  simulate.trees(lambda = 1, mu = 0.25, ntaxa)
-  if(write.tree = TRUE) {
+  tree.sim <- simulate.trees(lambda = 1, mu = 0.25, ntaxa)
+  if(write.tree == TRUE) {
     write.trees(tree.sim, ntaxa, "bdlow")
   }
   return(tree.sim)
@@ -54,8 +54,8 @@ bdlow.trees <- function(ntaxa, write.tree = FALSE) {
 
 # Birth death tree simulations with medium mu
 bdmid.trees <- function(ntaxa, write.tree = FALSE) {
-  simulate.trees(lambda = 1, mu = 0.5, ntaxa)
-  if(write.tree = TRUE) {
+  tree.sim <- simulate.trees(lambda = 1, mu = 0.5, ntaxa)
+  if(write.tree == TRUE) {
     write.trees(tree.sim, ntaxa, "bdmid")
   }
   return(tree.sim)
@@ -63,8 +63,8 @@ bdmid.trees <- function(ntaxa, write.tree = FALSE) {
 
 # Birth death tree simulations with high mu
 bdhigh.trees <- function(ntaxa, write.tree = FALSE) {
-  simulate.trees(lambda = 1, mu = 0.75, ntaxa)
-  if(write.tree = TRUE) {
+  tree.sim <- simulate.trees(lambda = 1, mu = 0.75, ntaxa)
+  if(write.tree == TRUE) {
     write.trees(tree.sim, ntaxa, "bdhigh")
   }
   return(tree.sim)
