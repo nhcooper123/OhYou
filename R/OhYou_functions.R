@@ -78,14 +78,17 @@ id.tip.branches <- function(phy) {
   match(1:Ntip(phy), phy$edge[,2])
 }
 
+# Error is a proportion (0.05 = 5%)
 get.error <- function(phy, error) {
   error * max(node.depth.edgelength(phy))
 }
 
+# Adds error to tip branches
 get.tree.with.error <- function(phy, error) {
   phy.error <- phy
-  phy.error$edge.length[id.tip.branches(phy.error)] <- phy.error$edge.length[id.tip.branches(phy.error)] 
-                                                        + get.error(phy, error)
+  phy.error$edge.length[id.tip.branches(phy)] <- 
+    (phy.error$edge.length[id.tip.branches(phy)] 
+     + get.error(phy, error))
   return(phy.error)
 }
 
