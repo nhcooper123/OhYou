@@ -52,120 +52,153 @@
 
 \section{Introduction}
 \label{section:introduction} 
-%The outcomes of evolutionary processes acting over millions of years can be seen in the distributions and covariances of species traits at the tips of phylogenetic trees. Such processes can be modeled using phylogenetic comparative methods (PCMs). These approaches have been used, for example, to model niche conservatism \citep{Wiens:2010aa}, infer potential rates of species responses to climate change \citep{Quintero:2013aa}, test the role of ecological niche as a driver of morphological evolution \citep{pienaar2013macroevolution}, compare rates of evolution of species traits \citep{Claramunt:2012ab} and test for constraints in adaptive radiations \citep{blackburn2013adaptive}. PCMs are now widely recognized as powerful tools with which to model observed patterns in species traits and potentially to infer the evolutionary processes that drive them \citep[e.g.,][]{freckleton2009seven,Nunn:2011aa,o2012evolutionary,pennell2013integrative}. Despite these advances, the properties of some of the most widely used PCMs are poorly understood leading to the potential for inappropriate use and misinterpretation of results. 
 
-%The majority of PCMs use an explicit evolutionary model to characterize trait evolution \citep{Freckleton:2011aa}. A model can be fit using statistical methods (typically maximum likelihood) and model parameters interrogated to test ideas from evolutionary theory. Most model-based methods for characterizing trait evolution are based on the Brownian constant variance model \citep[for exceptions see][]{price1997correlated,harvey2000comparative,freckleton2006detecting}. The Brownian model, first applied in a phylogenetic context by \citet{cavalli1967} and to across-species data by \citet{felsenstein1973maximum}, is a simple model of trait evolution in which trait variance accrues as a linear function of time, and makes the prediction that traits of closely-related species are more similar than those of distantly-related ones. The Brownian model has been modified in various ways to account for a suite of ecological and evolutionary processes (e.g., Grafen 1989; Hansen 1997; Pagel 1997, 1999). Most of these involve a transformation of the tree and thereby fitting a model with one or more extra parameters. These modified Brownian models have become very popular because they fit better, have attractive biological interpretations, and are implemented in freely available packages \citep[e.g., R;][]{R-Core-Team:2014aa}. 
+  Phylogenetic comparative methods are powerful tools for identifying patterns in the evolution of species traits, and for potentially inferring the evolutionary processes that underlie them \citep[e.g.,][]{freckleton2009seven,Nunn:2011aa,o2012evolutionary,pennell2013integrative}. 
+  These approaches have been used, for example, to model niche conservatism \citep{Wiens:2010aa}, infer potential rates of species responses to climate change \citep{Quintero:2013aa}, test the role of ecological niche as a driver of morphological evolution \citep{pienaar2013macroevolution}, compare rates of evolution of species traits \citep{Claramunt:2012ab} and test for constraints in adaptive radiations \citep{blackburn2013adaptive}. % Maybe cut to three examples?
+  %Unfortunately, although widely used, the properties of some phylogenetic comparative methods are poorly understood leading to the potential for inappropriate use and misinterpretation of results. 
 
-%The modification of Brownian models to account for non-Brownian processes can be traced back to \citet{grafen1989phylogenetic} who introduced a parameter $\rho$ to account for non-linear scaling of evolutionary changes. $\rho$ is a power transformation of node heights in the phylogeny, and is fitted by maximum likelihood. It is worth noting that Grafen warned explicitly about potential drawbacks with $\rho$. Specifically: (i) the parameter is likely to be biased; (ii) its asymptotic sampling variance is non-zero; and (iii) values of the parameter should be interpreted cautiously. \citet{freckleton2002phylogenetic} showed that $\rho$ was indeed biased as predicted by Grafen (1989). They also showed that another parameter, Pagel’s $\lambda$ \citep{Pagel:1997aa,Pagel:1999aa}, also exhibited biases (but that these were likely to have minimal consequences in analyses using reasonable sample sizes). This strongly suggests that simulations are required to test the properties of such parameters, and that as recommended by \citet{grafen1989phylogenetic} “careless” parameterization of the phylogenetic variance-covariance matrix should be avoided.
+  Most model-based methods for characterizing trait evolution are based on the Brownian constant variance model \citep[for exceptions see][]{price1997correlated,harvey2000comparative,freckleton2006detecting}. 
+  The Brownian model, first applied in a phylogenetic context by \citet{cavalli1967} and to across-species data by \citet{felsenstein1973maximum}, is a simple model of trait evolution in which trait variance accrues as a linear function of time, and makes the prediction that traits of closely-related species are more similar than those of distantly-related ones. 
+  The Brownian model has been modified in various ways to account for a suite of ecological and evolutionary processes \citep[e.g.,][]{grafen1989phylogenetic,hansen1997stabilizing,Pagel:1997aa,Pagel:1999aa}. 
+  The majority of these involve a transformation of the tree and thereby fitting a model with one or more extra parameters. 
+  These modified Brownian models tend to fit better, have attractive biological interpretations, and are implemented in freely available packages \citep[e.g., R;][]{R-Core-Team:2014aa}. 
 
-One of the most commonly used Brownian-like models is the Ornstein Uhlenbeck (OU) model. This is a modification of the Brownian model with an additional parameter $\alpha$ that measures the strength of return towards a theoretical optimum \citep{hansen1997stabilizing}. The popularity of the OU model has grown exponentially in recent years (Fig. \ref{figure.literature}), in part because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. OU models have become particularly prevalent in ecological studies: 652 papers containing the phrases “Ornstein Uhlenbeck” and “ecology” were published between 2011 and 2013 (Google Scholar search 30th January 2014). Additionally, although they are pattern based, fit to an OU model is now being used as evidence for the action of ecological, or ecologically driven, processes such as phylogenetic niche conservatism, convergent evolution and stabilizing selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}.
+  One of the most commonly used Brownian-like models is the Ornstein Uhlenbeck (OU) model. 
+  This is a modification of the Brownian model with an additional parameter $\alpha$ that measures the strength of return towards a theoretical optimum \citep{hansen1997stabilizing}. 
+  The OU model was introduced to population genetics by \cite{Lande:1976aa} to model stabilizing selection in which the mean was recast as a fitness optimum on an adaptive landscape. 
+  The process operating in comparative data is analogous, although clearly is not stabilizing selection, despite being sometimes referred to as such (see Discussion).
 
-\begin{figure}
-\centering
-    \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure1.pdf}
-\caption{The number of evolutionary biology (closed circles) and ecology (open circles) papers published between 2005 and 2012 containing the phrase “Ornstein-Uhlenbeck”, as a proportion of the total number of evolutionary biology or ecology papers published that year.}
-\label{figure.literature}
-\end{figure}
+  The popularity of the OU model has grown exponentially in recent years (Fig. \ref{figure.literature}), in part because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. OU models have become particularly prevalent in ecological studies: 652 papers containing the phrases “Ornstein Uhlenbeck” and “ecology” were published between 2011 and 2013 (Google Scholar search 30th January 2014). Additionally, although they are pattern based, fit to an OU model is now being used as evidence for the action of ecological, or ecologically driven, processes such as phylogenetic niche conservatism, convergent evolution and stabilizing selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}.
+ 
+    \begin{figure}
+      \centering
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/PapersThruTime.png}
+      \caption{The number of evolutionary biology (closed circles) and ecology (open circles) papers published between 2005 and 2012 containing the phrase “Ornstein-Uhlenbeck”, as a proportion of the total number of evolutionary biology or ecology papers published that year.}
+      \label{figure.literature}
+    \end{figure}
 
+Here we investigate the OU model because it does not appear to have been subject to a rigorous critique. 
+The $\alpha$ parameter of the OU model is very similar to Grafen’s $\rho$ (along with other parameters in the literature) in that it is in effect a non-linear transformation of the phylogeny. 
+Consequently, one might imagine that it shares some of the same statistical properties. 
+Results from \citet{ho2013asymptotic}, indicate that there is the potential for revealing strong biases in $\alpha$ , but the implications for practice (e.g. likelihood of rejection of alternative models) is unexplored other than to note that tree shape may play an influence. 
+We present simulations demonstrating the inherent bias in estimating the $\alpha$ parameter, discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in comparative analyses. We also show that very small amounts of measurement error in data can have profound effects on the performance of models. 
+Many of our findings are applicable to other models of evolution (see Discussion and Supplemental Figs. S6-S11), but we focus here on the OU model because of the recent increase in publications using the model and because of the under-appreciated ambiguity in the link between pattern and process when interpreting estimates of the α parameter. 
+
+We are not the first to mention these problems, but we hope by
+summarising the issues and giving recommendations we can help those
+less familiar with the literature.
+
+
+  \subsection{What is the Ornstein-Uhlenbeck model?}
+    According to the Brownian model \cite{cavalli1967,felsenstein1973maximum}, a trait X evolves at random at a rate $\sigma$:
+
+    \begin{equation}
+      dX(t) = \sigma dW(t)
+      \label{equation:BMrate} 
+    \end{equation}
+
+    where $W(t)$ is drawn at random from a normal distribution with mean $0$ and variance $\sigma^2$. 
+    The model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant. 
+    Because the direction of change in trait values at each step is random, Brownian motion is often described as a ``random walk''.The model assumes the correlation structure among trait values is proportional to the extent of shared ancestry for pairs of species. 
+    This means that close relatives will be more similar in their trait values than more distant relatives. It also means that variance in the trait will increase (linearly) in proportion to time. 
+    The model has two parameters, the Brownian rate parameter, $\sigma^2$ and the state of the root at time zero, $X(0)$. 
+
+    The Ornstein-Uhlenbeck (OU) model \citep{hansen1997stabilizing,Butler:2004aa} is a random walk where trait values revert back towards some ``optimal'' value with an attraction strength proportional to the parameter $\alpha$. 
+    The model has the following form:
+  
+      \begin{equation}
+        dX(t) = - \alpha (X(t) - \mu) + \sigma dW(t)
+        \label{equation:OUrate} 
+      \end{equation}
+
+    Note that this model has two parameters in addition to those of the Brownian model: $\alpha$ and $\mu$. 
+    The parameter $\mu$ is a long-term mean, and it is assumed that species traits evolve around this value. 
+    $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it.
+     $\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$.
+
+%In the light of the results below, some properties of this model are worth highlighting. When $\alpha$ is small, evolution is approximately Brownian, then as $\alpha$ gets larger the non-Brownian behaviour of the model starts to become apparent. Eventually, when $\alpha$ is really large, all imprint of history is lost and the evolution is essentially a rapid burst at the present (Fig. \ref{figure.traitsim}C). This will be indistinguishable from phylogenetically unstructured data.  
+
+%Figure \ref{figure.traitsim} gives some numerical examples, chosen to outline the behavior of $\alpha$ in relation to the above. We show the predicted covariance in traits \ref{equation:OUcov} scaled by the overall variance \ref{equation:OUvar} plotted against the time since divergence, $t_{ij}$ scaled by tree height. Figure \ref{figure.traitsim} highlights that the behavior of $\alpha$ can be classified into three regions. When $\alpha$ is low the model behaves very much like Brownian motion, with the covariance scaling approximately linearly with time. Only as the value becomes moderately larger (in this case approaching a value of $0.5$), does the non-Brownian behavior become apparent. Secondly, there is a region of moderate values in which the model leads to markedly non-Brownian patterns of trait variation (Fig. \ref{figure.traitsim}B).  
+
+\subsection{What do people use the OU model for?}
 Uses of the Ornstein-Uhlenbeck can be divided into three broad categories that are near equally represented in the literature: (i) modeling the evolution of a continuous character to test for evolutionary constraints or stabilizing selection; (ii) modeling the effects of different hypothesized adaptive regimes on a continuous character and, (iii) controlling for phylogeny in correlative analyses. Here, we focus on the first of these because the principles apply to a range of other macroevolutionary models.  
 
-Here we investigate the OU model because it does not appear to have been subject to a rigorous critique. The $\alpha$ parameter of the OU model is very similar to Grafen’s $\rho$ (along with other parameters in the literature) in that it is in effect a non-linear transformation of the phylogeny. Consequently, one might imagine that it shares some of the same statistical properties. Results from \citet{ho2013asymptotic}, indicate that there is the potential for revealing strong biases in $\alpha$ , but the implications for practice (e.g. likelihood of rejection of alternative models) is unexplored other than to note that tree shape may play an influence. We present simulations demonstrating the inherent bias in estimating the $\alpha$ parameter, discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in comparative analyses. We also show that very small amounts of measurement error in data can have profound effects on the performance of models. Many of our findings are applicable to other models of evolution (see Discussion and Supplemental Figs. S6-S11), but we focus here on the OU model because of the recent increase in publications using the model and because of the under-appreciated ambiguity in the link between pattern and process when interpreting estimates of the α parameter. 
-
 \section{Materials and Methods}
-According to the Brownian model \cite{cavalli1967,felsenstein1973maximum}, a trait X evolves at random at a rate $\sigma$:
+  \subsection{Maximum Likelihood simulations}
+  \label{section:sims.methods} 
+  We used simulations to explore the statistical properties of $\alpha$. 
+  We simulated phylogenies with 25, 50, 100, 150, 200, 500, or 1000 tips under pure birth, constant-rate Birth-Death (extinction fractions of 0.25, 0.5 and 0.75), or temporally varying speciation rate (speciation rate modeled as time from the root raised to the power 0.2, 0.5, 2 and 5) models. 
+  We simulated 1000 phylogenies for each combination of tips and models resulting in 56,000 simulated phylogenies in total. Trees were simulated using the R package TESS \cite{hohna2013fast}. 
+  We then simulated the evolution of a single trait under a Brownian motion model on each phylogeny using the R package MOTMOT \citep{Thomas:2011aa}. 
+  We estimated $\alpha$ and compared the fit of a Brownian model to that of an OU model using: (i) a likelihood ratio test with 1 degree of freedom with the \texttt{transformPhylo.ML} function in MOTMOT \citep{Thomas:2011aa}. 
 
-  \begin{equation}
-    dX(t) = \sigma dW(t)
-    \label{equation:BMrate} 
-  \end{equation}
+\subsection{Effects of measurement error}
+  We used the same procedure to simulate trait data under a Brownian motion model with known error. 
+  Specifically, we simulated trees under a Yule model with 25, 50, 100, 150, 200, 500, or 1000 tips and added branch length of (i) 1\%, (ii) 5\% or (iii) 10\% of the tree height to the tips of the simulated trees. We then simulated data under a Brownian model on each tree. 
+  We compared the fit of a Brownian model to that of an OU model as described above, using the original trees without the addition of extra branch length to the tip edges. 
+  The expectation is that the OU model should fit the data better than the Brownian model but the reason for the better fit would be entirely unrelated to any evolutionary process. 
 
-where $W(t)$ is drawn at random from a normal distribution with mean $0$ and variance $\sigma^2$. The model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant. Because the direction of change in trait values at each step is random, Brownian motion is often described as a ``random walk''. The model assumes the correlation structure among trait values is proportional to the extent of shared ancestry for pairs of species. This means that close relatives will be more similar in their trait values than more distant relatives. It also means that variance in the trait will increase (linearly) in proportion to time. The model has two parameters, the Brownian rate parameter, $\sigma^2$ and the state of the root at time zero, $X(0)$. 
 
-The Ornstein-Uhlenbeck (OU) model \citep{hansen1997stabilizing,Butler:2004aa} is a random walk where trait values revert back towards some ``optimal'' value with an attraction strength proportional to the parameter $\alpha$. The model has the following form:
-  
-  \begin{equation}
-    dX(t) = - \alpha (X(t) - \mu) + \sigma dW(t)
-    \label{equation:OUrate} 
-  \end{equation}
 
-Note that this model has two parameters in addition to those of the Brownian model: $\alpha$ and $\mu$. The parameter $\mu$ is a long-term mean, and it is assumed that species traits evolve around this value. $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. $\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$.
+\subsection{Bayesian simulations}
 
-The OU model was introduced to population genetics by \cite{Lande:1976aa} to model stabilizing selection in which the mean was recast as a fitness optimum on an adaptive landscape. The process operating in comparative data is analogous, although clearly is not stabilizing selection, despite being sometimes referred to as such (see Discussion). 
-
-The variances and covariances predicted by the OU model are more complex than those predicted by the Brownian model. In the light of the results below, some properties of this model are worth highlighting:
-
-\begin{enumerate}[(i)]
-  
-  \item If $\alpha$ is small then evolution is approximately Brownian, The question is what is a small value of $\alpha$? Figure \ref{figure.traitsim} provides some guidance on this issue.\\ 
-
-  \item If species $i$ and $j$ diverged recently, evolution is approximately Brownian: if two species diverged recently, then $T - t_{ij} \approx 0$ and hence $cov(X_i, X_j) \approx 1 - e^{-2\alpha t_{ij}} \approx 2\alpha t_{ij}$. Thus, recently diverged species provide little information relevant to estimating non-Brownian evolution according to an OU process. \\ 
-
-  \item In the long-term the imprint of history is weakened. If evolution proceeds for a long time the variance in $X_i$ tends to a constant, i.e. because the expected value of $X_i$ is $\mu$. Similarly, in equation (4), the covariance between traits tends to a constant because $T$ becomes large relative to $t_{ij}$. Consequently for large groups the model implies that the imprint of history is weak. As a result adding more species to a phylogeny will contribute only relatively weakly to fitting the model, as the deeper branches within a phylogeny will contribute little information to estimating the parameters.\\
-
-\end{enumerate}
-
-Figure \ref{figure.traitsim} gives some numerical examples, chosen to outline the behavior of $\alpha$ in relation to the above. We show the predicted covariance in traits \ref{equation:OUcov} scaled by the overall variance \ref{equation:OUvar} plotted against the time since divergence, $t_{ij}$ scaled by tree height. Figure \ref{figure.traitsim} highlights that the behavior of $\alpha$ can be classified into three regions. When $\alpha$ is low the model behaves very much like Brownian motion, with the covariance scaling approximately linearly with time. Only as the value becomes moderately larger (in this case approaching a value of $0.5$), does the non-Brownian behavior become apparent. Secondly, there is a region of moderate values in which the model leads to markedly non-Brownian patterns of trait variation (Fig. \ref{figure.traitsim}B).  
-
-Finally, when $\alpha$ is large the model behaves differently again: in this case, all imprint of history is lost and the evolution is essentially a rapid burst at the present (Fig. \ref{figure.traitsim}C). This will be indistinguishable from phylogenetically unstructured data.  
-
-\begin{figure}
-\centering
-    \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure2.pdf}
-\caption{Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein-Uhlenbeck model. The covariance between species’ traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species’ traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height). }
-\label{figure.traitsim}
-\end{figure}
-
-In terms of statistical model fitting, a feature to highlight is that in Figure \ref{figure.traitsim}A and Figure \ref{figure.traitsim}C, changing the value of α across large relative ranges at the extremes (0-0.5 in Fig. \ref{figure.traitsim}A; 10-50 in Fig. \ref{figure.traitsim}C) produces relatively little quantitative change in the model behavior, and it is in the middle region of parameter space (1-5) that the biggest discernible effects occur.
-
-The point of highlighting these aspects of expected behavior is that we believe these properties need to be understood if we are to build up a full picture of when the model is likely to be well estimated, as well as to understand the bounds of what can be inferred from real data. 
-
-\subsection{Simulations}
-\label{section:sims.methods} 
-We used simulations to explore the statistical properties of $\alpha$. We simulated phylogenies with 25, 50, 100, 150, 200, 500, or 1000 tips under pure birth, constant-rate Birth-Death (extinction fractions of 0.25, 0.5 and 0.75), or temporally varying speciation rate (speciation rate modeled as time from the root raised to the power 0.2, 0.5, 2 and 5) models. We simulated 1000 phylogenies for each combination of tips and models resulting in 56,000 simulated phylogenies in total. Trees were simulated using the R package TESS \cite{hohna2013fast}. We then simulated the evolution of a single trait under a Brownian motion model on each phylogeny using the R package MOTMOT \citep{Thomas:2011aa}.  We estimated α and compared the fit of a Brownian model to that of an OU model using: (i) a likelihood ratio test with 1 degree of freedom with the transformPhylo.ML function in MOTMOT; and, (ii) with Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). We treated Bayes factors $>$ 2 as evidence favouring the OU model. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 for $\sigma^2$. We also normalized the tree length to prevent the $\alpha$ parameter of the OU model from interacting with $\sigma^2$.
+and, (ii) with Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). We treated Bayes factors $>$ 2 as evidence favouring the OU model. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 for $\sigma^2$. We also normalized the tree length to prevent the $\alpha$ parameter of the OU model from interacting with $\sigma^2$.
 
 OU models have not previously been widely applied within a Bayesian framework, although some packages offer this functionality \citep[e.g., diversitree;][]{FitzJohn:2012aa} and the choice of prior has not been fully explored. We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior. We provide results derived from a strong exponential prior with mean = 1 and a bounded uniform prior (range 0-20) as supplementary material (Figs. S2-S5). We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. Multiple independent chains were run for each analysis to ensure convergence was reached. 
 
-We used the same procedure to simulate trait data under a Brownian motion model with known error. Specifically, we simulated trees under a Yule model with 25, 50, 100, 150, 200, 500, or 1000 tips and added branch length of (i) 1\%, (ii) 5\% or (iii) 10\% of the tree height to the tips of the simulated trees. We then simulated data under a Brownian model on each tree. We compared the fit of a Brownian model to that of an OU model (with ML and MCMC stepping stone sampling as above) using the original trees without the addition of extra branch length to the tip edges. The expectation is that the OU model should fit the data better than the Brownian model but the reason for the better fit would be entirely unrelated to any evolutionary process. 
-
+\subsection{Other models}
 Although our focus is on the OU model we also explored three other commonly used models \citep[$\kappa$, $\lambda$, and $\delta$;][]{Pagel:1997aa,Pagel:1999aa} fitted using maximum likelihood using the same simulated data. These models are designed to test for speciational evolution ($\kappa$), strength of phylogenetic signal ($\lambda$) and accelerating or decelerating evolution ($\delta$). The point of these additional tests is to assess the extent to which parameter behaviors vary across models and the results are reported in the supplementary material. 
-
 
 \section{Results}
 \subsection{Simulations}
 \label{section:sims.results} 
 Figure \ref{figure.profiles} shows some examples of profile likelihoods for α generated on different datasets that were simulated according to a Brownian model. It is clear that the shape of the tree affects the shape of the likelihood profile. Trees with increasing speciation rates from root to tip (i.e., that have a lot of recently evolved species) generate very wide, flat likelihood profiles (Fig. \ref{figure.profiles}A). On the other hand, trees with declining speciation rates from root to tip (Fig. \ref{figure.profiles}B), or generated according to a Yule process (Fig. \ref{figure.profiles}C), yield more strongly peaked profiles. 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure3.pdf}
-  \caption{Examples of profile likelihoods for selected simulated datasets. In all cases the ‘true’ value of alpha is 0.}
-\label{figure.profiles}
-\end{figure}
+%\begin{figure}
+ % \centering
+  %\includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure3.pdf}
+  %\caption{Examples of profile likelihoods for selected simulated datasets. In all cases the ‘true’ value of alpha is 0.}
+%\label{figure.profiles}
+%\end{figure}
 
 In all three cases, there are several features worth noting. First, the profiles are asymmetric. There is a hard bound at $\alpha = 0$, and as $\alpha$ becomes large, the rate of decrease in the likelihood slows. This is because, as shown in Figure \ref{figure.traitsim}, as values of $\alpha$ become large, the effects of changing $\alpha$ on model predictions are increasingly small. It is also notable, that the Maximum Likelihood estimates of $\alpha$ are, in most cases, between 0 and 1. In Figure \ref{figure.traitsim} it was noted that in this region of parameter space, the OU model is very difficult to distinguish from Brownian. This, combined with the asymmetric nature of the profile likelihood is suggestive that estimates of $\alpha$ are likely to be biased, and that the asymptotic assumptions of likelihood ratio tests on $\alpha$ are likely to be violated.
 
 The effects of the asymmetric profile likelihoods become clear when calculating Type I error for the OU model based on ML estimates across a range of tree shapes and sizes (Fig. \ref{figure.rejection}; see Supplemental Figs. S2 and S3 for results with alternative priors for the Bayesian analyses). Regardless of tree shape, Type I error rates are unacceptably high when tree size is small (Figs. \ref{figure.rejection}A, \ref{figure.rejection}C and \ref{figure.rejection}E). For some tree shapes (particularly where speciation rates accelerate towards the present), Type I error remains $>0.05$ even for trees with 1000 tips. Bayesian estimation is not subject to bias in the log-likelihood statistic and consistently rejects the OU model. However, estimates of α are similar regardless of method.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure4.pdf}
-  \caption{Rejection rates and estimation of $\alpha$ for different tree sizes and shapes. Rejection rates (a,c,e) for the OU model at multiple tree sizes for models fitted using ML (circles) and Bayesian (diamonds) methods. Estimates of $\alpha$ (b,d,f) based on ML (circles show means and dotted lines show 95\% sampling interval from 1000 trees) and Bayesian (diamonds show means and dotted lines show 95\% sampling interval of the modal value from the posterior distribution from 1000 trees).}
-\label{figure.rejection}
-\end{figure}
+%\begin{figure}
+  %\centering
+  %\includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure4.pdf}
+  %\caption{Rejection rates and estimation of $\alpha$ for different tree sizes and shapes. Rejection rates (a,c,e) for the OU model at multiple tree sizes for models fitted using ML (circles) and Bayesian (diamonds) methods. Estimates of $\alpha$ (b,d,f) based on ML (circles show means and dotted lines show 95\% sampling interval from 1000 trees) and Bayesian (diamonds show means and dotted lines show 95\% sampling interval of the modal value from the posterior distribution from 1000 trees).}
+%\label{figure.rejection}
+%\end{figure}
 
-Figure \ref{figure.error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error (also see Figs. S4 and S5). The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. First, the frequency with which the OU model is favoured increases with tree size for both ML and Bayesian estimation (Fig. \ref{figure.error}A). With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. This is important for the interpretation of the OU model. We cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. Second, for moderate amounts of error (5-10\%), the ML estimates of $\alpha$ are consistently $>$ 1 (Fig. \ref{figure.error}B). Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
+%Figure \ref{figure.error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error (also see Figs. S4 and S5). The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. First, the frequency with which the OU model is favoured increases with tree size for both ML and Bayesian estimation (Fig. \ref{figure.error}A). With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. This is important for the interpretation of the OU model. We cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. Second, for moderate amounts of error (5-10\%), the ML estimates of $\alpha$ are consistently $>$ 1 (Fig. \ref{figure.error}B). Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure5.pdf}
-  \caption{Rejection of BM with measurement error (a) and estimation of α (b). Symbols follow Figure \ref{figure.rejection}.}
-\label{figure.error}
-\end{figure}
+%\begin{figure}
+ % \centering
+  %\includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OU_figure5.pdf}
+  %\caption{Rejection of BM with measurement error (a) and estimation of α (b). Symbols follow Figure \ref{figure.rejection}.}
+%\label{figure.error}
+%\end{figure}
 
 The biases reported above are not unique to the OU model. The parameter $\delta$, which tests for accelerating or decelerating rates of evolution \citep{Pagel:1997aa,Pagel:1999aa} also suffers from elevated Type I error and is upwardly biased, favoring models that imply temporally increasing evolutionary rates (Supplemental Fig. S8). In contrast, although the speciational model ($\kappa$) has slightly elevated Type I errors, the parameter estimates are unbiased for the majority of tree sizes and shapes (Supplemental Fig. S6). As previously shown (Freckleton et al. 2002), the $\lambda$ model is conservative with low Type I error rates (Supplemental Fig. S7). As with the OU model, the $\delta$ models are all strongly favored over Brownian motion when there is error in the species data (Supplemental Figs. S9-S11). 
 
 \section{Discussion}
 \label{section:discussion}
+
+Recommendations
+
+Interpreting results
+ - OU is favoured over BM. If alpha is small it's basically BM. What
+is alpha? Talk about half lives.
+ - Not stabilising selection
+ - Not an issue if you're just mopping up error structure for PGLS (?)
+ - If really want to be certain OU over BM you need 200 species
+ - Account for measurement error
+
+
+%The modification of Brownian models to account for non-Brownian processes can be traced back to \citet{grafen1989phylogenetic} who introduced a parameter $\rho$ to account for non-linear scaling of evolutionary changes. $\rho$ is a power transformation of node heights in the phylogeny, and is fitted by maximum likelihood. It is worth noting that Grafen warned explicitly about potential drawbacks with $\rho$. Specifically: (i) the parameter is likely to be biased; (ii) its asymptotic sampling variance is non-zero; and (iii) values of the parameter should be interpreted cautiously. \citet{freckleton2002phylogenetic} showed that $\rho$ was indeed biased as predicted by Grafen (1989). They also showed that another parameter, Pagel’s $\lambda$ \citep{Pagel:1997aa,Pagel:1999aa}, also exhibited biases (but that these were likely to have minimal consequences in analyses using reasonable sample sizes). This strongly suggests that simulations are required to test the properties of such parameters, and that as recommended by \citet{grafen1989phylogenetic} “careless” parameterization of the phylogenetic variance-covariance matrix should be avoided.
+
 Although it is possible to create and implement new models for comparative data that encompass a range of processes, we have to beware that such models are statistically complex and may behave in unexpected ways. Transformations of the variance-covariance matrix in the Brownian model are an attractive and computationally simple way to modify the basic model to include evolutionary processes. But, as first pointed out by \citet{grafen1989phylogenetic}, the statistical consequences of these modifications can include biases and problems with interpretation. The results we have presented here illustrate that such biases can occur under conditions that closely match the size and type of datasets that are commonly used. 
 
 In the case of the OU model, we can make a series of specific recommendations for future analyses:
