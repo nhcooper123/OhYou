@@ -10,7 +10,7 @@ ds$pal <- (ds$paleo / ds$paleo.total) * 100
 
 # Plot figure 1
 
-png("Figures/PapersThruTime.png")
+png("Manuscript/Figures/PapersThruTime.png")
 par(bty = "l")
 plot(evo ~ Year, data = ds, las = 1, pch = 16, cex = 1.2, cex.lab = 1.2, cex.axis = 1.2,
      ylab = "OU publications (% of total papers)", xlab = "Year published", ylim = c(0, 0.7))
