@@ -31,7 +31,7 @@
 \vfill
 %\paragraph{Word-count:} X words
 
-\runninghead{A cautionary note on OU models}
+\runninghead{A cautionary note on macroevolutionary models}
 \keywords{Bayesian method - comparative methods - delta - kappa - lambda - OU - phylogeny - stabilizing selection - selection} %meant to be after abstract
 
 % End of preamble
@@ -44,7 +44,7 @@
 \addtolength{\parskip}{.3em}
 
 \section{Abstract 100-200}
-%Phylogenetic comparative methods are increasingly used to give new insight into variation, causes and consequences of trait variation among species. The foundation of these methods is a suite of models that attempt to capture evolutionary patterns by extending the Brownian constant variance model. However, the parameters of these models have been hypothesised to be biased and only asymptotically behave in a statistically predictable way as datasets become large. This does not seem to be widely appreciated. We show that a commonly used model in evolutionary biology (the Ornstein-Uhlenbeck model) is biased over a wide range of conditions. Many studies fitting this model use datasets that are small and prone to substantial biases. Our results suggest that simulating fitted models and comparing with empirical results is critical when fitting OU and other extensions of the Brownian model. 
+  %Phylogenetic comparative methods are increasingly used to give new insight into variation, causes and consequences of trait variation among species. The foundation of these methods is a suite of models that attempt to capture evolutionary patterns by extending the Brownian constant variance model. However, the parameters of these models have been hypothesised to be biased and only asymptotically behave in a statistically predictable way as datasets become large. This does not seem to be widely appreciated. We show that a commonly used model in evolutionary biology (the Ornstein-Uhlenbeck model) is biased over a wide range of conditions. Many studies fitting this model use datasets that are small and prone to substantial biases. Our results suggest that simulating fitted models and comparing with empirical results is critical when fitting OU and other extensions of the Brownian model. 
 
 \newpage
 \raggedright
@@ -62,22 +62,62 @@
   The Brownian model, first applied in a phylogenetic context by \citet{cavalli1967} and to across-species data by \citet{felsenstein1973maximum}, is a simple model of trait evolution in which trait variance accrues as a linear function of time, and makes the prediction that traits of closely-related species are more similar than those of distantly-related ones. 
   The Brownian model has been modified in various ways to account for a suite of ecological and evolutionary processes \citep[e.g.,][]{grafen1989phylogenetic,hansen1997stabilizing,Pagel:1997aa,Pagel:1999aa}. 
   The majority of these involve a transformation of the tree and thereby fitting a model with one or more extra parameters. 
-  These modified Brownian models tend to fit better and often have attractive biological interpretations. 
+  These modified Brownian models tend to fit better and often have links to process-based interpretations. 
 
   One of the most commonly used Brownian-like models is the Ornstein Uhlenbeck (OU) model. 
   This is a modification of the Brownian model with an additional parameter $\alpha$ that measures the strength of return towards a theoretical optimum \citep{hansen1997stabilizing}. 
   The OU model was introduced to population genetics by \cite{Lande:1976aa} to model stabilizing selection in which the trait mean was recast as a fitness optimum on an adaptive landscape. 
   The process operating in comparative data is analogous, although clearly is not stabilizing selection, despite being sometimes referred to as such (see Discussion).
 
-  Here we investigate the OU model in more detail. 
-  We present simulations demonstrating the inherent bias in estimating the $\alpha$ parameter, discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. We also show that very small amounts of measurement error in data can have profound effects on the performance of models. 
+  The popularity of the OU model has grown extensively in recent years (Fig. \ref{figure.literature}); over 2500 ecology, evolution and palaeontology papers containing the phrase ``Ornstein Uhlenbeck'' were published between 2012 and 2014 (Google Scholar search 15th March 2015; see Supplementary Material). % Need to add ref to supp mat
+  This may partly be because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. 
+  Additionally, although the OU model is pattern-based, it has a number of attractive biological interpretations. 
+  For example, fit to an OU model is used as evidence for the action of processes such as phylogenetic niche conservatism, convergent evolution and stabilizing selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}. 
+  Unfortunately, although widely used, the properties of the OU model are poorly understood leading to the potential for inappropriate use and misinterpretation of results. 
+ 
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/PapersThruTime.png}
+      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supplementary Material for details %linkto supp mat
+      }
+      \label{figure.literature}
+    \end{figure}
+
+  Uses of the OU model can be divided into three broad categories. % improve citations in this section
+    \begin{enumerate}
+      \item \textbf{Modeling the evolution of a continuous character.}\\ 
+            Generally in these analyses, multiple models of evolution are fit to the same continuous character \citep[e.g.,][]{Harmon:2010aa}. Model selection is then used to determine which model best fits the data. 
+            If the OU model is favoured this is often used as evidence of evolutionary constraints, stabilizing selection, or phylogenetic niche conservatism \citep[e.g.,][]{Harmon:2010aa,cooper2010body,Wiens:2010aa,christin2013anatomical}
+      \item \textbf{Modeling the effects of different hypothesized adaptive regimes on a continuous character.}\\
+            OU models can be fit with one optimal trait value, or multiple different optima \citep{Butler:2004aa}. 
+            The latter represents evolution under multiple selective regimes, and is probably more biological realistic. 
+            In these analyses, OU models with different numbers of optima are fitted to the same continuous character, then model selection is used to determine what number of selection regimes best fits the evolution of the trait \citep[e.g.,][]{beaulieu2012ouwie}.
+      \item \textbf{Controlling for phylogeny in correlative analyses.}\\ 
+            In these analyses, . This is rarely interpreted as corresponding to any kind of process, it just improves the fit of the models \citep[e.g.,][]{}.%cite maia?
+    \end{enumerate}
+
+  \noindent
+  The OU model is also used to reconstruct ancestral states % citation
+  and to detect clade-wide convergent evolution \citep{ingram2013surface}. 
+  The majority of papers use the OU model to model the evolution of a continuous character (Fig 2 and Supplementary Material) % Need to add ref to supp mat
+  Therefore, we focus on this use of the OU model in our simulations below. The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/PapersThruTime.png}
+      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supplementary Material for details %linkto supp mat
+      }
+      \label{figure.uses}
+    \end{figure}
+
+  Here we present simulations demonstrating the inherent bias in estimating the $\alpha$ parameter, discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. We also show that very small amounts of measurement error in data can have profound effects on the performance of models. 
   Many of our findings are applicable to other models of evolution (see Discussion and Supplemental Figs. S6-S11) 
   % Add figure refs here
   , but we focus on the OU model because of the recent increase in publications using the model and because of the under-appreciated ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
-  We are not the first to mention these problems, but we hope by summarising the issues and giving recommendations we can help those less familiar with the technical literature \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your}. %ives garland 2010, hansen bartoszek et al
+  We are not the first to mention these problems, but we hope by summarising the issues and giving recommendations we can help those less familiar with the technical literature \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}.
 
 \section{Materials and Methods}
-  \subsection{What is the OU model?}
+  \subsection{The Ornstein Uhlenbeck (OU) model}
     According to the Brownian model \citep{cavalli1967,felsenstein1973maximum}, a trait X evolves at random at a rate $\sigma$:
 
       \begin{equation}
@@ -101,37 +141,17 @@
     Note that this model has two parameters in addition to those of the Brownian model: $\alpha$ and $\mu$. 
     The parameter $\mu$ is a long-term mean, and it is assumed that species traits evolve around this value. 
     $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. 
-    $\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$. For more details see Appendix.
+    $\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$. For more details see the Appendix.
     
     When $\alpha$ is close to zero, evolution is approximately Brownian, then as $\alpha$ gets larger the non-Brownian behaviour of the model starts to become apparent. 
-    Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present (FIGURE 2).
+    Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present (FIGURE 2). % Fix the figure or send to supplemental
     We discuss how to interpret values of $\alpha$ below.
-    
-    % Fix the figure or send to supplemental
-
-  \subsection{What do people use the OU model for?}
-    The popularity of the OU model has grown extensively in recent years (Fig. \ref{figure.literature}), in part because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. 
-    
-    OU models have become particularly prevalent in ecological studies: 829 papers containing the phrases ``Ornstein Uhlenbeck'' and ``ecology'' were published between 2012 and 2014 (Google Scholar search 15th March 2015; see Supplementary Material). % Need to add ref to supp mat
-    Additionally, although they are pattern based, fit to an OU model is now being used as evidence for the action of ecological, or ecologically driven, processes such as phylogenetic niche conservatism, convergent evolution and stabilizing selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}. OU models are also increasingly used in palaeontological studies \citep[e.g.,][]{slater2013,soul2015taxonomy}.
- 
-      \begin{figure}[h]
-        \centering
-        \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/PapersThruTime.png}
-        \caption{The number of ecology (open circles), evolutionary biology (closed circles) and palaeontology (open triangles) papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year.}
-        \label{figure.literature}
-      \end{figure}
-
-    Uses of the OU model can be divided into three broad categories that are near equally represented in the literature (see Supplementary Material) % Need to add ref to supp mat
-    : (i) modeling the evolution of a continuous character to test for evolutionary constraints or stabilizing selection; (ii) modeling the effects of different hypothesized adaptive regimes on a continuous character and, (iii) controlling for phylogeny in correlative analyses. 
-    In our simulations (see below), we focus on the first of these because the principles apply to a range of other macroevolutionary models.  
-
-     % OK somewhere here need to clarify that a) most ou studies are looking at fitting the model, and comparing models, not using multiple optima stuff. Then clarify that here we are focussing on that popular use of the 
-
+  
+  \subsection{Known statistical issues with the OU model}
      % Problems with the OU model and where they are reported in the literature?
 
      % This maybe belongs in the main text in shorter form  
-  Figure \ref{figure.traitsim} gives some numerical examples, chosen to outline the behavior of $\alpha$ in relation to the above. We show the predicted covariance in traits \ref{equation:OUcov} scaled by the overall variance \ref{equation:OUvar} plotted against the time since divergence, $t_{ij}$ scaled by tree height. Figure \ref{figure.traitsim} highlights that the behavior of $\alpha$ can be classified into three regions. When $\alpha$ is low the model behaves very much like Brownian motion, with the covariance scaling approximately linearly with time. Only as the value becomes moderately larger (in this case approaching a value of $0.5$), does the non-Brownian behavior become apparent. Secondly, there is a region of moderate values in which the model leads to markedly non-Brownian patterns of trait variation (Fig. \ref{figure.traitsim}B).  Finally, when $\alpha$ is large the model behaves differently again: in this case, all imprint of history is lost and the evolution is essentially a rapid burst at the present (Fig. \ref{figure.traitsim}C). This will be indistinguishable from phylogenetically unstructured data.  
+  %Figure \ref{figure.traitsim} gives some numerical examples, chosen to outline the behavior of $\alpha$ in relation to the above. We show the predicted covariance in traits \ref{equation:OUcov} scaled by the overall variance \ref{equation:OUvar} plotted against the time since divergence, $t_{ij}$ scaled by tree height. Figure \ref{figure.traitsim} highlights that the behavior of $\alpha$ can be classified into three regions. When $\alpha$ is low the model behaves very much like Brownian motion, with the covariance scaling approximately linearly with time. Only as the value becomes moderately larger (in this case approaching a value of $0.5$), does the non-Brownian behavior become apparent. Secondly, there is a region of moderate values in which the model leads to markedly non-Brownian patterns of trait variation (Fig. \ref{figure.traitsim}B).  Finally, when $\alpha$ is large the model behaves differently again: in this case, all imprint of history is lost and the evolution is essentially a rapid burst at the present (Fig. \ref{figure.traitsim}C). This will be indistinguishable from phylogenetically unstructured data.  
 
 \begin{figure}
 \centering
@@ -140,10 +160,9 @@
 \label{figure.traitsim}
 \end{figure}
 
-In terms of statistical model fitting, a feature to highlight is that in Figure \ref{figure.traitsim}A and Figure \ref{figure.traitsim}C, changing the value of α across large relative ranges at the extremes (0 – 0.5 in Fig. \ref{figure.traitsim}A; 10-50 in Fig. \ref{figure.traitsim}C) produces relatively little quantitative change in the model behavior, and it is in the middle region of parameter space (1 – 5) that the biggest discernible effects occur.
+%In terms of statistical model fitting, a feature to highlight is that in Figure \ref{figure.traitsim}A and Figure \ref{figure.traitsim}C, changing the value of α across large relative ranges at the extremes (0 – 0.5 in Fig. \ref{figure.traitsim}A; 10-50 in Fig. \ref{figure.traitsim}C) produces relatively little quantitative change in the model behavior, and it is in the middle region of parameter space (1 – 5) that the biggest discernible effects occur.
 
-The point of highlighting these aspects of expected behavior is that we believe these properties need to be understood if we are to build up a full picture of when the model is likely to be well estimated, as well as to understand the bounds of what can be inferred from real data. 
-
+%The point of highlighting these aspects of expected behavior is that we believe these properties need to be understood if we are to build up a full picture of when the model is likely to be well estimated, as well as to understand the bounds of what can be inferred from real data. 
 
   \subsection{Maximum Likelihood simulations}
   \label{section:sims.methods} 
@@ -153,6 +172,7 @@ The point of highlighting these aspects of expected behavior is that we believe 
     Trees were simulated using the R package TESS \cite{hohna2013fast}. 
     We then simulated the evolution of a single trait under a Brownian motion model on each phylogeny using the R package MOTMOT \citep{Thomas:2011aa}. 
     We estimated $\alpha$ and compared the fit of a Brownian model to that of an OU model using a likelihood ratio test with 1 degree of freedom with the \texttt{transformPhylo.ML} function in MOTMOT \citep{Thomas:2011aa}. 
+    This procedure ... % explain WHY we are doing this, how does it relate to uses of the OU model.
 
   \subsection{Effects of measurement error}
     Measurement error can strongly effect the results of comparative analyses \cite{silvestro2015} so we also investigated whether adding error to our simulated data influenced estimates of $\alpha$.
@@ -162,16 +182,24 @@ The point of highlighting these aspects of expected behavior is that we believe 
     We compared the fit of a Brownian model to that of an OU model using likelihood ratio tests as described above, using the original trees without the addition of extra branch length to the tip edges. 
     Our expectation is that the OU model should fit the data better than the Brownian model but the reason for the better fit would be entirely unrelated to any evolutionary process. 
 
-  \subsection{Bayesian simulations}
-
-and, (ii) with Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). We treated Bayes factors $>$ 2 as evidence favouring the OU model. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 for $\sigma^2$. We also normalized the tree length to prevent the $\alpha$ parameter of the OU model from interacting with $\sigma^2$.
-
-OU models have not previously been widely applied within a Bayesian framework, although some packages offer this functionality \citep[e.g., diversitree;][]{FitzJohn:2012aa} and the choice of prior has not been fully explored. We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior. We provide results derived from a strong exponential prior with mean = 1 and a bounded uniform prior (range 0-20) as supplementary material (Figs. S2-S5). We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. Multiple independent chains were run for each analysis to ensure convergence was reached. 
+  \subsection{Bayesian simulations} % keep? or move it all to supp mat?
+    For completeness, we repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. 
+    The choice of priors for OU models has not been fully explored. 
+    Therefore, we used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
+    For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
+    We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior, but we provide results derived from the other priors in the Supplementary Material (Figs. S2-S5). % add links to this
+    We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. 
+    Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
+    Multiple independent chains were run for each analysis to ensure convergence was reached. 
+    We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. 
+    The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
+    Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). 
+    We treated Bayes factors $>$ 2 as evidence favouring the OU model. 
 
   \subsection{Other evolutionary models}
     Although our focus is on the OU model we also explored three other commonly used models of trait evolution -- $\kappa$, $\lambda$, and $\delta$ \citep{Pagel:1997aa,Pagel:1999aa} -- fitted using Maximum Likelihood with the same simulated data. 
     These models are designed to test for speciational evolution ($\kappa$), strength of phylogenetic signal ($\lambda$) and accelerating or decelerating evolution ($\delta$). 
-    The point of these additional tests is to assess the extent to which parameter behaviors vary across models and the results are reported in the supplementary material. 
+    The point of these additional tests is to assess the extent to which parameter behaviors vary across models and the results are reported in the Supplementary Material. 
 
 \section{Results}
   \subsection{Simulations}
@@ -297,16 +325,15 @@ Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful
   This model has two parameters in addition to those of the Brownian model, $\alpha$ and $\mu$.
   The OU model predicts that after a time $T$ for a species $i$, the variance in trait value $X_i$ is:
 
-% Still not sure of these two equations!
     \begin{equation}
-      var(X_i) = \frac{(1 - e^{-2 \alpha T}) \times \sigma^2}{2 \alpha}
+      var(X_i) = \frac{\sigma^2}{2 \alpha} 1 - e^{-2 \alpha T}
       \label{equation:OUvar} 
     \end{equation}
 
   And for a pair of species i and j, the covariance in traits is:
 
     \begin{equation}
-      cov(X_i, X_j) = \frac{e^{-2 \alpha (T - t_{ij})} \times (1 - e^{-2\alpha t_{ij}})\times \sigma^2}{2 \alpha}
+      cov(X_i, X_j) = \frac{\sigma^2}{2 \alpha} e^{-2 \alpha (T - t_{ij})} (1 - e^{-2\alpha t_{ij}})
       \label{equation:OUcov} 
     \end{equation}
 
