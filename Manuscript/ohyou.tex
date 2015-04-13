@@ -136,7 +136,8 @@
       \begin{equation}
         dX(t) = \sigma dW(t)
       \end{equation}
-
+    
+    \noindent
     where $W(t)$ is drawn at random from a normal distribution with mean $0$ and variance $\sigma^2$. 
     The model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant. 
     Because the direction of change in trait values at each step is random, Brownian motion is often described as a ``random walk''.
@@ -150,7 +151,8 @@
       \begin{equation}
         dX(t) = - \alpha (X(t) - \mu) + \sigma dW(t)
       \end{equation}
-
+    
+    \noindent
     Note that this model has two parameters in addition to those of the Brownian model: $\alpha$ and $\mu$. 
     The parameter $\mu$ is a long-term mean, and it is assumed that species traits evolve around this value. 
     $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. 
@@ -159,18 +161,19 @@
     When $\alpha$ is close to zero, evolution is approximately Brownian, then as $\alpha$ gets larger the non-Brownian behaviour of the model starts to become apparent. 
     Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present.
 
-    $\alpha$ can most easily be interpreted by using it to estimate the ``phylogenetic half-life'' ($t_\frac{1}{2}$) of a trait, i.e., the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum \citep{hansen1997stabilizing}, as follows:
+    $\alpha$ can more easily be interpreted by using it to estimate the ``phylogenetic half-life'' ($t_\frac{1}{2}$) of a trait, i.e., the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum \citep{hansen1997stabilizing}, as follows:
 
       \begin{equation}
         t_\frac{1}{2} = \frac{ln(2)}{\alpha}
         \label{equation:halflife}
       \end{equation}
-
+    
+    \noindent
     This is sometimes referred to as ``phylogenetic inertia'' but we dislike this term because it means different things to different researchers \citep{Losos:2008aa}.
     If $t_\frac{1}{2}$ is short relative to the branch lengths of the phylogeny, evolution towards the optimum trait value is fast, residual phylogenetic correlations are weak, and there is little influence of the past on trait values \citep{hansen1997stabilizing}. 
   
   \subsection{Known statistical issues with the OU model}
-     % Problems with the OU model and where they are reported in the literature?
+  ???Problems with the OU model and where they are reported in the literature?
 
     \begin{enumerate}
       \item $\alpha$ is bounded at zero.
