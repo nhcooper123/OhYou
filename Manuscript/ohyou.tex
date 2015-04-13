@@ -83,24 +83,29 @@
       \label{figure.literature}
     \end{figure}
 
-  Uses of the OU model can be divided into three broad categories. % improve citations in this section
+  Uses of the OU model can be divided into three broad categories. % improve citations in this section?
     \begin{enumerate}
       \item \textbf{Modeling the evolution of a continuous character.}\\ 
             Generally in these analyses, multiple models of evolution are fit to the same continuous character \citep[e.g.,][]{Harmon:2010aa}. Model selection is then used to determine which model best fits the data. 
-            If the OU model is favoured this is often used as evidence of evolutionary constraints, stabilizing selection, or phylogenetic niche conservatism \citep[e.g.,][]{Harmon:2010aa,cooper2010body,Wiens:2010aa,christin2013anatomical}
-      \item \textbf{Modeling the effects of different hypothesized adaptive regimes on a continuous character.}\\
+            If the OU model is favoured, this is often used as evidence of evolutionary constraints, stabilising selection, or phylogenetic niche conservatism \citep[e.g.,][]{Harmon:2010aa,cooper2010body,Wiens:2010aa,christin2013anatomical}.
+            OU models with different numbers of optima may also be included in the set of models considered (see below).
+      \item \textbf{Modeling the effects of different hypothesised adaptive regimes on a continuous character.}\\
             OU models can be fit with one optimal trait value, or multiple different optima \citep{Butler:2004aa}. 
-            The latter represents evolution under multiple selective regimes, and is probably more biological realistic. 
-            In these analyses, OU models with different numbers of optima are fitted to the same continuous character, then model selection is used to determine what number of selection regimes best fits the evolution of the trait \citep[e.g.,][]{beaulieu2012ouwie}.
+            The latter represents evolution under multiple selective regimes, and is probably more biologically realistic. 
+            In these analyses, OU models with different numbers of optima are fitted to the same continuous character, then model selection is used to determine what number of selection regimes best fits the evolution of the trait \citep[e.g.,][]{beaulieu2012modeling}.
       \item \textbf{Controlling for phylogeny in correlative analyses.}\\ 
-            In these analyses, . This is rarely interpreted as corresponding to any kind of process, it just improves the fit of the models \citep[e.g.,][]{}.%cite maia?
+            Phylogenetic generalised least squares (PGLS) models incorporate information about the relationships among species into the error term of a generalised least squares model. 
+            This error term generally consists of a variance-covariance matrix of the phylogeny, but various transformations are used (e.g., Pagel's $\lambda$; \citealp{Pagel:1997aa}) to improve the fit of the model to the data. 
+            In these analyses, the OU model is used to transform the tree and the variance-covariance matrix.
+            This is rarely interpreted as corresponding to any kind of process, it just improves the fit of the PGLS models \citep[e.g.,][]{blankers2012ecological}.
     \end{enumerate}
 
   \noindent
-  The OU model is also used to reconstruct ancestral states % citation
+  The OU model is also used to reconstruct ancestral states \citep{martins1999estimation}
   and to detect clade-wide convergent evolution \citep{ingram2013surface}. 
-  The majority of papers use the OU model to model the evolution of a continuous character (Fig 2 and Supplementary Material) % Need to add ref to supp mat
-  Therefore, we focus on this use of the OU model in our simulations below. The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures.
+  The majority of papers use the OU model to model the evolution of a continuous character (Fig 2 and Supplementary Material), % Need to add ref to supp mat
+  therefore, we focus on this use of the OU model in our simulations below. 
+  The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures.
 
     \begin{figure}[h]
       \centering
