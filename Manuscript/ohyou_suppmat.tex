@@ -4,16 +4,29 @@
     To get an overview of the use of OU models in ecology, evolution and palaeontology, we used Google Scholar (accessed 13th March 2015) to locate papers published between 2005 \citep[when the R package ouch was released;][]{Butler:2004aa} and 2014 that contained the terms ``Ornstein Uhlenbeck'' and either ``'ecology'', or ``evolution'' and ``biology'' (the ``biology'' term was added to omit physics papers which also use the term ``evolution''), or ``paleo/palaeo''. 
     We also recorded the total number of papers containing the terms ``ecology'', or ``evolution'' and ``biology'', or ``paleo/palaeo'', published between 2005 and 2014 and plotted the number of OU papers published each year as a proportion of the total number of papers published (Fig. \ref{figure.literature}). 
 
-    Next we filtered our Google Scholar search results to focus on empirical papers using OU models (rather than methods papers with empirical proof of concept) published in the following journals: The American Naturalist, Ecology Letters, Evolution, Journal of Evolutionary Biology, Nature, Proceedings of the National Academy of Sciences, USA, Proceedings of the Royal Society B: Biological Sciences, and Science.
+    Next we filtered our Google Scholar search results to focus on empirical papers using OU models (rather than pure methods papers) published in the following journals: The American Naturalist, Ecology Letters, Evolution, Journal of Evolutionary Biology, Nature, Proceedings of the National Academy of Sciences, USA, Proceedings of the Royal Society B: Biological Sciences, and Science.
     We only include papers up to the end of 2013 to ensure completeness.
 
     For each of these papers we recorded the number of species in the analysis, the study group (amphibians, birds, fish, mammals, reptiles, invertebrates or plants), the statistical package or specific R package used to fit the models, and the reason the authors state for using an OU model (ancestral state reconstructions, detecting convergent evolution, controlling for phylogeny, selecting a model of trait evolution, or other). 
     Where papers included multiple analyses using different numbers of species we used the median number of taxa. 
     Where papers had multiple study groups, statistics/R packages or reasons for fitting OU models we counted them in each relevant category. 
-    We summarise these results in Fig. %figure link
-    and the full dataset is available in Supplemental Table S1 along with the full list of references.
+    We summarise these results in Figure 1 and Table 1, and the full dataset is available in Supplemental Table S1 % create
+    along with the full list of references.
 
     In total, our literature search found 3720 papers published between 2005 and 2014, and the number has increased substantially since 2005 (Fig. \ref{figure:literature}). 
     Most papers fit OU models to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58, Supplemental Fig. S1 and Table S1). 
-    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the “best” model of trait evolution or to control for phylogenetic non-independence (Supplemental Table S1 and Fig. S1). 
+    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the ``best'' model of trait evolution or to control for phylogenetic non-independence (Supplemental Table S1 and Fig. S1). 
  
+  \subsection{Bayesian simulations} % keep? or move it all to supp mat?
+    For completeness, we repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. 
+    The choice of priors for OU models has not been fully explored. 
+    Therefore, we used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
+    For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
+    We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior, but we provide results derived from the other priors in the Supplementary Material (Figs. S2-S5). % add links to this
+    We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. 
+    Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
+    Multiple independent chains were run for each analysis to ensure convergence was reached. 
+    We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. 
+    The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
+    Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded) 
+    We treated Bayes factors $>$ 2 as evidence favouring the OU model. 
