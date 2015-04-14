@@ -1,4 +1,4 @@
-# Functions for simulating trees and data for the paper
+# Functions for simulating trees and data
 
 #----------------------------------
 # Simulating trees
@@ -161,43 +161,4 @@ get.tree.with.error <- function(phy, error, treetype, write.tree = FALSE) {
     write.trees(phy.error, paste(ntaxa, "_", error, sep = ""), treetype)
   }
   return(phy.error)
-}
-
-# Fine up to this point...
-all.trees.error <- function(ntaxa, error, write.tree = FALSE) {
-  yule <- yule.trees(ntaxa, write.tree = write.tree)
-  bdlow <- bdlow.trees(ntaxa, write.tree = write.tree)
-  bdmid <- bdmid.trees(ntaxa, write.tree = write.tree)
-  bdhigh <- bdhigh.trees(ntaxa, write.tree = write.tree)
-  return(list(yule, bdlow, bdmid, bdhigh))
-}
-
-bm.sim <- function(ntaxa, sigma, write.tree = FALSE, write.data = FALSE) {
-  phy <- all.trees(ntaxa, write.tree = write.tree)
-  yule <- bm.data(phy[[1]], sigma)
-  bdlow <- bm.data(phy[[2]], sigma)
-  bdmid <- bm.data(phy[[3]], sigma)
-  bdhigh <- bm.data(phy[[4]], sigma)
-  if (write.data == TRUE) {
-    write.data(yule, ntaxa, "yule", paste("_BM", sigma, sep = ""))
-    write.data(bdlow, ntaxa, "bdlow", paste("_BM", sigma, sep = ""))
-    write.data(bdmid, ntaxa, "bdmid", paste("_BM", sigma, sep = ""))
-    write.data(bdhigh, ntaxa, "bdhigh", paste("_BM", sigma, sep = ""))
-  }
-  return(list(phy, list(yule, bdlow, bdmid, bdhigh)))
-}
-
-ou.sim <- function(ntaxa, sigma, alpha, write.tree = FALSE, write.data = FALSE) {
-  phy <- all.trees(ntaxa, write.tree = write.tree)
-  yule <- ou.data(phy[[1]], sigma, alpha)
-  bdlow <- ou.data(phy[[2]], sigma, alpha)
-  bdmid <- ou.data(phy[[3]], sigma, alpha)
-  bdhigh <- ou.data(phy[[4]], sigma, alpha)
-  if (write.data == TRUE) {
-    write.data(yule, ntaxa, "yule", paste("_OU", sigma, "_", alpha, sep = ""))
-    write.data(bdlow, ntaxa, "bdlow", paste("_OU", sigma, "_", alpha, sep = ""))
-    write.data(bdmid, ntaxa, "bdmid", paste("_OU", sigma, "_", alpha, sep = ""))
-    write.data(bdhigh, ntaxa, "bdhigh", paste("_OU", sigma, "_", alpha, sep = ""))
-  }
-  return(list(phy, list(yule, bdlow, bdmid, bdhigh)))
 }
