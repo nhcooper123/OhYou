@@ -95,7 +95,7 @@ for (i in 1:28) {
 	OUresVarRateTable[i,"Median alpha (95% HPD)"] <- paste(round(alpha[1], 3), " (", round(alpha[2], 3), "-", round(alpha[3], 3), ")", sep="")		
 	}
 
-write.csv(OUresVarRateTable, "Manuscript/tables/OU_var_rate_nerror.csv")
+write.csv(OUresVarRateTable, "Manuscript/tables/OU_var_rate_noerror.csv")
 
 
 
