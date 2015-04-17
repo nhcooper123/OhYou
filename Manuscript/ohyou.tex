@@ -224,9 +224,17 @@
         \end{center}
       \end{table}
 
-    We find that Type I error rates are unacceptably high when tree size is small (Table \ref{tables:bd_noerror}). 
-    %For some tree shapes (particularly where speciation rates accelerate towards the present), Type I error remains $>0.05$ even for trees with 1000 tips.
-    % I think we're cutting this?
+      \begin{table}[!htbp]
+        \begin{center}
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on trees simulated under time variable speciation rates. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.}
+        \bigskip
+        \input{Tables/OU_var_rate_noerror.tex}
+        \label{tables:varrate_noerror}
+        \end{center}
+      \end{table}
+
+    We find that Type I error rates are unacceptably high when tree size is small (Tables \ref{tables:bd_noerror} and \ref{tables:varrate_noerror}), i.e., the OU model is often favoured, even though the Brownian model was actually used to generate the data. 
+    For some tree shapes, particularly where speciation rates accelerate towards the present, Type I error remains $>0.05$ even for trees with 1000 tips (Table \ref{tables:varrate_noerror}).
     This has clear implications for studies with low sample sizes where OU is favoured.
 
 % Could put in something about interpreting parameters here?
@@ -246,7 +254,6 @@
     We compared the fit of a Brownian model to that of an OU model using likelihood ratio tests as described above, using the original trees without the addition of extra branch length to the tip edges. 
     Our expectation is that the OU model should fit the data better than the Brownian model but the reason for the better fit would be entirely unrelated to any evolutionary process. 
 
-% OK this is still broken!!!
   \begin{landscape}
       \begin{table}[!htbp]
         \begin{center}
@@ -258,7 +265,7 @@
       \end{table}
   \end{landscape}
 
-    Table \ref{tables:yule_error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error. The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. First, the frequency with which the OU model is favoured increases with tree size for both ML and Bayesian estimation (Fig. \ref{tables:yule_error}). With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. This is important for the interpretation of the OU model. We cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. Second, for moderate amounts of error (5-10\%), the ML estimates of $\alpha$ are consistently $>$ 1. Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
+    Table \ref{tables:yule_error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error. The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. First, the frequency with which the OU model is favoured increases with tree size. With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. This is important for the interpretation of the OU model. We cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. Second, for moderate amounts of error (5-10\%), the ML estimates of $\alpha$ are consistently $>$ 1. Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
 
 \section{Prospects/ recommendations}
   \subsection{Brief discussion on methods and limitations for including measurement error}
@@ -274,6 +281,21 @@ is alpha? Talk about half lives. add in ives and garland advice on what is big a
  - Account for measurement error
   
 \section{Bayesian methods (available in BayesTraits, diversitree, others?; simulations back in; improves error rates but difficult challenge of choosing the right priors)}
+
+\subsection{Bayesian simulations} % keep? or move it all to supp mat?
+    For completeness, we repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. 
+    The choice of priors for OU models has not been fully explored. 
+    Therefore, we used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
+    For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
+    We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior, but we provide results derived from the other priors in the Supplementary Material (Figs. S2-S5). % add links to this
+    We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. 
+    Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
+    Multiple independent chains were run for each analysis to ensure convergence was reached. 
+    We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. 
+    The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
+    Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded) 
+    We treated Bayes factors $>$ 2 as evidence favouring the OU model. 
+
 
 \section{Just an OU problem? - Other parameters have similar problems (reduced set of our simulations for kappa, delta, lambda, e.g. just with Yule trees an error)}
 
