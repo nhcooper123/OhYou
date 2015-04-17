@@ -214,7 +214,7 @@
     This mirrors the common situation where researchers fit Brownian and OU models and then use Likelihood ratio tests to select the ``best'' model \citep{}. % Add citations
     We then estimated the rejection rate for each set of simulations, i.e., the proportion of times OU models are favoured relative to a Brownian motion model, even though the data were simulated under Brownian model. This gives us a measure of Type I error rate for the OU model.
 
-% I ended up just LaTeXing this for our own amusement
+% I ended up just LaTeXing the tables for my own amusement
       \begin{table}[!htbp]
         \begin{center}
         \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on a range of constant-rate birth death trees. Tree type refers to the extinction fraction for the birth-death trees. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.}
@@ -233,9 +233,20 @@
         \end{center}
       \end{table}
 
-    We find that Type I error rates are unacceptably high when tree size is small (Tables \ref{tables:bd_noerror} and \ref{tables:varrate_noerror}), i.e., the OU model is often favoured, even though the Brownian model was actually used to generate the data. 
+    We find that Type I error rates are unacceptably high when tree size is small (Tables \ref{tables:bd_noerror} and \ref{tables:varrate_noerror}), i.e., the OU model is often favoured, even though the Brownian model was used to generate the data. 
     For some tree shapes, particularly where speciation rates accelerate towards the present, Type I error remains $>0.05$ even for trees with 1000 tips (Table \ref{tables:varrate_noerror}).
-    This has clear implications for studies with low sample sizes where OU is favoured.
+    This shows that, in general, analyses based on small datasets are prone to biases that decrease only slowly as the size of the dataset increases. 
+    Unfortunately, OU models are often fitted to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58; Figure ; see Supplemental Material). % link to supp mat
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/NTaxa.png}
+      \caption{The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \morethan 3000 taxa have been omitted for clarity. See Supplementary Material for details %linkto supp mat
+      }
+      \label{figure.ntaxa}
+    \end{figure}
+
+    
 
 % Could put in something about interpreting parameters here?
     
@@ -280,7 +291,8 @@ is alpha? Talk about half lives. add in ives and garland advice on what is big a
  - If really want to be certain OU over BM you need 200 species
  - Account for measurement error
   
-\section{Bayesian methods (available in BayesTraits, diversitree, others?; simulations back in; improves error rates but difficult challenge of choosing the right priors)}
+\section{Bayesian methods}
+ (available in BayesTraits, diversitree, others?; simulations back in; improves error rates but difficult challenge of choosing the right priors)
 
 \subsection{Bayesian simulations} % keep? or move it all to supp mat?
     For completeness, we repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. 
@@ -297,7 +309,8 @@ is alpha? Talk about half lives. add in ives and garland advice on what is big a
     We treated Bayes factors $>$ 2 as evidence favouring the OU model. 
 
 
-\section{Just an OU problem? - Other parameters have similar problems (reduced set of our simulations for kappa, delta, lambda, e.g. just with Yule trees an error)}
+\section{Just an OU problem?}
+Other parameters have similar problems (reduced set of our simulations for kappa, delta, lambda, e.g. just with Yule trees an error)}
 
  % The bias % check we mean bias
  % reported above are not unique to the OU model. The parameter $\delta$, which tests for accelerating or decelerating rates of evolution \citep{Pagel:1997aa,Pagel:1999aa} also suffers from elevated Type I error and is upwardly biased, favoring models that imply temporally increasing evolutionary rates (Supplemental Fig. S8). In contrast, although the speciational model ($\kappa$) has slightly elevated Type I errors, the parameter estimates are unbiased for the majority of tree sizes and shapes (Supplemental Fig. S6). As previously shown (Freckleton et al. 2002), the $\lambda$ model is conservative with low Type I error rates (Supplemental Fig. S7). As with the OU model, the $\delta$ models are all strongly favored over Brownian motion when there is error in the species data (Supplemental Figs. S9-S11). 

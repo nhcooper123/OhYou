@@ -18,11 +18,12 @@ points(pal ~ Year, data = ds, cex = 1.2, pch = 6)
 legend("topleft", legend = c("ecology", "evolution", "palaeontology"), pch = c(1, 16, 6), cex = 1.2, bty = "n")
 dev.off()
 
-# Read in data for figure 2 and reshape
+# Read in data for table 2 and figure 3 and reshape
 ds1 <- read.delim("Data/literature.txt")
 ds1 <- subset(ds1, Noptima != "?")
 ds1$Noptima <- ds1$Noptima[, drop = TRUE]
 
+# Table 2
 omit <- which(ds1$General.use == "other" | ds1$General.use == "convergent evolution" |
 	  ds1$General.use == "ancestral state reconstruction" | 
 	  ds1$General.use == "phylogenetic inertia" | ds1$General.use == "phylogenetic signal" )
@@ -31,3 +32,10 @@ ds2 <- ds1[-omit, ]
 ds2$General.use <- ds2$General.use[, drop = TRUE]
 
 summary.table <- tapply(ds2$Paper, list(ds2$General.use, ds2$Noptima), length)
+
+# Figure 3
+png("Manuscript/Figures/NTaxa.png")
+  par(bty = "l")
+  hist(ds1$Ntips[which(ds1$Ntips <= 1000)], las = 1, cex.lab = 1.2, cex.axis = 1.2,
+       ylab = "Number of papers", xlab = "Number of taxa", ylim = c(0, 80), main = "")
+dev.off()
