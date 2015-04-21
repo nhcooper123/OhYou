@@ -1,4 +1,5 @@
 \section{Supplementary Material}
+\setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}}
 
   \subsection{Literature review}
     To get an overview of the use of OU models in ecology, evolution and palaeontology, we used Google Scholar (accessed 13th March 2015) to locate papers published between 2005 \citep[when the R package ouch was released;][]{Butler:2004aa} and 2014 that contained the terms ``Ornstein Uhlenbeck'' and either ``'ecology'', or ``evolution'' and ``biology'' (the ``biology'' term was added to omit physics papers which also use the term ``evolution''), or ``paleo/palaeo''. 
@@ -10,29 +11,29 @@
     For each of these papers we recorded the number of species in the analysis, the study group (amphibians, birds, fish, mammals, reptiles, invertebrates or plants), the statistical package or specific R package used to fit the models, and the reason the authors state for using an OU model (ancestral state reconstructions, detecting convergent evolution, controlling for phylogeny, selecting a model of trait evolution, or other). 
     Where papers included multiple analyses using different numbers of species we used the median number of taxa. 
     Where papers had multiple study groups, statistics/R packages or reasons for fitting OU models we counted them in each relevant category. 
-    We summarise these results in Figure 1 and Table 1, and the full dataset is available below along with the full list of references.
+    We summarise these results in Figures 1 and 2 and Table 1, and the full dataset is available below along with the full list of references.
 
     In total, our literature search found 3720 papers published between 2005 and 2014, and the number has increased substantially since 2005 (Fig. 1). 
-    Most papers fit OU models to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58, Supplemental Fig. S1 and Table S1). 
-    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the ``best'' model of trait evolution or to control for phylogenetic non-independence (Supplemental Table S1 and Fig. S1). 
+    Most papers fit OU models to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58, Figure 2 and Table S1). 
+    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the ``best'' model of trait evolution or to control for phylogenetic non-independence (Table S1). 
 
 \begin{landscape}
 \begin{center}
 \begin{longtable}{p{6cm}llllll}
 \caption[Literature review]
         {Details of the papers used in our literature review. For each paper we recorded the study taxon, the number of tips in the phylogeny used to fit the Ornstein Uhlenbeck (OU) model, how the authors used the OU model in the paper, and the statistical package (usually R) used to carry out the analyses. For a full reference list see below. Journal abbreviations: Am Nat = The American Naturalist, ELE = Ecology Letters, JEB = Journal of Evolutionary Biology, PRSB = Proceedings of the Royal Society B: Biological Sciences, PNAS = Proceedings of the National Academy of the USA. †Number of tips in the phylogeny the OU model was fitted to. Where there were multiple analyses in a paper we use the median number of tips.  All packages mentioned are R packages apart from BayesTraits, COMPARE, MATLAB, Mesquite, PAM, PDAP and PDTREE.}\\
+\bigskip        
 \hline
-
-\textbf{Paper}  &   Year    &   Journal &   Taxon   &   Ntips   &   Use in paper    &   Stats/R package \\
+\textbf{Paper}  &   \textbf{Year}    &   \textbf{Journal} &   \textbf{Taxon}   &   \textbf{Ntips}   &   \textbf{Use in paper}   &   \textbf{Stats/R package} \\
 \hline
 Hansen and Orzack 2005    &   2005    &   Evolution   &   insects &   15  &   other   &   OUCH precursor? \\
 Edwards and Donoghue 2006     &   2006    &   Am Nat  &   plants  &   12  &   ancestral state reconstruction  &   COMPARE \\
-Gvoždík and Damme 2006    &   2006    &   Evolution   &   amphibians  &   10  &   phylogenetic correction &   COMPARE \\
+Gvo\v{z}d\'{i}k and Damme 2006    &   2006    &   Evolution   &   amphibians  &   10  &   phylogenetic correction &   COMPARE \\
 Halsey et al. 2006    &   2006    &   Am Nat  &   birds/mammals   &   90  &   phylogenetic correction &   Custom code \\
 Ives and Godfray 2006 &   2006    &   Am Nat  &   insects &   8   &   phylogenetic signal &   MATLAB  \\
 Valiente-Banuet et al. 2006   &   2006    &   PNAS    &   plants  &   47  &   model of evolution  &   ? OUCH    \\
 Clabaut et al. 2007   &   2007    &   Evolution   &   fish    &   45  &   phylogenetic correction &   APE \\
-Gomez and Théry 2007  &   2007    &   Am Nat  &   birds   &   40  &   model of evolution  &   OUCH    \\
+Gomez and Th\'{e}ry 2007  &   2007    &   Am Nat  &   birds   &   40  &   model of evolution  &   OUCH    \\
 Hipp 2007 &   2007    &   Evolution   &   plants  &   53  &   model of evolution  &   BayesTraits \\
 Rezende et al. 2007   &   2007    &   Nature  &   plants/insects  &   ?   &   phylogenetic signal &   ? OUCH    \\
 Spoor et al. 2007 &   2007    &   PNAS    &   mammals &   210 &   phylogenetic correction &   PDAP    \\
@@ -114,11 +115,11 @@ Sookias et al. 2012   &   2012    &   PRSB    &   multiple    &   43  &   model 
 Stireman et al. 2012  &   2012    &   JEB &   insects &   24  &   model of evolution  &   GEIGER  \\
 Voje and Hansen 2012  &   2012    &   Evolution   &   insects &   30  &   phylogenetic correction &   SLOUCH  \\
 Weir et al. 2012  &   2012    &   Evolution   &   birds   &   232 &   model of evolution  &   GEIGER  \\
-Arbour and López-Fernández 2013   &   2013    &   PRSB    &   fish    &   27  &   model of evolution  &   OUCH    \\
+Arbour and L\'{o}pez-Fern\'{a}ndez 2013   &   2013    &   PRSB    &   fish    &   27  &   model of evolution  &   OUCH    \\
 Benesh et al. 2013    &   2013    &   Am Nat  &   helminths   &   143 &   phylogenetic correction &   APE \\
 Blackburn et al. 2013 &   2013    &   Evolution   &   amphibians  &   18  &   model of evolution  &   GEIGER  \\
 Christin et al. 2013  &   2013    &   PNAS    &   plants  &   545 &   model of evolution  &   GEIGER/OUCH \\
-Frédérich et al. 2013 &   2013    &   Am Nat  &   fish    &   208 &   model of evolution  &   OUwie   \\
+Fr\'{e}d\'{e}rich et al. 2013 &   2013    &   Am Nat  &   fish    &   208 &   model of evolution  &   OUwie   \\
 Friedman et al. 2013  &   2013    &   Evolution   &   birds   &   15  &   model of evolution  &   OUCH    \\
 Guerrero et al. 2013  &   2013    &   PNAS    &   plants/reptiles &   49  &   ancestral state reconstruction  &   GEIGER/ \\
     &       &       &       &       &       &   COMPARE \\
@@ -130,14 +131,14 @@ Kostikova et al. 2013 &   2013    &   Am Nat  &   plants  &   68  &   model of e
 Lambert and Wiens 2013    &   2013    &   Evolution   &   reptiles    &   117 &   ancestral state reconstruction  &   GEIGER  \\
 Lapiedra et al. 2013  &   2013    &   PRSB    &   birds   &   154 &   model of evolution  &   OUwie   \\
 Litsios et al. 2013   &   2013    &   Evolution   &   plants  &   382 &   model of evolution  &   OUwie   \\
-López-Fernández et al. 2013   &   2013    &   Evolution   &   fish    &   135 &   model of evolution  &   GEIGER  \\
+L\'{o}pez-Fern\'{a}ndez et al. 2013   &   2013    &   Evolution   &   fish    &   135 &   model of evolution  &   GEIGER  \\
 Machac et al. 2013    &   2013    &   Evolution   &   mammals &   231 &   model of evolution  &   GEIGER  \\
 Mahler et al. 2013    &   2013    &   Science &   reptiles    &   100 &   convergent evolution    &   SURFACE \\
 Maia et al. 2013  &   2013    &   PNAS    &   birds   &   47  &   model of evolution  &   OUwie   \\
 Mirceta et al. 2013   &   2013    &   Science &   mammals &   130 &   phylogenetic correction/    &   Mesquite/   \\
     &       &       &       &       &   ancestral state reconstruction  &   MATLAB  \\
 Moen et al. 2013  &   2013    &   PRSB    &   amphibians  &   44  &   convergent evolution    &   GEIGER  \\
-Pérez i de Lanuza et al. 2013 &   2013    &   JEB &   reptiles    &   42  &   ancestral state reconstruction  &   GEIGER  \\
+P\'{e}rez i de Lanuza et al. 2013 &   2013    &   JEB &   reptiles    &   42  &   ancestral state reconstruction  &   GEIGER  \\
 Pienaar et al. 2013   &   2013    &   ELE &   birds   &   382 &   model of evolution  &   SLOUCH  \\
 Quintero and Wiens 2013   &   2013    &   ELE &   multiple    &   500 &   ancestral state reconstruction  &   GEIGER/COMPARE  \\
 Ryan and Shaw 2013    &   2013    &   PRSB    &   mammals &   34  &   phylogenetic correction &   MATLAB  \\
@@ -151,12 +152,6 @@ Wiens et al. 2013 &   2013    &   Evolution   &   reptiles    &   117 &   ancest
 \end{center}
 \end{landscape}
    
-
-
-
-
-
-
 \subsection{Literature review references}
 
 \indent
@@ -164,7 +159,7 @@ Adams, D. C., C. M. Berns, K. H. Kozak, and J. J. Wiens. 2009. Are rates of spec
 Addison, B., K. C. Klasing, W. D. Robinson, S. H. Austin, and R. E. Ricklefs. 2009. Ecological and life-history factors influencing the evolution of maternal antibody allocation: a phylogenetic comparison. Proceedings of the Royal Society B: Biological Sciences 276:3979-3987.\\
 Agrawal, A. A., M. Fishbein, R. Halitschke, A. P. Hastings, D. L. Rabosky, and S. Rasmann. 2009. Evidence for adaptive radiation from a phylogenetic study of plant defenses. Proceedings of the National Academy of Sciences 106:18067-18072.\\
 Angielczyk, K. D., C. R. Feldman, and G. R. Miller. 2011. Adaptive evolution of plastron shape in emydine turtles. Evolution 65:377-394.\\
-Arbour, J. H., and H. López-Fernández. 2013. Ecological variation in South American geophagine cichlids arose during an early burst of adaptive morphological and functional evolution. Proceedings of the Royal Society B: Biological Sciences 280.\\
+Arbour, J. H., and H. L\'{o}pez-Fern\'{a}ndez. 2013. Ecological variation in South American geophagine cichlids arose during an early burst of adaptive morphological and functional evolution. Proceedings of the Royal Society B: Biological Sciences 280.\\
 Beaulieu, J. M., D.-C. Jhwueng, C. Boettiger, and B. C. O’Meara. 2012. Modeling stabilizing selection: expanding the Ornstein-Uhlenbeck model of adaptive evolution. Evolution 66:2369-2383.\\
 Benesh, D. P., J. C. Chubb, and G. A. Parker. 2011. Exploitation of the same trophic link favors convergence of larval life-history strategies in complex life cycle helminths. Evolution 65:2286-2299.\\
 Benesh, D. P., J. C. Chubb, and G. A. Parker. 2013. Complex life cycles: why refrain from growth before reproduction in the adult niche? The American Naturalist 181:39-51.\\
@@ -194,13 +189,13 @@ Fr\'{e}d\'{e}rich, B., L. Sorenson, F. Santini, G. J. Slater, and M. E. Alfaro. 
 Friedman, N. R., K. J. McGraw, and K. E. Omland. 2013. Evolution of carotenoid pigmentation in caciques and meadowlarks (Icteridae): repeated gains of red plumage coloration by carotenoid C4-oxygenation. Evolution in press.\\
 Fusco, G., J. T. Garland, G. Hunt, and N. C. Hughes. 2012. Developmental trait evolution in trilobites. Evolution 66:314-329.\\
 Galvan, I., and A. P. Moller. 2011. Brain size and the expression of pheomelanin-based colour in birds. Journal of Evolutionary Biology 24:999-1006.\\
-Gomez, D., and M. Théry. 2007. Simultaneous crypsis and conspicuousness in color patterns: comparative analysis of a neotropical rainforest bird community. The American Naturalist 169:S42-S61.\\
+Gomez, D., and M. Th\'{e}ry. 2007. Simultaneous crypsis and conspicuousness in color patterns: comparative analysis of a neotropical rainforest bird community. The American Naturalist 169:S42-S61.\\
 Gomez-Mestre, I., R. A. Pyron, and J. J. Wiens. 2012. Phylogenetic analyses reveal unexpected patterns in the evolution of reproductive modes in frogs. Evolution 66:3687-3700.\\
 Gonzalez-Voyer, A., and N. Kolm. 2011. Rates of phenotypic evolution of ecological characters and sexual traits during the Tanganyikan cichlid adaptive radiation. Journal of Evolutionary Biology 24:2378-2388.\\
 Gonzalez-Voyer, A., S. Winberg, and N. Kolm. 2009. Social fishes and single mothers: brain evolution in African cichlids. Proceedings of the Royal Society B: Biological Sciences 276:161-167.\\
 Goodman, B. A., S. C. Hudson, J. L. Isaac, and L. Schwarzkopf. 2009. The evolution of body shape in response to habitat: is reproductive output reduced in flat lizards? Evolution 63:1279-1291.\\
 Guerrero, P. C., M. Rosas, M. T. K. Arroyo, and J. J. Wiens. 2013. Evolutionary lag times and recent origin of the biota of an ancient desert (Atacama–Sechura). Proceedings of the National Academy of Sciences 110:11469-11474.\\
-Gvoždík, L., and R. V. Damme. 2006. Triturus newts defy the running-swimming dilemma. Evolution 60:2110-2121.\\
+Gvo\v{z}d\'{i}k, L., and R. V. Damme. 2006. Triturus newts defy the running-swimming dilemma. Evolution 60:2110-2121.\\
 Halsey, L. G., P. J. Butler, and T. M. Blackburn. 2006. A phylogenetic analysis of the allometry of diving. The American Naturalist 167:276-287.\\
 Hansen, T. F., and S. H. Orzack. 2005. Assessing current adaptation and phylogenetic inertia as explanations of trait evolution: the need for controlled comparisons. Evolution 59:2063-2072.\\
 Hansen, T. F., J. Pienaar, and S. H. Orzack. 2008. A comparative method for studying adaptation to a randomly evolving environment. Evolution 62:1965-1977.\\
@@ -209,7 +204,7 @@ Helmus, M. R., W. Keller, M. J. Paterson, N. D. Yan, C. H. Cannon, and J. A. Rus
 Hertz, P. E., Y. Arima, A. Harrison, R. B. Huey, J. B. Losos, and R. E. Glor. 2013. Asynchronous evolution of physiology and morphology in Anolis lizards. Evolution 67:2101-2113.\\
 Hipp, A. L. 2007. Nonuniform processes of chromosome evolution in sedges (Carex: Cyperaceae). Evolution 61:2175-2194.\\
 Hossie, T. J., C. Hassall, W. Knee, and T. N. Sherratt. 2013. Species with a chemical defence, but not chemical offence, live longer. Journal of Evolutionary Biology 26:1598-1602.\\
-Huey, R. B., C. A. Deutsch, J. J. Tewksbury, L. J. Vitt, P. E. Hertz, H. J. Álvarez Pérez, and T. Garland. 2009. Why tropical forest lizards are vulnerable to climate warming. Proceedings of the Royal Society of London Series B-Biological Sciences 276:1939-1948.\\
+Huey, R. B., C. A. Deutsch, J. J. Tewksbury, L. J. Vitt, P. E. Hertz, H. J. \'{A}lvarez P\'{e}rez, and T. Garland. 2009. Why tropical forest lizards are vulnerable to climate warming. Proceedings of the Royal Society of London Series B-Biological Sciences 276:1939-1948.\\
 Ingram, T., L. J. Harmon, and J. B. Shurin. 2012. When should we expect early bursts of trait evolution in comparative data? Predictions from an evolutionary food web model. Journal of Evolutionary Biology 25:1902-1910.\\
 Ives, A. R., and H. C. J. Godfray. 2006. Phylogenetic analysis of trophic associations. The American Naturalist 168:E1-E14.\\
 Kalinka, A. T., K. M. Varga, D. T. Gerrard, S. Preibisch, D. L. Corcoran, J. Jarrells, U. Ohler, C. M. Bergman, and P. Tomancak. 2010. Gene expression divergence recapitulates the developmental hourglass model. Nature 468:811-814.\\
@@ -224,7 +219,7 @@ Labra, A., J. Pienaar, and T. F. Hansen. 2009. Evolution of thermal physiology i
 Lambert, S. M., and J. J. Wiens. 2013. Evolution of viviparity: a phylogenetic test of the cold-climate hypothesis in phrynosomatid lizards. Evolution 67:2614-2630.\\
 Lapiedra, O., D. Sol, S. Carranza, and J. M. Beaulieu. 2013. Behavioural changes and the adaptive diversification of pigeons and doves. Proceedings of the Royal Society B: Biological Sciences 280.\\
 Litsios, G., R. O. Wüest, A. Kostikova, F. Forest, C. Lexer, H. P. Linder, P. B. Pearman, N. E. Zimmermann, and N. Salamin. 2013. Effects of a fire response trait on diversification in replicated radiations. Evolution in press.\\
-López-Fernández, H., J. H. Arbour, K. O. Winemiller, and R. L. Honeycutt. 2013. Testing for ancient adaptive radiations in Neotropical cichlid fishes. Evolution 67:1321-1337.\\
+L\'{o}pez-Fern\'{a}ndez, H., J. H. Arbour, K. O. Winemiller, and R. L. Honeycutt. 2013. Testing for ancient adaptive radiations in Neotropical cichlid fishes. Evolution 67:1321-1337.\\
 Machac, A., D. Storch, and J. J. Wiens. 2013. Ecological causes of decelerating diversification in carnivoran mammals. Evolution 67:2423–2433.\\
 Mahler, D. L., T. Ingram, L. J. Revell, and J. B. Losos. 2013. Exceptional convergence on the macroevolutionary landscape in island lizard radiations. Science 341:292-295.\\
 Maia, R., D. R. Rubenstein, and M. D. Shawkey. 2013. Key ornamental innovations facilitate diversification in an avian radiation. Proceedings of the National Academy of Sciences in press.\\
@@ -256,7 +251,7 @@ Setiadi, M. I., J. A. McGuire, R. M. Brown, M. Zubairi, D. T. Iskandar, N. Anday
 Slater, G. J., S. A. Price, F. Santini, and M. E. Alfaro. 2010. Diversity versus disparity and the radiation of modern cetaceans. Proceedings of the Royal Society B: Biological Sciences 277:3097-3104.\\
 Smith, K. L., L. J. Harmon, L. P. Shoo, and J. Melville. 2011. Evidence of constrained phenotypic evolution in a cryptic species complex of agamid lizards. Evolution 65:976-992.\\
 Smith, N. D. 2012. Body mass and foraging ecology predict evolutionary patterns of skeletal pnematicity in the diverse "waterbird" clade. Evolution 66:1059-1078.\\
-Smith, S. D., C. Ané, and D. A. Baum. 2008. The role of pollinator shifts in the floral diversification of Iochroma (Solanaceae). Evolution 62:793-806.\\
+Smith, S. D., C. An\'{e}, and D. A. Baum. 2008. The role of pollinator shifts in the floral diversification of Iochroma (Solanaceae). Evolution 62:793-806.\\
 Sookias, R. B., R. J. Butler, and R. B. J. Benson. 2012. Rise of dinosaurs reveals major body-size transitions are driven by passive processes of trait evolution. Proceedings of the Royal Society B: Biological Sciences 279:2180-2187.\\
 Spoor, F., T. Garland, G. Krovitz, T. M. Ryan, M. T. Silcox, and A. Walker. 2007. The primate semicircular canal system and locomotion. Proceedings of the National Academy of Sciences 104:10808-10812.\\
 Stireman, J. O., H. Devlin, and P. Abbot. 2012. Rampant host- and defensive phenotype-associated diversification in a goldenrod gall midge. Journal of Evolutionary Biology 25:1991-2004.\\
@@ -269,23 +264,9 @@ Valido, A., H. M. Schaefer, and P. Jordano. 2011. Colour, design and reward: phe
 Valiente-Banuet, A., A. V. Rumebe, M. Verdú, and R. M. Callaway. 2006. Modern Quaternary plant lineages promote diversity through facilitation of ancient Tertiary lineages. Proceedings of the National Academy of Sciences 103:16812-16817.\\
 Van Buskirk, J. 2009. Getting in shape: adaptation and phylogenetic inertia in morphology of Australian anuran larvae. Journal of evolutionary biology 22:1326-1337.\\
 Voje, K. L., and T. F. Hansen. 2012. Evolution of static allometries: adaptive change in allometric slopes of eye span in stalk-eyed flies. Evolution 67:453-467.\\
-Voje, K. L., A. B. Mazzarella, T. F. Hansen, K. Østbye, T. Klepaker, A. Bass, A. Herland, K. M. Bærum, F. Gregersen, and L. A. Vøllestad. 2013. Adaptation and constraint in a stickleback radiation. Journal of evolutionary biology 26:2396-2414.\\
+Voje, K. L., A. B. Mazzarella, T. F. Hansen, K. \o{O}stbye, T. Klepaker, A. Bass, A. Herland, K. M. Bærum, F. Gregersen, and L. A. V\o{o}llestad. 2013. Adaptation and constraint in a stickleback radiation. Journal of evolutionary biology 26:2396-2414.\\
 Warne, R. W., and E. L. Charnov. 2008. Reproductive allometry and the size‐number trade‐off for lizards. The American Naturalist 172:E80-E98.\\
 Weir, J. T., and D. Wheatcroft. 2011. A latitudinal gradient in rates of evolution of avian syllable diversity and song length. Proceedings of the Royal Society B: Biological Sciences 278:1713-1720.\\
 Weir, J. T., D. J. Wheatcroft, and T. D. Price. 2012. The role of ecological constraint in driving the evolution of avian song frequency across a latitudinal gradient. Evolution 66:2773-2783.\\
 Wiens, J. J., K. H. Kozak, and N. Silva. 2013. Diversity and niche evolution along aridity gradients in North American lizards (Phrynosomatidae). Evolution 67:1715-1728.\\
 Wiens, J. J., R. A. Pyron, and D. S. Moen. 2011. Phylogenetic origins of local-scale diversity patterns and the causes of Amazonian megadiversity. Ecology Letters 14:643-652.
- 
-  \subsection{Bayesian simulations} % keep? or move it all to supp mat?
-    For completeness, we repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. 
-    The choice of priors for OU models has not been fully explored. 
-    Therefore, we used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
-    For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
-    We present the results from the exponential prior with mean = 10 in the main text since this is a broad, liberal prior, but we provide results derived from the other priors in the Supplementary Material (Figs. S2-S5). % add links to this
-    We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. 
-    Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
-    Multiple independent chains were run for each analysis to ensure convergence was reached. 
-    We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}implemented in BayesTraits. 
-    The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
-    Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded) 
-    We treated Bayes factors $>$ 2 as evidence favouring the OU model. 
