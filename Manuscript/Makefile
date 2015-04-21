@@ -1,15 +1,15 @@
-all: dark.pdf
+all: ohyou.pdf
 
-dark.pdf: dark.tex
-	pdflatex dark
-	bibtex dark
-	pdflatex dark
-	pdflatex dark
+ohyou.pdf: ohyou.tex
+	pdflatex ohyou
+	bibtex ohyou
+	pdflatex ohyou
+	pdflatex ohyou
 
 tidy:
-	rm -f dark.{aux,bbl,blg,log}
+	rm -f ohyou.{aux,bbl,blg,log}
 
 clean: tidy
-	rm -f dark.pdf
+	rm -f ohyou.pdf
 
 .PHONY: all tidy clean
