@@ -77,9 +77,7 @@
   In this paper we present an introduction to the OU model, its general properties and some issues with its use in ecology, evolution and palaeontology.
   We use simulations to demonstrate the inherent bias in estimating the core parameter of the OU model, $\alpha$ that describes the strength of pull towards a central value (typically referred to as the trait or selective optima). We discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. 
   We also show that very small amounts of intraspecific trait variation (including measurement error) in data can have profound effects on the performance of models. 
-  Many of our findings are applicable to other models of evolution (see section X) 
-  % Add section no here
-  , but we focus on the OU model because of its widespread use and because of the ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
+  Many of our findings are applicable to other models of evolution, but we focus on the OU model because of its widespread use and because of the ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
   We are not the first to describe these problems \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}, but we hope by summarising the issues and giving recommendations we can help those less familiar with the technical literature.
 
 \section{Uses of the OU model}
@@ -90,13 +88,14 @@
   It is important to note however, that although the OU model is frequently described and interpreted as a model of ``'stabilizing selection'', this is inaccurate and misleading. As formulated by \citet{hansen1997stabilizing}, a niche has a primary optimum that is the mean of individual species optimum for that niche. 
   Under this formulation, $\alpha$ can be considered as the strength of the pull towards a central value \citep[the primary optimum;][]{hansen2012adaptive} but not as an estimate of stabilizing selection in the population genetics sense. 
 
-    \begin{figure}[h]
+    \begin{figure}[!htbp]
       \centering
       \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OhYou_Figure1.pdf}
-      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supporting Information for details. %linkto supp mat
+      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supporting Information for details.
       }
       \label{figure.literature}
-    \end{figure}
+\end{figure}
+% Weird issue with endfloat means these need to have no white space
 
   The OU model is most commonly used to model the evolution of a continuous character (Table \ref{table.uses}; Supporting Information). 
   Multiple models of evolution \citep[e.g., Brownian motion, OU, Early burst etc.;][]{Harmon:2010aa,cooper2010body} are fit to the same continuous character and model selection is then used to determine which model best fits the data.  
@@ -115,7 +114,7 @@
   The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures (e.g., $\kappa$, $\lambda$, $\delta$, ACDC, Early Burst; \citealp{Pagel:1997aa,Pagel:1999aa,Blomberg:2003aa,Harmon:2008aa}).
   Note that we focus on OU models with a single optimum trait value because these are more commonly used (Table \ref{table.uses}; Supporting Information) and easier to simulate.  For discussions on the performance of multiple optima OU models we refer the reader to \citep{beaulieu2012ouwie}.
 
-    \begin{table}[h]
+    \begin{table}[!htbp]
       \begin{center}
         \caption{The most common uses of Ornstein Uhlenbeck models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2013. See Supporting information for details.}
         \bigskip  
@@ -139,7 +138,8 @@
             \label{table.uses}
           \end{tabular}
       \end{center}
-    \end{table}
+\end{table}
+% Weird issue with endfloat means these need to have no white space
     
 \section{OU model outline}
   
@@ -197,7 +197,8 @@
         \input{Tables/OU_bd_noerror.tex}
         \label{tables:bd_noerror}
         \end{center}
-      \end{table}
+\end{table} 
+% Weird issue with endfloat means these need to have no white space
 
       \begin{table}[!htbp]
         \begin{center}
@@ -206,22 +207,24 @@
         \input{Tables/OU_var_rate_noerror.tex}
         \label{tables:varrate_noerror}
         \end{center}
-      \end{table}
+\end{table} 
+% Weird issue with endfloat means these need to have no white space
 
     We find that Type I error rates are unacceptably high when tree size is small (Tables \ref{tables:bd_noerror} and \ref{tables:varrate_noerror}), i.e., the OU model is often favoured, even though the Brownian model was used to generate the data. 
     For some tree shapes, particularly where speciation rates accelerate towards the present, Type I error remains \textgreater 0.05 even for trees with 1000 tips (Table \ref{tables:varrate_noerror}).
     This shows that, in general, analyses based on small datasets are prone to biases that decrease only slowly as the size of the dataset increases. 
     Unfortunately, OU models are often fitted to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58; Figure \ref{figure:ntaxa}; see Supporting Information). 
 
-    \begin{figure}[h]
+    \begin{figure}[!htbp]
       \centering
       \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OhYou_Figure2.pdf}
       \caption{The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
       }
       \label{figure:ntaxa}
-    \end{figure}
+\end{figure} 
+% Weird issue with endfloat means these need to have no white space
 
-    We provide recommendations related to these findings below. % name of section?
+    We provide recommendations related to these findings below.
 
 \section{Effects of measurement error on OU model performance}
   Measurement error can strongly effect the results of comparative analyses \citep{silvestro2015}, and appears to influence whether OU is the favoured model across a range of datasets \citep[see][]{pennell2015model}. 
@@ -243,7 +246,8 @@
         \input{Tables/OU_yule_error.tex}
         \label{tables:yule_error}
         \end{center}
-      \end{table}
+\end{table} 
+% Weird issue with endfloat means these need to have no white space
     \end{landscape}
 
   Table \ref{tables:yule_error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error. 
@@ -472,9 +476,11 @@
 \newpage
 \section{Figure legends}
 
-Figure 1:
+\noindent
+\textbf{Figure 1}: The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supporting Information for details.
 
-Figure 2: The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
+\noindent
+\textbf{Figure 2}: The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
 
 \newpage
 \section{Tables}
