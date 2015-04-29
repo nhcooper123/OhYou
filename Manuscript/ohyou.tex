@@ -60,7 +60,6 @@
 
   Phylogenetic comparative methods are powerful tools for identifying patterns in the evolution of species traits, and for potentially inferring the evolutionary processes that underlie them \citep[e.g.,][]{freckleton2009seven,Nunn:2011aa,o2012evolutionary,pennell2013integrative}. 
   These approaches have been used, for example, to infer potential rates of species responses to climate change \citep{Quintero:2013aa}, test the role of ecological niche as a driver of morphological evolution \citep{pienaar2013macroevolution}, and test for constraints in adaptive radiations \citep{blackburn2013adaptive}. 
-  %Unfortunately, although widely used, the properties of some phylogenetic comparative methods are poorly understood leading to the potential for inappropriate use and misinterpretation of results. 
 
   The majority of PCMs use an explicit evolutionary model to characterize trait evolution (Freckleton et al. 2011). Most model-based methods for characterizing trait evolution are based on the Brownian constant variance model \citep[for exceptions see][]{price1997correlated,harvey2000comparative,freckleton2006detecting}. 
   The Brownian model, first applied in a phylogenetic context by \citet{cavalli1967} and to across-species data by \citet{felsenstein1973maximum}, is a simple model of trait evolution in which trait variance accrues as a linear function of time, and makes the prediction that traits of closely-related species are more similar than those of distantly-related ones. 
@@ -73,42 +72,52 @@
   The process operating in comparative data is analogous to but distinct from stabilizing selection. The phylogenetic OU model is a modification of the Brownian model with an additional parameter $\alpha$ that measures the strength of return towards a theoretical optimum \citep{hansen1997stabilizing} that is shared across a clade or subset of species.
   Although widely used, the properties of the OU model, and other direct extensions of the Brownian model, are poorly understood leading to the potential for inappropriate use and misinterpretation of results.
 
-The popularity of the OU model has grown extensively in recent years (Fig. \ref{figure.literature}); over 2500 ecology, evolution and palaeontology papers containing the phrase ``Ornstein Uhlenbeck'' were published between 2012 and 2014 (Google Scholar search 15th March 2015; see Supplementary Material). % Need to add ref to supp mat
+% NC: I've moved this up as I think the "uses" section forms part of the intro to the OU model. I'm not convinced uses should come before the model itself but I don't think it matters at this point.
+% NC:  This paragraph may need modifying once we finish
+  In this paper we present an introduction to the OU model, its general properties and some issues with its use in ecology, evolution and palaeontology.
+  We use simulations to demonstrate the inherent bias in estimating the core parameter of the OU model, $\alpha$ that describes the strength of pull towards a central value (typically referred to as the trait or selective optima). We discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. 
+  We also show that very small amounts of intraspecific trait variation (including measurement error) in data can have profound effects on the performance of models. 
+  Many of our findings are applicable to other models of evolution (see section X) 
+  % Add section no here
+  , but we focus on the OU model because of its widespread use and because of the ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
+  We are not the first to describe these problems \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}, but we hope by summarising the issues and giving recommendations we can help those less familiar with the technical literature.
+
+\section{Uses of the OU model}
+  The popularity of the OU model has grown extensively in recent years (Fig. \ref{figure.literature}); over 2500 ecology, evolution and palaeontology papers containing the phrase ``Ornstein Uhlenbeck'' were published between 2012 and 2014 (Google Scholar search 15th March 2015; see Supporting Information).
   This may partly be because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. 
   Additionally, although the OU model is pattern-based, it has a number of attractive biological interpretations. 
   For example, fit to an OU model is used as evidence for processes such as phylogenetic niche conservatism, convergent evolution and stabilising selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}. 
-  It is important to note however, that although the OU model is frequently described and interpreted as a model of ``'stabilizing selection'', this is inaccurate and misleading. As formulated by \citet{hansen1997stabilizing}, a niche has a primary optimum that is the mean of individual species optima for that niche. 
-  Under this formulation, $\alpha$ can be considered as the strength of the pull towards a central value \citep[the primary optima;][]{hansen2012adaptive} but not as an estimate of stabilizing selection in the population genetics sense. 
+  It is important to note however, that although the OU model is frequently described and interpreted as a model of ``'stabilizing selection'', this is inaccurate and misleading. As formulated by \citet{hansen1997stabilizing}, a niche has a primary optimum that is the mean of individual species optimum for that niche. 
+  Under this formulation, $\alpha$ can be considered as the strength of the pull towards a central value \citep[the primary optimum;][]{hansen2012adaptive} but not as an estimate of stabilizing selection in the population genetics sense. 
 
     \begin{figure}[h]
       \centering
-      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/PapersThruTime.png}
-      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supplementary Material for details. %linkto supp mat
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OhYou_Figure1.pdf}
+      \caption{The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein-Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supporting Information for details. %linkto supp mat
       }
       \label{figure.literature}
     \end{figure}
 
-  The OU model is most commonly used to model the evolution of a continuous character (Table \ref{table.uses}; Supplementary Material). 
+  The OU model is most commonly used to model the evolution of a continuous character (Table \ref{table.uses}; Supporting Information). 
   Multiple models of evolution \citep[e.g., Brownian motion, OU, Early burst etc.;][]{Harmon:2010aa,cooper2010body} are fit to the same continuous character and model selection is then used to determine which model best fits the data.  
   OU models can be fit with one optimal trait value, or multiple different optima \citep{Butler:2004aa,beaulieu2012modeling}. 
   The latter represents evolution under multiple selective regimes, and may be more biologically realistic for many datasets. 
   OU models with various numbers of optima are often included in the pool of evolutionary models being compared \citep[e.g.,][]{} (Table \ref{table.uses})
-  
-  OU models are also commonly used to control for phylogeny in correlative analyses (Table \ref{table.uses}; Supplementary Material).  
+  % add citation
+  OU models are also commonly used to control for phylogeny in correlative analyses (Table \ref{table.uses}; Supporting Information).  
   Phylogenetic generalised least squares (PGLS) models incorporate information about the relationships among species into the error term of a generalised least squares model. 
   This error term generally consists of a variance-covariance matrix of the phylogeny, but various transformations are used (e.g., Pagel's $\lambda$; \citealp{Pagel:1997aa}) to improve the fit of the model to the data. 
   The $\alpha$ parameter from an OU model can also be used to transform the tree and the variance-covariance matrix.
   This is rarely interpreted as corresponding to any kind of process, it just improves the fit of the PGLS models \citep[e.g.,][]{blankers2012ecological}. 
   Finally, the OU model is also used to reconstruct ancestral states \citep{martins1999estimation} and to detect clade-wide convergent evolution \citep{ingram2013surface}. 
 
-  The majority of papers use the OU model to model the evolution of a continuous character (Table \ref{table.uses}; Supplementary Material) therefore, we focus on this use of the OU model in our simulations below. 
+  The majority of papers use the OU model to model the evolution of a continuous character (Table \ref{table.uses}; Supporting Information) therefore, we focus on this use of the OU model in our simulations below. 
   The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures (e.g., $\kappa$, $\lambda$, $\delta$, ACDC, Early Burst; \citealp{Pagel:1997aa,Pagel:1999aa,Blomberg:2003aa,Harmon:2008aa}).
-  Note that we focus on OU models with a single optimum trait value because these are more commonly used (Table \ref{table.uses}; Supplementary Material) and easier to simulate.  For discussions on the performance of multiple optima OU models we refer the reader to \citep{beaulieu2012ouwie}.
-  %Add citation to Cecile's paper here
+  Note that we focus on OU models with a single optimum trait value because these are more commonly used (Table \ref{table.uses}; Supporting Information) and easier to simulate.  For discussions on the performance of multiple optima OU models we refer the reader to \citep{beaulieu2012ouwie}.
 
     \begin{table}[h]
       \begin{center}
-        \caption{The most common uses of Ornstein Uhlenbeck models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2013. See Supplementary Material for details.}
+        \caption{The most common uses of Ornstein Uhlenbeck models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2013. See Supporting information for details.}
         \bigskip  
           \begin{tabular}{p{8cm}lc}
             \hline
@@ -132,7 +141,7 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
       \end{center}
     \end{table}
     
-\section{The Ornstein Uhlenbeck (OU) model}
+\section{OU model outline}
   
   According to the Brownian model \citep{cavalli1967,felsenstein1973maximum}, a trait X evolves at random at a rate $\sigma$:
 
@@ -163,20 +172,9 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
     
     When $\alpha$ is close to zero, evolution is approximately Brownian, then as $\alpha$ gets larger the non-Brownian behaviour of the model starts to become apparent. 
     Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present.
-
-% This paragraph may need modifying once we finish
-  In this paper we present an introduction to the OU model, its general properties and some issues with its use in ecology, evolution and palaeontology.
-  We use simulations to demonstrate the inherent bias in estimating the core parameter of the OU model, $\alpha$ that describes the strength of pull towards a central value (typically referred to as the trait or selective optima). We discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. 
-  We also show that very small amounts of intraspecific trait variation (including measurement error) in data can have profound effects on the performance of models. 
-  Many of our findings are applicable to other models of evolution (see section X) 
-  % Add section no here
-  , but we focus on the OU model because of its widespread use and because of the ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
-  We are not the first to describe these problems \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}, but we hope by summarising the issues and giving recommendations we can help those less familiar with the technical literature.
   
 \section{Performance of the OU model}
 
-% I've separated this out a bit to try and make the progression more logical
-% It's all a bit drafty at present so feel free to edit heavily - you've a better idea than me about the results anyway
   To explore some issues with the OU model in more detail, we ran a number of simulations designed to mirror the use of OU models in the literature.
 
   \subsection{Simulating phylogenies and data}
@@ -188,11 +186,10 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
 
   \subsection{Performance of $\alpha$ and Likelihood ratio tests}
     To determine whether $\alpha$ is biased, and whether Likelihood ratio tests are appropriate for use with the OU model, we estimated $\alpha$ for each of our simulated phylogenies and data, and compared the fit of a Brownian model to that of an OU model using a Likelihood ratio test with 1 degree of freedom with the \texttt{transformPhylo.ML} function in MOTMOT \citep{Thomas:2011aa}. 
-    This mirrors the common situation where researchers fit Brownian and OU models and then use Likelihood ratio tests to select the ``best'' model \citep{}. % Add citations
+    This mirrors the common situation where researchers fit Brownian and OU models and then use Likelihood ratio tests to select the ``best'' model.
     We then estimated the rejection rate of the null (Brownian) model for each set of simulations. 
     This gives us a measure of Type I error rate for the OU model.
 
-% I ended up just LaTeXing the tables for my own amusement
       \begin{table}[!htbp]
         \begin{center}
         \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on a range of constant-rate birth death trees. Tree type refers to the extinction fraction for the birth-death trees. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.}
@@ -214,12 +211,12 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
     We find that Type I error rates are unacceptably high when tree size is small (Tables \ref{tables:bd_noerror} and \ref{tables:varrate_noerror}), i.e., the OU model is often favoured, even though the Brownian model was used to generate the data. 
     For some tree shapes, particularly where speciation rates accelerate towards the present, Type I error remains \textgreater 0.05 even for trees with 1000 tips (Table \ref{tables:varrate_noerror}).
     This shows that, in general, analyses based on small datasets are prone to biases that decrease only slowly as the size of the dataset increases. 
-    Unfortunately, OU models are often fitted to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58; Figure \ref{figure:ntaxa}; see Supplemental Material). % link to supp mat
+    Unfortunately, OU models are often fitted to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58; Figure \ref{figure:ntaxa}; see Supporting Information). 
 
     \begin{figure}[h]
       \centering
-      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/NTaxa.png}
-      \caption{The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supplementary Material for details. %linkto supp mat
+      \includegraphics[width=10cm, height=10cm, keepaspectratio=true]{Figures/OhYou_Figure2.pdf}
+      \caption{The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
       }
       \label{figure:ntaxa}
     \end{figure}
@@ -227,19 +224,18 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
     We provide recommendations related to these findings below. % name of section?
 
 \section{Effects of measurement error on OU model performance}
-  Measurement error can strongly effect the results of comparative analyses \cite{silvestro2015}, and appears to influence whether OU is the favoured model across a range of datasets \citep{}. % add citation to Matt's model adequacy stuff
+  Measurement error can strongly effect the results of comparative analyses \citep{silvestro2015}, and appears to influence whether OU is the favoured model across a range of datasets \citep[see][]{pennell2015model}. 
   Therefore, we also investigated whether adding error to our simulated data influenced estimates of $\alpha$.
   
-    We used the same procedure as above to simulate trait data under a Brownian motion model with known error. 
-    % should we say "as above" here or be specific i.e. copy paste from above?
-    Specifically, we simulated trees under a Yule model with 25, 50, 100, 150, 200, 500, or 1000 tips and added branch length of (i) 1\%, (ii) 5\% or (iii) 10\% of the tree height to the tips of the simulated trees. 
-    We then simulated data under a Brownian model on each tree. 
-    All our simulated trees and data are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
+  We used the same procedure as above to simulate trait data under a Brownian motion model with known error. 
+  Specifically, we simulated trees under a Yule model with 25, 50, 100, 150, 200, 500, or 1000 tips and added branch length of (i) 1\%, (ii) 5\% or (iii) 10\% of the tree height to the tips of the simulated trees. 
+  We then simulated data under a Brownian model on each tree. 
+  All our simulated trees and data are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
 
-    We compared the fit of a Brownian model to that of an OU model using likelihood ratio tests as described above, using the original trees without the addition of extra branch length to the tip edges. 
-    Our expectation is that the OU model should fit the data better than the Brownian model because the $\alpha$ parameter should account for much of the error. In this case, rejection of the Brownian model does not represent type I error because it would be quite correct to reject the Brownian. However, the reason for the better fit would be entirely unrelated to any macroevolutionary process. 
+  We compared the fit of a Brownian model to that of an OU model using Likelihood ratio tests as described above, using the original trees without the addition of extra branch length to the tip edges. 
+  Our expectation is that the OU model should fit the data better than the Brownian model because the $\alpha$ parameter should account for much of the error. In this case, rejection of the Brownian model does not represent Type I error because it would be quite correct to reject the Brownian. However, the reason for the better fit would be entirely unrelated to any macroevolutionary process. 
 
-  \begin{landscape}
+    \begin{landscape}
       \begin{table}[!htbp]
         \begin{center}
         \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.). The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.}
@@ -248,22 +244,20 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
         \label{tables:yule_error}
         \end{center}
       \end{table}
-  \end{landscape}
+    \end{landscape}
 
-    Table \ref{tables:yule_error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error. 
-    The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. 
-    First, the frequency with which the OU model is favoured increases with tree size. With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. 
-    This is important for the interpretation of the OU model. 
-    We cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. 
-    Second, for moderate amounts of error (5-10\%), estimates of $\alpha$ are consistently \textgreater 1. 
-    Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
+  Table \ref{tables:yule_error} shows the proportion of data sets in which the OU model is favoured over the Brownian model for data simulated under Brownian motion with error. 
+  The expectation is that the OU model should fit better because the branch length transformation partially captures the non-Brownian component (the error). There are two points worth noting. 
+  First, the frequency with which the OU model is favoured increases with tree size. With as little as 5\% error, the OU model becomes extremely difficult to reject, even for trees with just 100 species. 
+  This is important for the interpretation of the OU model; we cannot conclude anything about evolutionary process from a single optimum OU model unless error is adequately accounted for. 
+  Second, for moderate amounts of error (5-10\%), estimates of $\alpha$ are consistently \textgreater 1. 
+  Large values of $\alpha$ are similarly difficult to interpret because they are indicative that the signal of the past has been overwritten. 
 
-    
   \subsection{Limitations of the OU model}
-  Although it is possible to create and implement new models for comparative data that encompass a range of processes, we have to beware that such models are statistically complex and may behave in unexpected ways. 
-  Transformations of the variance-covariance matrix in the Brownian model are an attractive and computationally simple way to modify the basic model to include evolutionary processes. 
+  Although it is possible to create and implement new models for comparative data that encompass a range of processes, we have to be aware that such models are statistically complex and may behave in unexpected ways. 
+  Transformations of the variance-covariance matrix in the Brownian model \citep[e.g. $\lambda$;][]{Pagel:1997aa} are an attractive and computationally simple way to modify the basic model to include evolutionary processes. 
   But, as first pointed out by \citet{grafen1989phylogenetic}, the statistical consequences of these modifications can include biases and problems with interpretation. 
-  The results of our simulations illustrate that such biases can occur under conditions that closely match the size and type of datasets that are commonly used (Figure \ref{figure:ntaxa}, Supplementary Table S1).
+  The results of our simulations illustrate that such problems can occur under conditions that closely match the size and type of datasets that are commonly used (Figure \ref{figure:ntaxa}, Supporting Information Table S1).
   
   In the case of the OU model, there are several limitations worth highlighting:
 \begin{enumerate}[(i)]
@@ -275,21 +269,14 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
   \item \textbf{Measurement error increases Type I error rates.} 
   Our results show that a simple Brownian process can be mistaken for an OU process when a small amount of error is added to the data. 
   The effects of measurement error become more severe with increasing tree size.
-  
-  These limitations mean that when evidence for the OU model is found, the results should be interpreted with caution.
+  These limitations mean that when evidence for the OU model is found, the results should be interpreted with caution, particularly where there is likely to be intraspecific variation or measurement error in the data.
 \end{enumerate}
 
-
+  % GT:  As dodgy as some of the niche conservatism literature is, I think this paragraph is out of place. I think that is a separate debate and probably not one we want to get into here. 
  
- 
- 
-  % As dodgy as some of the niche conservatism literature is, I think this paragraph is out of place. I think that is a separate debate and probably not one we want to get into here. 
-  % For example, inference of phylogenetic niche conservatism may be particularly problematic because climatic niche traits can vary greatly over the range of species. 
+ % For example, inference of phylogenetic niche conservatism may be particularly problematic because climatic niche traits can vary greatly over the range of species. 
  % Although definitions of phylogenetic niche conservatism vary \citep{Losos:2008aa,Losos:2008ab,Wiens:2008aa,crisp2012phylogenetic} one proposed approach is to fit an OU model and take rejection of BM in favour of OU as evidence of constraints on niche evolution \citep{Wiens:2010aa}. 
  % A more parsimonious explanation would be that there is unaccounted intraspecific variation or measurement error in the data. 
-
-% Not sure this is needed anywhere
-%In terms of interpretation, it is worth pointing out that data will exhibit few signs of the limits to trait values that result from an OU process. This is because according to the OU process traits move back towards the optimum as their values become particularly large or small. Past history is effectively wiped over, as pointed out above, with the consequence that covariances between species become small (Fig. \ref{figure.traitsim}). Indeed, Figure \ref{figure.traitsim} implies that the outcome of the OU process is indistinguishable from an acceleration of the rate of evolution towards the present.
 
 \section{Prospects: limitations, recommendations and potential solutions}
 
@@ -297,40 +284,76 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
   
   \subsection{Recommendations for model fitting}
     \begin{enumerate}[(i)]
-    \item \textbf{Simulate under the null model} OU models should not be applied to small trees. Our simulations indicate that trees with >200 tips are necessary to obtain acceptable type I error rates. However, we are cautious with recommending a minimum tree size because the performance of the OU model may vary among datasets for reasons other than tree size. We note also that large trees are particularly susceptible to issues arising from unaccounted measurement error in the data. Instead, we suggest using simulations to asses the model fit. Simulating data under the BM model will generate null distributions \citep[e.g.,][]{boettiger2012your} and allow straightforward assessment of model fit, for example by generating appropriate critical values for likelihood ratio tests. %We could potentially add a script/workflow for this
+      \item \textbf{Simulate under the null model.}\\
+      OU models should not be applied to small trees. 
+      Our simulations indicate that trees with \textgreater 200 tips are necessary to obtain acceptable Type I error rates. 
+      However, we are cautious with recommending a minimum tree size because the performance of the OU model may vary among datasets for reasons other than tree size. 
+      We note also that large trees are particularly susceptible to issues arising from unaccounted measurement error in the data. 
+      Instead, we suggest using simulations to asses the model fit. Simulating data under the BM model will generate null distributions \citep[e.g.,][]{boettiger2012your} and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. %We could potentially add a script/workflow for this
+      \citealp{boettiger2012your} discuss this at length and we recommend reading their paper for a full overview of this approach.
+      % NC: Though their method is hard to apply it does cover all the points we discuss here so we chould make it clearer (as requested by Syst Biol reviewers)
     
-    \item \textbf{Consider Bayesian approaches} An alternative but little explored approach is to use Bayesian methods. Bayesian model fitting has not been widely available for OU model fitting until recently but is now possible in R packages including diversitree and geiger (the Single Stationary Peak model in fitContinuousMCMC) and stand alone software including BayesTraits. %citations needed
+      \item \textbf{Consider Bayesian approaches.}\\
+      An alternative but less explored approach is to use Bayesian methods. 
+      Bayesian model fitting has not been widely available for OU model fitting until recently but is now possible in R packages including diversitree \citep{FitzJohn:2012aa} and GEIGER \citep[the Single Stationary Peak model in \texttt{fitContinuousMCMC};][]{Harmon:2008aa} and stand alone software including BayesTraits \citep{pagel2013bayestraits}.
 	
-	We repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits. We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}. The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). We treated Bayes factors $>$ 2 as evidence favouring the OU model. We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. Multiple independent chains were run for each analysis to ensure convergence was reached. An important challenge for Bayesian approaches is selection of appropriate priors. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
-    Table XX shows the results from the exponential prior with mean = 10. This is a broad, liberal prior, but our results are similar regardless of priors. %add links to this
-    The Bayesian approach results in highly conservative rejection rates regardless for all tree shapes in the absence of measurement error.  While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power. The Bayesian approach also appears to more readily handle low levels of measurement error. With 1\% measurement error the Bayesian approach retains acceptable rejection rates (<0.05) for trees of up to 150 tips. However, more error or larger trees result in the frequent rejection of the Brownian model. As noted above, this is not an issue of type I and it is entirely correct that the Brownian model is rejected. In such cases emphasis should shift to how the $\alpha$ parameter is interpreted. At this stage we are cautious in recommending Bayesian methods for fitting OU models but instead suggest that this may be a fruitful area for further investigation. 
+	    We (AM and CV) repeated the Maximum Likelihood simulations in a Bayesian framework implemented in BayesTraits \citep{pagel2013bayestraits}. 
+      We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}. 
+      The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
+      Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). W
+      e treated Bayes factors $>$ 2 as evidence favouring the OU model. We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in. Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
+      Multiple independent chains were run for each analysis to ensure convergence was reached. 
+      An important challenge for Bayesian approaches is selection of appropriate priors. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
+      For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
+      
+      Table XX shows the results from the exponential prior with mean = 10. This is a broad, liberal prior, but our results are similar regardless of priors. %add links to this
+      The Bayesian approach results in highly conservative rejection rates regardless for all tree shapes in the absence of measurement error. 
+      While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power. 
+      The Bayesian approach also appears to more readily handle low levels of measurement error. 
+      With 1\% measurement error the Bayesian approach retains acceptable rejection rates (\textless 0.05) for trees of up to 150 tips. 
+      However, more error or larger trees result in the frequent rejection of the Brownian model. 
+      As noted above, this is not an issue of Type I and it is entirely correct that the Brownian model is rejected. 
+      In such cases emphasis should shift to how the $\alpha$ parameter is interpreted. 
+      At this stage we are cautious in recommending Bayesian methods for fitting OU models but instead suggest that this may be a fruitful area for further investigation. 
+      We also recommend reading \citet{pennell2015model} as their paper presents very similar conclusions with respect to Bayesian methods.
     \end{enumerate}
 
   \subsection{Recommendations for interpreting $\alpha$}    
     \begin{enumerate}[(i)]
-    \item \textbf{Consider plausible alternative hypotheses} The effects of measurement in particular suggest that $\alpha$ must always be interpreted with caution. Because the OU model was proposed with evolutionary process in mind these alternative and arguably more parsimonious explanations for favouring OU models and interpreting non-zero $\alpha$ can be overlooked. Many issues of misinterpretation can be solved by carefully inspecting the $\alpha$ parameter when an OU model is favoured. Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very close to zero, i.e. very close to Brownian.
-  In these circumstances, it is likely that measurement error, or similar, is being mopped up by the extra parameters in the OU model. 
-  Thus this does not reflect any kind of OU process underlying the data. The similarity between Brownian motion and OU models with small $\alpha$ are demonstrated in Figure XX. A the other extreme, as values of $\alpha$ become larger, the effects of changing $\alpha$ on model predictions are increasingly small and large values of $\alpha$ are indistinguishable from white-noise.  
+    \item \textbf{Consider plausible alternative hypotheses.}\\
+    The effects of measurement error in particular suggest that $\alpha$ must always be interpreted with caution. 
+    Because the OU model was proposed with evolutionary process in mind these alternative and arguably more parsimonious explanations for favouring OU models and interpreting non-zero $\alpha$ can be overlooked. 
+    Many issues of misinterpretation can be solved by carefully inspecting the $\alpha$ parameter when an OU model is favoured. 
+    Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very close to zero, i.e. very close to Brownian.
+    In these circumstances, it is likely that measurement error, or similar, is being mopped up by the extra parameters in the OU model. 
+    Thus this does not reflect any kind of OU process underlying the data. 
+    The similarity between Brownian motion and OU models with small $\alpha$ are demonstrated in Figure XX. 
+    At the other extreme, as values of $\alpha$ become larger, the effects of changing $\alpha$ on model predictions are increasingly small and large values of $\alpha$ are indistinguishable from white-noise.  
     
-    A good strategy for data exploration would be to simulate data under BM and fitted OU models to generate distributions of parameters under known values. These can then be compared to results for your dataset \citep[see][for a related approach]{slater2013robust}. This is important because we have shown that the shape of a phylogeny has consequences for parameter biases and hypothesis tests. Any given tree will therefore generate unique parameter estimates.  Generating data under the fitted OU model will allow an assessment of whether it is possible to retrieve known values, or whether there is evidence of bias. 
+    A good strategy for data exploration would be to simulate data under BM and fitted OU models to generate distributions of parameters under known values. 
+    These can then be compared to results for your dataset \citep[see][for a related approach]{slater2013robust}. 
+    This is important because we have shown that the shape of a phylogeny has consequences for parameter biases and hypothesis tests. 
+    Any given tree will therefore generate unique parameter estimates. 
+    Generating data under the fitted OU model will allow an assessment of whether it is possible to retrieve known values, or whether there is evidence of bias. 
     
-	\item \textbf{Calculate the phylogenetic half-life} 
-  The $\alpha$ parameter ranges from 0 to infinity and recognising small or large values may not be intuitive. $\alpha$ can sometimes more easily be interpreted by using it to estimate the ``phylogenetic half-life'' ($t_\frac{1}{2}$) of a trait, i.e., the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum \citep{hansen1997stabilizing}, as follows:
+	  \item \textbf{Calculate the phylogenetic half-life.} \\
+    The $\alpha$ parameter ranges from zero to infinity and recognising small or large values may not be intuitive. 
+    $\alpha$ can sometimes more easily be interpreted by using it to estimate the ``phylogenetic half-life'' ($t_\frac{1}{2}$) of a trait, i.e., the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum \citep{hansen1997stabilizing}, as follows:
 
       \begin{equation}
         t_\frac{1}{2} = \frac{ln(2)}{\alpha}
         \label{equation:halflife}
       \end{equation}
     
-  \noindent
-  If $t_\frac{1}{2}$ is short relative to the branch lengths of the phylogeny, evolution towards the optimum trait value is fast, residual phylogenetic correlations are weak, and there is little influence of the past on trait values \citep{hansen1997stabilizing}.
-  We would not advise interpreting $t_\frac{1}{2}$ as literally being ``the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum''.
-  However, if $t_\frac{1}{2}$ is extremely large, it suggests that if an OU process is acting, it is extremely weak, thus should not be interpreted as evidence of any kind of process. 
-  As a further note of caution, it is important to recognise that biases in the estimation of $\alpha$ would clearly lead to similarly biases in the phylogenetic half-life.
+    \noindent
+    If $t_\frac{1}{2}$ is short relative to the branch lengths of the phylogeny, evolution towards the optimum trait value is fast, residual phylogenetic correlations are weak, and there is little influence of the past on trait values \citep{hansen1997stabilizing}.
+    We would not advise interpreting $t_\frac{1}{2}$ as literally being ``the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum''.
+    However, if $t_\frac{1}{2}$ is extremely large, it suggests that if an OU process is acting, it is extremely weak, thus should not be interpreted as evidence of any kind of process. 
+    As a further note of caution, it is important to recognise that biases in the estimation of $\alpha$ would clearly lead to similarly biases in the phylogenetic half-life.
   
 % add in ives and garland advice on what is big and what is small here? Or earlier?
     
-    \item \textbf{If possible, include ancillary data.}
+    \item \textbf{If possible, include ancillary data.}\\
     If data on fossils are available then these could be incorporated into the analysis \citep{Slater:2012ab}
     This is implemented in GEIGER \citep{Harmon:2008aa}.
     A caution here is that the OU model for non-ultrametric trees has to be carefully parameterized because for non-ultrametric trees the co-variances (see Appendix \ref{equation:OUcov} depend on both the shared distances between species and the distance of a node to the nearest tip. 
@@ -341,11 +364,10 @@ The popularity of the OU model has grown extensively in recent years (Fig. \ref{
    \end{enumerate}  
     
 \section{Conclusions and outstanding issues}
+  A recurring theme from our simulations is that interpretation of $\alpha$ is not straightforward in the presence of measurement error. It would clearly be very useful to have estimates of measurement errors for the species’ observations, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}. Several approaches for accounting for error have been proposed %check references. 
+  It would be tempting to create a vector of variances that could be combined with V to create an overall combined variance matrix \citep{o2012evolutionary,Harmon:2010aa}. However, if the variances are large, vary among species or are based on small samples, this can create additional complications for the modeling. This is because the variances will themselves be estimates and subject to error. Treating such variances as error-free can potentially create biases (Freckleton unpub). An additional challenge common to (especially large) comparative data sets is that measurement error or intraspecific variation is either not available or is inconsistently reported. One approach if the variances are unknown would be to simultaneously fit Pagel’s $\lambda$ \citep{Pagel:1997aa,Pagel:1999aa} to estimate the non-Brownian component of the trait variance. However estimating this parameter simultaneously with estimating $\alpha$ would have to be undertaken carefully as the two transformations have quite similar effects on the predicted variances. 
 
-A recurring theme from our simulations is that interpretation of $\alpha$ is not straightforward in the presence of measurement error. It would clearly be very useful to have estimates of measurement errors for the species’ observations, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}. Several approaches for accounting for error have been proposed %check references. 
-It would be tempting to create a vector of variances that could be combined with V to create an overall combined variance matrix \citep{o2012evolutionary,Harmon:2010aa}. However, if the variances are large, vary among species or are based on small samples, this can create additional complications for the modeling. This is because the variances will themselves be estimates and subject to error. Treating such variances as error-free can potentially create biases (Freckleton unpub). An additional challenge common to (especially large) comparative data sets is that measurement error or intraspecific variation is either not available or is inconsistently reported. One approach if the variances are unknown would be to simultaneously fit Pagel’s $\lambda$ \citep{Pagel:1997aa,Pagel:1999aa} to estimate the non-Brownian component of the trait variance. However estimating this parameter simultaneously with estimating $\alpha$ would have to be undertaken carefully as the two transformations have quite similar effects on the predicted variances. 
-
-These issues are not limited to OU models. Any model of trait evolution that attempts to account for non-Brownian components of trait variation is susceptible to being mislead by  measurement error. The fundamental problem is that rejection of the Brownian model in favour of another does not necessarily say anything about process. This problem can be alleviated to some extent if model comparisons are set in a firm hypothesis testing framework in which alternative hypotheses make clear predictions of emerging patterns that can be unambiguously associated with particular models \citep[e.g.,][]{Cooper:2011aa}. We should not use any statistical model without thinking carefully about the limits in terms of both data and interpretation. 
+  These issues are not limited to OU models. Any model of trait evolution that attempts to account for non-Brownian components of trait variation is susceptible to being mislead by  measurement error. The fundamental problem is that rejection of the Brownian model in favour of another does not necessarily say anything about process. This problem can be alleviated to some extent if model comparisons are set in a firm hypothesis testing framework in which alternative hypotheses make clear predictions of emerging patterns that can be unambiguously associated with particular models \citep[e.g.,][]{Cooper:2011aa}. We should not use any statistical model without thinking carefully about the limits in terms of both data and interpretation. 
 
 %Other parameters have similar problems (reduced set of our simulations for kappa, delta, lambda, e.g. just with Yule trees an error)}
 
@@ -360,18 +382,18 @@ These issues are not limited to OU models. Any model of trait evolution that att
 %In conclusion, the simulations we report highlight that there are some limits to what we can learn from phylogenies and comparative data on extant species. The OU model is a good example of this: large values of $\alpha$ will lead to a loss of history and the dataset will only represent the most recent evolutionary changes. Moreover, different processes can easily yield similar patterns \citep[e.g.,][]{Revell:2008ab} with the consequence that rejection of the Brownian model in favour of another does not necessarily say anything about process. This problem can be alleviated to some extent if model comparisons are set in a firm hypothesis testing framework in which alternative hypotheses make clear predictions of emerging patterns that can be unambiguously associated with particular models \citep[e.g.,][]{Cooper:2011aa}. We should not use any statistical model without thinking carefully about the limits in terms of both data and interpretation. The results presented above highlight that in the case of the OU model, this is especially important. 
 
 \section{Epilogue: (vaguely) reproducible science}
-At the symposium that generated this special issue, one of us (NC) gave a talk on reproducibility in science. 
-We have therefore tried to make this paper as reproducible as possible. 
-All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
-However, although our R code is provided, it's messy and difficult to use. 
-We also do not provide an automated way of reproducing the data collection for our literature review.
-Nor do we use tools like Travis CI, Docker, or packrat etc.
+  At the symposium that generated this special issue, one of us (NC) gave a talk on reproducibility in science. 
+  We have therefore tried to make this paper as reproducible as possible. 
+  All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
+  However, although our R code is provided, it's messy and difficult to use. 
+  We also do not provide an automated way of reproducing the data collection for our literature review.
+  Nor do we use tools like Travis CI, Docker, or packrat etc.
 % Add stuff about BayesTraits here. 
-We included this epilogue to highlight that reproducibility is really hard, but we are trying to improve! 
-With a little effort most people should be able to produce something vaguely reproducible, and move us all slightly closer to truly reproducible science. 
+  We included this epilogue to highlight that reproducibility is really hard, but we are trying to improve! 
+  With a little effort most people should be able to produce something vaguely reproducible, and move us all slightly closer to truly reproducible science. 
 
 \section{Acknowledgments}
-Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. GHT was supported by a Royal Society University Research Fellowship. AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, Mother Tongue.
+  Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. GHT was supported by a Royal Society University Research Fellowship. AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, Mother Tongue.
 
 % Bibliography
 \bibliographystyle{biolinnsoc}
@@ -447,7 +469,14 @@ Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful
     Consequently for large groups the model implies that the imprint of history is weak.\\
   \end{enumerate}
 
-% Supplementary Material
-\input{ohyou_suppmat}
+\newpage
+\section{Figure legends}
+
+Figure 1:
+
+Figure 2: The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
+
+\newpage
+\section{Tables}
 
 \end{document}
