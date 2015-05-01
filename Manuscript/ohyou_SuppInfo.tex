@@ -1,9 +1,26 @@
-\section{Supplementary Material}
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[osf]{mathpazo} % palatino
+\usepackage{ms}            % load the template
+\usepackage[round]{natbib} % author-year citations
+\usepackage{parskip}  
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{fullpage}  
+\pagenumbering{arabic}    
+
+\begin{document}
+
+\raggedright
+\doublespacing
+\setlength{\parindent}{1cm}
+
+\section{Supporting Information}
 \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}}
 
-  \subsection{Literature review}
-    To get an overview of the use of OU models in ecology, evolution and palaeontology, we used Google Scholar (accessed 13th March 2015) to locate papers published between 2005 \citep[when the R package ouch was released;][]{Butler:2004aa} and 2014 that contained the terms ``Ornstein Uhlenbeck'' and either ``'ecology'', or ``evolution'' and ``biology'' (the ``biology'' term was added to omit physics papers which also use the term ``evolution''), or ``paleo/palaeo''. 
-    We also recorded the total number of papers containing the terms ``ecology'', or ``evolution'' and ``biology'', or ``paleo/palaeo'', published between 2005 and 2014 and plotted the number of OU papers published each year as a proportion of the total number of papers published (Fig. \ref{figure.literature}). 
+  \subsection{Literature review methods}
+    To get an overview of the use of OU models in ecology, evolution and palaeontology, we used Google Scholar (accessed 13th March 2015) to locate papers published between 2005 (when the R package ouch was released; Butler and King 2004) and 2014 that contained the terms ``Ornstein Uhlenbeck'' and either ``'ecology'', or ``evolution'' and ``biology'' (the ``biology'' term was added to omit physics papers which also use the term ``evolution''), or ``paleo/palaeo''. 
+    We also recorded the total number of papers containing the terms ``ecology'', or ``evolution'' and ``biology'', or ``paleo/palaeo'', published between 2005 and 2014 and plotted the number of OU papers published each year as a proportion of the total number of papers published (Fig. 1 in the main text). 
 
     Next we filtered our Google Scholar search results to focus on empirical papers using OU models (rather than pure methods papers) published in the following journals: The American Naturalist, Ecology Letters, Evolution, Journal of Evolutionary Biology, Nature, Proceedings of the National Academy of Sciences, USA, Proceedings of the Royal Society B: Biological Sciences, and Science.
     We only include papers up to the end of 2013 to ensure completeness.
@@ -11,19 +28,22 @@
     For each of these papers we recorded the number of species in the analysis, the study group (amphibians, birds, fish, mammals, reptiles, invertebrates or plants), the statistical package or specific R package used to fit the models, and the reason the authors state for using an OU model (ancestral state reconstructions, detecting convergent evolution, controlling for phylogeny, selecting a model of trait evolution, or other). 
     Where papers included multiple analyses using different numbers of species we used the median number of taxa. 
     Where papers had multiple study groups, statistics/R packages or reasons for fitting OU models we counted them in each relevant category. 
-    We summarise these results in Figures 1 and 2 and Table 1, and the full dataset is available below along with the full list of references.
+    We summarise these results in Figures 1 and 2 and Table 1 in the main text, and the full dataset is available in Table \ref{table:litreview} along with the full list of references.
 
-    In total, our literature search found 3720 papers published between 2005 and 2014, and the number has increased substantially since 2005 (Fig. 1). 
-    Most papers fit OU models to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58, Figure 2 and Table S1). 
-    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the ``best'' model of trait evolution or to control for phylogenetic non-independence (Table S1). 
+  \subsection{Literature review results}
+    In total, our literature search found 3720 papers published between 2005 and 2014, and the number has increased substantially since 2005 (Fig. 1 in main text). 
+    Most papers fit OU models to phylogenies with fewer than 100 taxa (mean = 166.97 $\pm$ 43.86, median = 58, Figure 2 in main text and Table \ref{table:litreview}). 
+    The majority of papers fit OU models using R packages, particularly GEIGER and, although other uses are becoming more common, most papers use OU models in an effort to discern the ``best'' model of trait evolution or to control for phylogenetic non-independence (Table \ref{table:litreview}). 
 
 \begin{landscape}
 \begin{center}
+
+\LTcapwidth=25cm
 \begin{longtable}{p{6cm}llllll}
 \caption[Literature review]
         {Details of the papers used in our literature review. For each paper we recorded the study taxon, the number of tips in the phylogeny used to fit the Ornstein Uhlenbeck (OU) model, how the authors used the OU model in the paper, and the statistical package (usually R) used to carry out the analyses. For a full reference list see below. Journal abbreviations: Am Nat = The American Naturalist, ELE = Ecology Letters, JEB = Journal of Evolutionary Biology, PRSB = Proceedings of the Royal Society B: Biological Sciences, PNAS = Proceedings of the National Academy of the USA. †Number of tips in the phylogeny the OU model was fitted to. Where there were multiple analyses in a paper we use the median number of tips.  All packages mentioned are R packages apart from BayesTraits, COMPARE, MATLAB, Mesquite, PAM, PDAP and PDTREE.}\\
 \bigskip        
-\hline
+%\hline
 \textbf{Paper}  &   \textbf{Year}    &   \textbf{Journal} &   \textbf{Taxon}   &   \textbf{Ntips}   &   \textbf{Use in paper}   &   \textbf{Stats/R package} \\
 \hline
 Hansen and Orzack 2005    &   2005    &   Evolution   &   insects &   15  &   other   &   OUCH precursor? \\
@@ -153,7 +173,7 @@ Wiens et al. 2013 &   2013    &   Evolution   &   reptiles    &   117 &   ancest
 \end{landscape}
    
 \subsection{Literature review references}
-
+\label{section:refs} 
 \indent
 Adams, D. C., C. M. Berns, K. H. Kozak, and J. J. Wiens. 2009. Are rates of species diversification correlated with rates of morphological evolution? Proceedings of the Royal Society B: Biological Sciences 276:2729-2738.\\
 Addison, B., K. C. Klasing, W. D. Robinson, S. H. Austin, and R. E. Ricklefs. 2009. Ecological and life-history factors influencing the evolution of maternal antibody allocation: a phylogenetic comparison. Proceedings of the Royal Society B: Biological Sciences 276:3979-3987.\\
@@ -270,3 +290,5 @@ Weir, J. T., and D. Wheatcroft. 2011. A latitudinal gradient in rates of evoluti
 Weir, J. T., D. J. Wheatcroft, and T. D. Price. 2012. The role of ecological constraint in driving the evolution of avian song frequency across a latitudinal gradient. Evolution 66:2773-2783.\\
 Wiens, J. J., K. H. Kozak, and N. Silva. 2013. Diversity and niche evolution along aridity gradients in North American lizards (Phrynosomatidae). Evolution 67:1715-1728.\\
 Wiens, J. J., R. A. Pyron, and D. S. Moen. 2011. Phylogenetic origins of local-scale diversity patterns and the causes of Amazonian megadiversity. Ecology Letters 14:643-652.
+
+\end{document}
