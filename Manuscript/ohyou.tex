@@ -316,7 +316,7 @@
       Table \ref{tables:bayesian} shows the results from the exponential prior with mean = 10. This is a broad, liberal prior, but our results are similar regardless of priors. %add links to this
       The Bayesian approach results in highly conservative rejection rates regardless for all tree shapes in the absence of measurement error. 
       While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power. 
-      The Bayesian approach also appears to more readily handle low levels of measurement error. 
+      The Bayesian approach also appears to more readily handle low levels of measurement error (Table \ref{tables:bayesian_error}). 
       With 1\% measurement error the Bayesian approach retains acceptable rejection rates (\textless 0.05) for trees of up to 150 tips. 
       However, more error or larger trees result in the frequent rejection of the Brownian model. 
       As noted above, this is not an issue of Type I and it is entirely correct that the Brownian model is rejected. 
@@ -327,13 +327,25 @@
 
     \begin{table}[!htbp]
         \begin{center}
-        \caption{Legend for Bayesian table.} % need to enter legend here.
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on a range of constant-rate birth death trees using Bayesian methods. Tree type refers to the extinction fraction for the birth-death trees. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model. } % NC: might need to modify legend here.
         \bigskip
-        \input{Tables/OU_bd_noerror.tex} % need to input actual table here.
+        \input{Tables/OU_bd_noerror_BayesTraits.tex} 
         \label{tables:bayesian}
         \end{center}
 \end{table} 
 % Weird issue with endfloat means these need to have no white space
+
+    \begin{landscape}
+      \begin{table}[!htbp]
+        \begin{center}
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.) using Bayesian methods. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.} %NC: Might need to modify legend
+        \bigskip
+        \input{Tables/OU_yule_error_BayesTraits.tex}
+        \label{tables:bayesian_error}
+        \end{center}
+\end{table} 
+% Weird issue with endfloat means these need to have no white space
+    \end{landscape}
 
   \subsection{Recommendations for interpreting $\alpha$}    
     \begin{enumerate}[(i)]
