@@ -1,9 +1,9 @@
-# A cautionary note on the use of Ornstein Uhlenbeck and other models in macroevolutionary studies.
+# A cautionary note on the use of Ornstein Uhlenbeck models in macroevolutionary studies.
 
 ## Natalie Cooper and Gavin H. Thomas. 
-### plus Chris Venditti Andrew Meade and Rob P. Freckleton.
+### Chris Venditti, Andrew Meade and Rob P. Freckleton.
 
-Code, figures, etc. for the [paper](http://linktopaper) in Biological Journal of the Linnaean Society.
+Code, figures, etc. for the [paper](http://linktopaper) in the Biological Journal of the Linnaean Society special issue on "Radiations and Extinctions in Deep Time".
 
 ### Compiling the paper
 
@@ -12,6 +12,7 @@ To compile the paper you can use the Makefile:
 ```
 make -C Manuscript
 ```
+The Supporting Information file is available in PDF format [here](https://github.com/nhcooper123/OhYou/blob/master/Manuscript/ohyou_SuppInfo.pdf).
 ### Analysis code
 
 Code needed to run the Maximum Likelihood simulations and make the figures in the paper can be found in the Analyses folder. 
@@ -19,7 +20,7 @@ Code needed to run the Maximum Likelihood simulations and make the figures in th
 * `OUsims.R` provides all R code for simulating trees and data (GHT).
 * `OUfigures.R` provides all R code for making the simulations figures in the paper (GHT).
 * `OhYouFigures.R` provides all R code for making the figures and table for the literature review (NC).
-* `PagelParamPlots.R` provides all R code for making figures for the supplementary material (GHT).
+* `PagelParamPlots.R` provides all R code for making additional figures that were not used in the final version of the manuscript(GHT).
 
 ### Simulated data and literature review data
 
