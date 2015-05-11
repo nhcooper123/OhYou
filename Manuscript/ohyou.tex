@@ -183,7 +183,7 @@
   \subsection{Simulating phylogenies and data}
     We simulated phylogenies with 25, 50, 100, 150, 200, 500, or 1000 tips under pure birth, constant-rate Birth-Death (extinction fractions of 0.25, 0.5 and 0.75), or temporally varying speciation rate (speciation rate modeled as time from the root raised to the power 0.2, 0.5, 2 and 5) models. 
     We simulated 1000 phylogenies for each combination of tips and models resulting in 56,000 simulated phylogenies in total. 
-    Trees were simulated using the R package TESS \cite{hohna2013fast}. 
+    Trees were simulated using the R package TESS \citep{hohna2013fast}. 
     We then simulated the evolution of a single trait under a Brownian motion model on each phylogeny using the R package MOTMOT \citep{Thomas:2011aa}. 
     All our simulated trees and data are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
 
@@ -367,7 +367,7 @@
      \begin{figure}[!htbp]
       \centering
       \includegraphics[width=6cm, height=12cm, keepaspectratio=true]{Figures/OhYou_Figure4.pdf}
-      \caption{Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein Uhlenbeck model. The covariance between species' traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species' traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height).
+      \caption{Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein Uhlenbeck model. The covariance between species' traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species' traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height: $\frac{t_{ij}}{T}$).
       }
       \label{figure:ouhistory}
 \end{figure}
@@ -513,7 +513,7 @@
 \textbf{Figure 3}: The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
 
 \noindent
-\textbf{Figure 4}: Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein Uhlenbeck model. The covariance between species' traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species' traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height).
+\textbf{Figure 4}: Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein Uhlenbeck model. The covariance between species' traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species' traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height: $\frac{t_{ij}}{T}$).
       
 
 \newpage
