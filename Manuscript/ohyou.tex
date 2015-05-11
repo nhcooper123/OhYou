@@ -16,7 +16,7 @@
 
 % Title page information
 
-\title{A cautionary note on the use of Ornstein Uhlenbeck and other models in macroevolutionary studies}
+\title{A cautionary note on the use of Ornstein Uhlenbeck models in macroevolutionary studies}
 \author{
   Natalie Cooper$^{1,2,*,\dag}$, Gavin H. Thomas$^{3,\dag}$, Chris Venditti$^{4}$\\ Andrew Meade$^{4}$ and Rob P. Freckleton$^{3}$\\
 }
@@ -35,8 +35,8 @@
 \vfill
 %\paragraph{Word-count:} X words
 
-\runninghead{A cautionary note on macroevolutionary models}
-\keywords{Bayesian method - comparative methods - delta - kappa - lambda - OU - phylogeny - stabilizing selection - selection} %meant to be after abstract
+\runninghead{A cautionary note on Ornstein Uhlenbeck models}
+\keywords{OU - comparative methods - phylogeny - stabilising selection - macroevolutionary models} %meant to be after abstract
 
 % End of preamble
 
@@ -48,7 +48,14 @@
 \addtolength{\parskip}{.3em}
 
 \section{Abstract 100-200}
-  %Phylogenetic comparative methods are increasingly used to give new insight into variation, causes and consequences of trait variation among species. The foundation of these methods is a suite of models that attempt to capture evolutionary patterns by extending the Brownian constant variance model. However, the parameters of these models have been hypothesised to be biased and only asymptotically behave in a statistically predictable way as datasets become large. This does not seem to be widely appreciated. We show that a commonly used model in evolutionary biology (the Ornstein-Uhlenbeck model) is biased over a wide range of conditions. Many studies fitting this model use datasets that are small and prone to substantial biases. Our results suggest that simulating fitted models and comparing with empirical results is critical when fitting OU and other extensions of the Brownian model. 
+  Phylogenetic comparative methods are increasingly used to give new insights into the causes and consequences of trait variation among species. 
+  The foundation of these methods is a suite of models that attempt to capture evolutionary patterns by extending the Brownian constant variance model. 
+  However, the properties of these models are often poorly understood which can lead to the misinterpretation of results.
+  Here we focus on one of these models - the Ornstein-Uhlenbeck (OU) model. 
+  We introduce the model, its general properties and some issues with its use in ecology, evolution and palaeontology.
+  Using simulations, we demonstrate the inherent bias in estimating the core parameter of the OU model, $\alpha$, especially where datasets are small. 
+  We also show that very small amounts of error in data can have profound effects on the performance of OU models.
+  Finally, we make recommendations for best practice in fitting OU models in phylogenetic comparative analyses, and for interpreting the $\alpha$ parameter. 
 
 \newpage
 \raggedright
