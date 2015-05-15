@@ -105,7 +105,7 @@
 % Weird issue with endfloat means these need to have no white space
 
   The OU model is most commonly used to model the evolution of a single continuous character (Table \ref{table.uses}; Supporting Information). 
-  Usually several models of evolution \citep[e.g., Brownian motion, OU, Early burst etc.;][]{Harmon:2010aa,cooper2010body} are fit to the same continuous character and model selection is then used to determine which model best fits the data.  
+  Usually several models of evolution \citep[e.g., Brownian motion, OU, Early burst etc.;][]{Harmon:2010aa,cooper2010body,cardillo2015geographic,slater2015iterative} are fit to the same continuous character and model selection is then used to determine which model best fits the data.  
   OU models can be fit with one optimal trait value, or multiple different optima \citep{Butler:2004aa,beaulieu2012modeling}. 
   The latter represents evolution under multiple selective regimes, and may be more biologically realistic for many datasets. 
   OU models with various numbers of optima are often included in the pool of evolutionary models being compared \citep[e.g.,][]{christin2013anatomical}(Table \ref{table.uses})
@@ -180,6 +180,10 @@
     
     When $\alpha$ is close to zero, evolution is approximately Brownian, then as $\alpha$ gets larger the non-Brownian behaviour of the model starts to become apparent. 
     Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present.
+    Note that $\alpha$ scales with tree height, so it needs to be interpreted relative to this. 
+    Generally the simplest solution is to rescale tree heights to 1 \citep[e.g.,][simulations below]{ives2010phylogenetic}. 
+    \citet{ives2010phylogenetic} suggest interpreting $log( \alpha)$ (after rescaling trees to a height of 1) rather than raw $\alpha$. They equate $-log( \alpha) = -4$ as a very low, almost Brownian value, and $-log( \alpha) = 4$ as a very high value. 
+    Others \citep[e.g.][]{slater2015iterative,slater2013robust,hansen2012interpreting} prefer to use the ``phylogenetic half-life'': $t_\frac{1}{2}$ (see ``Recommendations for interpreting $\alpha$'' below).  
   
 \section{Performance of the OU model}
 
@@ -318,7 +322,8 @@
       We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}. 
       The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
       Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). 
-      We treated Bayes factors \textgreater 2 as evidence favouring the OU model. We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in.
+      We treated Bayes factors \textgreater 2 as evidence favouring the OU model \citep{kass1995bayes}. 
+      We ran the MCMC chains for $1x10^6$ iterations, disregarding the first $1x10^4$ as burn-in.
       Following burn-in the chains were sampled every 1000 to ensure independence of each consecutive sample. 
       Multiple independent chains were run for each analysis to ensure convergence was reached. 
       An important challenge for Bayesian approaches is selection of appropriate priors. We used three alternative sets of priors on $\alpha$: (i) an exponential distribution with mean = 1; (ii), an exponential distribution with mean = 10, and (iii) a uniform distribution bounded at 0 and 20. 
@@ -326,7 +331,7 @@
       
       Table \ref{tables:bayesian} shows the results from the exponential prior with mean = 10. This is a broad, liberal prior, but our results are similar regardless of priors. %add links to this
       The Bayesian approach results in highly conservative rejection rates regardless for all tree shapes in the absence of measurement error. 
-      While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power. 
+      While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power, although testing would be required to confirm this. 
       The Bayesian approach also appears to more readily handle low levels of measurement error (Table \ref{tables:bayesian_error}). 
       With 1\% measurement error the Bayesian approach retains acceptable rejection rates (\textless 0.05) for trees of up to 150 tips. 
       However, more error or larger trees result in the frequent rejection of the Brownian model. 
@@ -364,7 +369,7 @@
     Because the OU model was proposed with evolutionary process in mind, alternative and arguably more parsimonious explanations for favouring OU models and interpreting non-zero $\alpha$ are often overlooked. 
     The effects of measurement error in particular suggest that $\alpha$ must always be interpreted with caution. 
     Many issues of misinterpretation can be solved by carefully inspecting the $\alpha$ parameter when an OU model is favoured. 
-    Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very close to zero, i.e. very close to Brownian.
+    Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very close to zero (e.g., examples in \citealp{Harmon:2010aa}), i.e. very close to Brownian.
     In these circumstances, it is likely that measurement error, or similar, is being mopped up by the extra parameters in the OU model. 
     Thus this does not reflect any kind of OU process underlying the data. 
     The similarity between Brownian and OU models with small $\alpha$ is demonstrated in (Figure \ref{figure:ouhistory}). 
@@ -395,12 +400,13 @@
     
     \noindent
     If $t_\frac{1}{2}$ is short relative to the branch lengths of the phylogeny, evolution towards the optimum trait value is fast, residual phylogenetic correlations are weak, and there is little influence of the past on trait values \citep{hansen1997stabilizing}.
+    $t_\frac{1}{2}$ equal to the height of the phylogeny is a moderate value \citep{hansen2012interpreting}.
     We would not advise interpreting $t_\frac{1}{2}$ as literally being ``the time it takes for a species entering a new niche to evolve halfway toward its new expected optimum''.
     However, if $t_\frac{1}{2}$ is extremely large, it suggests that if an OU process is acting, it is extremely weak, thus should not be interpreted as evidence of any kind of process. 
     As a further note of caution, it is important to recognise that biases in the estimation of $\alpha$ would lead to similar biases in $t_\frac{1}{2}$.
   
     \item \textbf{If possible, include ancillary data.}
-    If data on fossils are available then these could be incorporated into the analysis \citep{Slater:2012ab}.
+    If data on fossils are available then these could be incorporated into the analysis \citep{Slater:2012ab}, provided their placement is well known.
     This is implemented in GEIGER \citep{Harmon:2008aa}.
     A caution here is that the OU model for non-ultrametric trees has to be carefully parameterized because for non-ultrametric trees the co-variances depend on both the shared distances between species and the distance of a node to the nearest tip (see equation \ref{equation:OUcov} in the Appendix). 
     This creates potential problems in parameterization and in interpretation because the variance-covariance matrix is no longer tree-like \citep{slater2014correction}.
@@ -409,7 +415,7 @@
    \end{enumerate}  
     
 \section{Conclusions and outstanding issues}
-  A recurring theme from our simulations is that interpretation of OU models is not straightforward. More focus is needed on the interpretation of $\alpha$ rather than simply model fit. Even when the OU model is favoured, $\alpha$ may be so small as to be indistinguishable from Brownian motion in any biological sense. It would clearly be very useful to have estimates of measurement error for all species traits, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}. Several approaches for accounting for error have been proposed and warrant further study for OU models and more widely for models of trait evolution. %check references. 
+  A recurring theme from our simulations is that interpretation of OU models is not straightforward. More focus is needed on the interpretation of $\alpha$ rather than simply model fit. Even when the OU model is favoured, $\alpha$ may be so small as to be indistinguishable from Brownian motion in any biological sense. It would clearly be very useful to have estimates of measurement error for all species traits, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}. Several approaches for accounting for error have been proposed and warrant wider implementation for OU models and other models of trait evolution \citep[e.g.,][]{lynch1991methods,hansen2012interpreting,martins1997phylogenies,rohlfs2013modeling,ives2007within}, however it is outside our scope to explore these here.
 
   Indeed, the problems that we report are not limited to OU models. 
   Any model of trait evolution that attempts to account for non-Brownian components of trait variation is susceptible to being misled by measurement error. 
@@ -417,20 +423,20 @@
   This problem can be alleviated to some extent if model comparisons are set in a firm hypothesis testing framework in which alternative hypotheses make clear predictions of emerging patterns that can be unambiguously associated with particular models \citep[e.g.,][]{Cooper:2011aa}. 
   We should not use any statistical model without thinking carefully about the limits in terms of both data and interpretation. 
 
-\section{Epilogue: (vaguely) reproducible science}
-  At the symposium that generated this special issue, one of us (NC) gave a talk on reproducibility in science. 
-  We have therefore tried to make this paper as reproducible as possible. 
+\section{Epilogue: Open and (vaguely) reproducible science}
+  At the symposium that generated this special issue, one of us (NC) gave a talk on Open Science and reproducibility. 
+  We have therefore tried to make this paper as open and reproducible as possible. 
   All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
   However, although our R code is provided, it is messy and difficult to use. 
   We also do not provide an automated way of reproducing the data collection for our literature review.
   Nor do we use tools like Travis CI (travis-ci.org), Docker (www.docker.com), or packrat \citep{Ushey:2015aa} etc. to increase the reproducbility of our analyses.
   Additionally, we use BayesTraits to run our Bayesian analyses. 
-  Although free to download, this software is not an Open Source, which has implications for reproducibility.
+  Although free to download, this software is not an Open Source, which has implications for long-term development of the methods.
   We included this epilogue to highlight that reproducibility is really hard, but we are trying to improve! 
-  With a little effort most people should be able to produce something vaguely reproducible, and move us all slightly closer to truly reproducible science. 
+  With a little effort most people should be able to produce something vaguely reproducible, and to provide their data and code, moving us all slightly closer to truly reproducible and Open Science.
 
 \section{Acknowledgments}
-  Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. GHT was supported by a Royal Society University Research Fellowship. AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, Mother Tongue.
+  Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. GHT was supported by a Royal Society University Research Fellowship. CV was supported by a Leverhulme Trust Research Project Grant RPG-2013-185. AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, ``MotherTongue''.
 
 % Bibliography
 \bibliographystyle{biolinnsoc}
