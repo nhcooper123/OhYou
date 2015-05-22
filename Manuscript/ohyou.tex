@@ -51,7 +51,7 @@
   The foundation of these methods is a suite of models that attempt to capture evolutionary patterns by extending the Brownian constant variance model. 
   However, the properties of these models are often poorly understood which can lead to the misinterpretation of results.
   Here we focus on one of these models - the Ornstein Uhlenbeck (OU) model.
-  We show that the OU model is frequently incorrectly favoured over simpler models, and that many studies fitting this model use datasets that are small and prone to Type I error.   
+  We show that the OU model is frequently incorrectly favoured over simpler models when using Likelihood ratio tests, and that many studies fitting this model use datasets that are small and prone to Type I error.   
   We also show that very small amounts of error in datasets can have profound effects on the performance of OU models.
   Our results suggest that simulating fitted models and comparing with empirical results is critical when fitting OU and other extensions of the Brownian model. 
   We conclude by making recommendations for best practice in fitting OU models in phylogenetic comparative analyses, and for interpreting the parameters of the OU model. 
@@ -197,7 +197,7 @@
     All our simulated trees and data are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
 
   \subsection{Performance of $\alpha$ and Likelihood ratio tests}
-    To determine whether $\alpha$ is biased, and whether Likelihood ratio tests are appropriate for use with the OU model, we estimated $\alpha$ for each of our simulated phylogenies and data, and compared the fit of a Brownian model to that of an OU model using a Likelihood ratio test with 1 degree of freedom with the \texttt{transformPhylo.ML} function in MOTMOT \citep{Thomas:2011aa}. 
+    To determine whether $\alpha$ is biased, and whether Likelihood ratio tests are appropriate for use with the OU model, we estimated $\alpha$ for each of our simulated phylogenies and data, and compared the fit of a Brownian model to that of an OU model using a Likelihood ratio test with 1 degree of freedom with the \texttt{transformPhylo.ML} function in MOTMOT (\citealp{Thomas:2011aa}; \href{https://github.com/ghthomas/motmot}{github.com/ghthomas/motmot}). 
     This mirrors the common situation where researchers fit Brownian and OU models and then use Likelihood ratio tests to select the ``best'' model.
     We then estimated the rejection rate of the null (Brownian) model for each set of simulations. 
     This gives us a measure of Type I error rate for the OU model.
@@ -249,7 +249,7 @@
     We provide recommendations related to these findings below.
 
 \section{Effects of measurement error on OU model performance}
-  Measurement error can strongly effect the results of comparative analyses \citep{silvestro2015}, and appears to influence whether OU is the favoured model across a range of datasets \citep[see][]{pennell2015model}. 
+  Measurement error can strongly affect the results of comparative analyses \citep{silvestro2015}, and appears to influence whether OU is the favoured model across a range of datasets \citep[see][]{pennell2015model}. 
   Therefore, we also investigated whether adding error to our simulated data influenced estimates of $\alpha$.
   
   We used the same procedure as above to simulate trait data under a Brownian motion model with known error. 
@@ -290,7 +290,7 @@
   \item \textbf{Type I error rates are high when sample size is low.} 
   The results of the simulations indicate that, in general, analyses based on small datasets are prone to biases that decrease only slowly as the size of the dataset increases.  
   \item \textbf{Likelihood ratio tests are untrustworthy.}
-  All likelihood ratio tests depend on asymptotic properties, so there is no guarantee that any parameter such as $\alpha$ will behave appropriately when tested. 
+  All Likelihood ratio tests depend on asymptotic properties, so there is no guarantee that any parameter such as $\alpha$ will behave appropriately when tested. 
   In the case of $\alpha$ we would expect these to be approximate because $\alpha$ is bounded and has a non-linear effect on the expected variances. 
   Our simulations indicate that Likelihood ratio tests should not be relied upon for analyses with small sample sizes, and that for robust inference and testing, alternatives, such as simulation and MCMC, should be considered. 
   \item \textbf{Measurement error increases Type I error rates.} 
@@ -337,13 +337,14 @@
       However, more error or larger trees result in the frequent rejection of the Brownian model. 
       As noted above, this is not an issue of Type I and it is entirely correct that the Brownian model is rejected. 
       In such cases emphasis should shift to how the $\alpha$ parameter is interpreted. 
-      At this stage we are cautious in recommending Bayesian methods for fitting OU models but instead suggest that this may be a fruitful area for further investigation. 
+      Bayesian analysis is a promising approach for OU model fitting. 
+      However, further testing of the Bayesian approach to simulated data sets under a wide range of values of $\alpha$ is necessary to fully characterize performance. 
       See \citet{pennell2015model} for more details on using Bayesian methods in evolutionary models.
     \end{enumerate}
 
     \begin{table}[!htbp]
         \begin{center}
-        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on a range of constant-rate birth death trees using Bayesian methods. Tree type refers to the extinction fraction for the birth-death trees. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model based on Bayes factors \textgreater 2.} 
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model on a range of constant-rate birth death trees using Bayesian methods. Tree type refers to the extinction fraction for the birth-death trees. The value of $\alpha$ is the median across simulated data sets based on modal estimates from the posterior distribution. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model based on Bayes factors \textgreater 2.} 
         \bigskip
         \input{Tables/OU_bd_noerror_BayesTraits.tex} 
         \label{tables:bayesian}
@@ -354,7 +355,7 @@
     \begin{landscape}
       \begin{table}[!htbp]
         \begin{center}
-        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.) using Bayesian methods. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.} %NC: Might need to modify legend
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.) using Bayesian methods. The value of $\alpha$ is the median across simulated data sets based on modal estimates from the posterior distribution. The rejection rate is the proportion of OU models favoured relative to a Brownian motion model.} %NC: Might need to modify legend
         \bigskip
         \input{Tables/OU_yule_error_BayesTraits.tex}
         \label{tables:bayesian_error}
@@ -369,7 +370,7 @@
     Because the OU model was proposed with evolutionary process in mind, alternative and arguably more parsimonious explanations for favouring OU models and interpreting non-zero $\alpha$ are often overlooked. 
     The effects of measurement error in particular suggest that $\alpha$ must always be interpreted with caution. 
     Many issues of misinterpretation can be solved by carefully inspecting the $\alpha$ parameter when an OU model is favoured. 
-    Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very close to zero (e.g., examples in \citealp{Harmon:2010aa}), i.e. very close to Brownian.
+    Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of $\alpha$ are actually very small and biologically indistinguishable from Brownian (e.g., examples in \citealp{Harmon:2010aa}).
     In these circumstances, it is likely that measurement error, or similar, is being mopped up by the extra parameters in the OU model. 
     Thus this does not reflect any kind of OU process underlying the data. 
     The similarity between Brownian and OU models with small $\alpha$ is demonstrated in (Figure \ref{figure:ouhistory}). 
@@ -415,7 +416,11 @@
    \end{enumerate}  
     
 \section{Conclusions and outstanding issues}
-  A recurring theme from our simulations is that interpretation of OU models is not straightforward. More focus is needed on the interpretation of $\alpha$ rather than simply model fit. Even when the OU model is favoured, $\alpha$ may be so small as to be indistinguishable from Brownian motion in any biological sense. It would clearly be very useful to have estimates of measurement error for all species traits, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}. Several approaches for accounting for error have been proposed and warrant wider implementation for OU models and other models of trait evolution \citep[e.g.,][]{lynch1991methods,hansen2012interpreting,martins1997phylogenies,rohlfs2013modeling,ives2007within}, however it is outside our scope to explore these here.
+  A recurring theme from our simulations is that interpretation of OU models is not straightforward. 
+  More focus is needed on the interpretation of $\alpha$ rather than simply model fit. 
+  Even when the OU model is favoured, $\alpha$ may be so small as to be indistinguishable from Brownian motion in any biological sense. 
+  It would clearly be very useful to have estimates of measurement error for all species traits, however the inclusion of species-specific variances has to be done carefully \citep[e.g.,][]{grafen1989phylogenetic}.
+  Several approaches for accounting for error have been proposed and warrant wider implementation for OU models and other models of trait evolution \citep[e.g.,][]{lynch1991methods,hansen2012interpreting,martins1997phylogenies,rohlfs2013modeling,ives2007within}, however it is outside our scope to explore these here.
 
   Indeed, the problems that we report are not limited to OU models. 
   Any model of trait evolution that attempts to account for non-Brownian components of trait variation is susceptible to being misled by measurement error. 
@@ -426,17 +431,21 @@
 \section{Epilogue: Open and (vaguely) reproducible science}
   At the symposium that generated this special issue, one of us (NC) gave a talk on Open Science and reproducibility. 
   We have therefore tried to make this paper as open and reproducible as possible. 
-  All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}.
-  However, although our R code is provided, it is messy and difficult to use. 
-  We also do not provide an automated way of reproducing the data collection for our literature review.
-  Nor do we use tools like Travis CI (travis-ci.org), Docker (www.docker.com), or packrat \citep{Ushey:2015aa} etc. to increase the reproducbility of our analyses.
+  All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}. However, although our R code is provided, it is messy and difficult to use. 
+  We also do not provide an automated way of reproducing the data collection for our literature review. 
+  Nor do we use tools like Travis CI (\href{https://travis-ci.org}{travis-ci.org}), Docker (\href{www.docker.com}{www.docker.com}), or packrat \citep{Ushey:2015aa} etc. to increase the reproducibility of our analyses. 
   Additionally, we use BayesTraits to run our Bayesian analyses. 
-  Although free to download, this software is not an Open Source, which has implications for long-term development of the methods.
-  We included this epilogue to highlight that reproducibility is really hard, but we are trying to improve! 
+  BayesTraits is free to download as a binary executable for various platforms but it is not Open Source. 
+  This means that while BayesTraits analyses are reproducible the software has limitations with respect to long-term development of the code. 
+  We included this epilogue to highlight that fully reproducible and Open Science is really hard, but we are trying to improve! 
   With a little effort most people should be able to produce something vaguely reproducible, and to provide their data and code, moving us all slightly closer to truly reproducible and Open Science.
 
 \section{Acknowledgments}
-  Thanks to Mark Pagel, Matt Pennell, Graham Slater and Rich FitzJohn for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. GHT was supported by a Royal Society University Research Fellowship. CV was supported by a Leverhulme Trust Research Project Grant RPG-2013-185. AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, ``MotherTongue''.
+  Thanks to Rich FitzJohn, Mark Pagel, Matt Pennell and Graham Slater for fruitful discussions about OU models, and three anonymous reviewers for helpful comments on a previous version of this paper. 
+  NC was supported by The European Commission CORDIS Seventh Framework Program (FP7) Marie Curie CIG grant, proposal number: 321696. 
+  GHT was supported by a Royal Society University Research Fellowship. 
+  CV was supported by a Leverhulme Trust Research Project Grant RPG-2013-185. 
+  AM was supported by BBSRC grant BB/K004344/1 and the computing time was funded by European Research Council Grant no. 268744, ``MotherTongue''.
 
 % Bibliography
 \bibliographystyle{biolinnsoc}
