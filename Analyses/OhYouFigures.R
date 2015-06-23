@@ -34,8 +34,9 @@ ds2$General.use <- ds2$General.use[, drop = TRUE]
 summary.table <- tapply(ds2$Paper, list(ds2$General.use, ds2$Noptima), length)
 
 # Figure 3
-pdf("Manuscript/Figures/OhYou_Figure2.pdf")
+pdf("Manuscript/Figures/OhYou_Figure3.pdf")
   par(bty = "l")
   hist(ds1$Ntips[which(ds1$Ntips <= 1000)], las = 1, cex.lab = 1.2, cex.axis = 1.2,
-       ylab = "Number of papers", xlab = "Number of taxa", ylim = c(0, 80), main = "")
+       ylab = "Number of papers", xlab = "Number of taxa", ylim = c(0, 30), main = "",
+       breaks = seq(from = 0, to = 800, by = 25))
 dev.off()
