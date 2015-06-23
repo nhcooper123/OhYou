@@ -1,0 +1,95 @@
+\documentclass[11pt]{letter}
+\usepackage[a4paper,left=2.5cm, right=2.5cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks = true, urlcolor = blue]{hyperref} %hyperlinks
+\usepackage[osf]{mathpazo}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\signature{Natalie Cooper \\ Gavin Thomas}
+\address{Zoology building \\ Trinity College Dublin \\ Dublin 2, Ireland \\ \\ ncooper@tcd.ie}
+\longindentation=0pt
+\begin{document}
+
+\begin{letter}{}
+
+Referees' Comments to Authors:
+Referee: 1
+
+Comments to the Author
+The authors discuss some potential pitfalls in model choice and subsequent interpretation regarding the widely used OU model for analysing a single continuous trait on a phylogenetic tree. Due to the heavy usage of this model (as evidenced by the authors own literature survey) this is clearly an important paper, and the authors provide a broad array of simulations, which span a sufficient number of scenarios to characterise some major biases of the typical likelihood based model-fitting approach. The authors' interpretation of the results is measured and sensible (neither overly doom laden nor free of potential solutions). They have also strived to make their study repeatable whilst acknowledging the challenges in doing so and the limitations of their chosen approach. I have no problem supporting the publication of this paper, although I have a few notes (below) on potential improvements. These overwhelmingly ask for additional clarity on specific points and so I see them as minor.
+
+L22 - Except these are exclusively for continuous data. Maybe use "core" instead of foundation, or a caveat like "at least for continuous data".
+L28 (and L199) - I'm not sure if Type 1 error is the correct term to use as this is (to my mind) a frequentists term. I realise that we are (in a sense) rejecting the null of Brownian motion (albeit falsely) and that the LRT gives us a p-value to do so. However, the notion isn't necessarily generalisable to, e.g., three or more models. Perhaps the authors could just state explicitly what they mean by Type I errors to avoid confusion.
+L89 - The year range given here and that in the figure/figure caption are different.
+L102 - This explanation seems a little incomplete. Why isn't it?
+L124 - This also seems incomplete. Maybe insert "merely"?
+L156 - I think it would be helpful to discuss mu a bit more. Questions I would like to see answered include: Presumably this is the trait "optimum"? What does it mean to have an optimum outside of the range of the tip values? What if mu is unrealistic, e.g., continuous measure is wingspan and mu is 1000km? If mu is large/far from the tip mean does that mean alpha can be small and the model still be a better fit? etc.
+L167 - I'm not totally clear what is meant by tree height (I think I know, but would prefer it to be defined explicitly), nor how or why it scales with alpha.
+L188 - Lol.
+L219 - Why did the authors chose a Yule model here and a birth-death earlier? Does it mean one is ultrametric and the other not? (Maybe this relates to the fossil point below.)
+L263 - This paragraph could do with some unpacking. What asymptotic properties? How is alpha bounded? etc.
+L267 - Does this extend, then, to AIC(c)s? (As many people use AIC instead of the LRT and fit more than two models this could be important.)
+L283 - "in fitting model" missing "the"?.
+L299 - Citations should be in date order.
+L325 - Do you mean "regardless OF"?
+L330 - Potential pregnancy (missing period).
+L342 - "processES"?
+L367 - Although in practice are there not ways to set limits on the min-max value of alpha?
+L376 - Maybe clarify exactly why (I think I have an idea!).
+L382 - Could or should? (Conflict of interest: I am a palaeobiologist!) It seems like fossils could really help as by definition they have smaller values of T, and hence are closer to the root, and hence are better at constraining the root, and hence (potentially) help with model choice in general. (E.g., AFAIK you can only really favour a trend model if you have fossils in the tree.) In addition, when the authors simulate the birth-death models are they using non-ultrametric trees? Or just pruning extinct tips? If the latter then they aren't really testing whether fossils can help, but maybe this could be mentioned as a possible future simulation study.
+L385 - Maybe I'm missing something here, but to my mind a non-ultrametric tree is not special in terms of co-variance. Rather it is the variances that are unusual. I.e., the diagonal of the VCV will not just be the same number (same T) for all species. In other words if you modified a non-ultrametric tree to make it ultrametric by making all tips range through to the "present" you would only be modifying the diagonal.
+L414 - Epilogue is fine in terms of content, but language is very informal ("vaguely", "messy", "!"). Maybe this isn't an issue, but does read to me as a definite shift in tone from the rest of the paper.
+Figure 2 caption - I think this caption could do more to explain the plot. What is meant by "rooty"? What is meant by "tippy"? What does each line represent? What are the dashed lines? etc.
+Figure 3 - Would be nice to have more "breaks" in the histogram to help visualise how the data is really distributed. The binning seems too coarse at the moment.
+
+Referee: 2
+
+Comments to the Author
+In this article, Cooper and colleagues explore through simulations one of phylogenetic comparative biologists worst kept but most ignored secrets — that the OU model (or, more specifically the single stationary peak version of the OU model) has poor statistical performance. Using a large number of simulated phylogenies derived under different branching processes, they find that: 1) OU has an undesirably high Type I error rate using Likelihood Ratio Tests (LRT), particularly for small trees; 2) ML estimates of the OU α - parameter are erroneously biased towards large values for small trees, and; 3) when measurement error is not accounted for, large datasets, rather than small datasets become more biased towards erroneously favoring OU. The authors provide a suite of practical recommendations for users fitting OU models to comparative datasets and even demonstrate, rather nicely, that using Bayesian model comparison machinery can lead to lower false positive rates than are obtained through ML methods.
+
+Overall, this is a nice contribution that will make a useful reference piece for comparative biologists using PCMs. BJLS is an appropriate outlet - although not normally associated with these kinds of papers, many contributions use these kinds of methods and I’m sure this one will be much read and cited.
+
+However, while I understand the authors’ frustrations with the fitting and interpretations of single peak OU processes that are common in the literature, I think they miss an opportunity to really emphasize their concerns here and demonstrate to readers that it’s easy to correct oneself when support for OU comes back in comparative analyses. Though the authors do note that a best fitting OU model could be nothing more than a noisy BM processes based on parameter estimates, a closer look at their simulation results reveals that this is also the case here. For example, on their simulated trees rescaled to unit height, the highest median alpha estimated for the BM datasets is 0.165 for the 25 tip Yule tree. This translates into a phylogenetic half life of 4.2 time units however, 4 times the age of the simulated clade, which no sane macroevolutionary biologist would interpret as being too different from Brownian motion at this time scale! Furthermore, the upper 95% HPDs (Quantiles surely?) are, in many cases low enough to result in questionable acceptance of OU over BM for any of the simulations.
+
+I think the authors could do a better job of emphasizing the implications of OU model parameters on the expected outcomes of the process with respect to their own simulations, perhaps by adding a section after line 211 on page 9 that explores alpha estimates and their associated phylogenetic half-lives. If the aim here is to caution readers that a best-fitting OU process does not always translate to evolution about a  constrained peak, then showing this with parameter estimates from the simulations would be a useful contribution. This kind of constructive comment would also help those readers who would view this only as a critique of OU models.
+
+As i thought about this, it also occurred to me that it would probably be useful to more completely lay out how the OU process works. I suspect (from my own dealings with authors during reviews) that many do not have an intuitive feel for how the model works still. Based on this, I’d suggest that the authors move their appendix to the main ms and integrate it with the OU model outline on lines 139-174. It may additionally be useful to illustrate the process, both as a diffusion process and as its effects on the phylogenetic variance covariance structure. These are suggestions only, but I suspect that providing a more complete background to the models would further aid naive readers / students who are to be the main beneficiaries of this paper.
+
+
+Minor comments
+
+SSP vs single peak OU.
+
+I think it would be useful to clarify early on in the ms that the scenario being explored is specifically a single stationary peak model (a la Harmon et al. 2010), rather than a single optimum model. Although I would agree that most users of these methods are more familiar with applying the latter term, there is a small distinction. A single peak OU process may have the root state the same as or different from the long term optimum, whereas the SSP model has both the same. Furthermore, interpretation of these two models with α ≅ 0 is slightly different. For SSP, α ≅ 0 approximates BM, but for a single peak model where the peak differs from the root state, α ≅ 0 collapses to BM with a trend (e.g., see Hansen 1996, Benson et al. 2014). Because the long term mean is introduced as a parameter of the OU process in eq 2 (line 156), it is perhaps worth pointing out this distinction at some point thereafter. Of course, the case where the root state and long term mean are not equal cannot be fitted when fossil data / strong root or internal node priors are lacking and so is unavailable to most PCM users anyway. But still, for completeness I think this is worth pointing out.
+
+line 114. Perhaps my own bugaboo, but I hate the term “to control for phylogeny”. Perhaps replace this with “to model phylogenetically structured residual error in evolutionary correlations”. Revell (2010) might also make a nice citation here.
+
+Line 172: at the risk of losing a citation (although i think you’ll retain me elsewhere) Slater and Pennell used a rate half-life in the context of the exponential decline in rate under the ACDC model, not a phylogenetic half-life for the exponential approach of a trait to its long term mean under the OU model.
+
+The stepping stone analyses and results are very interesting. In Baele et al. (2012), which introduced path sampling for Bayesian demographic model selection using the BEAST software, the authors showed via simulation that Path Sampling and Stepping Stones performed much better than harmonic mean estimators or other model choice metrics at selecting a time homogeneous model over exponential growth (and also at choosing weak exponential growth over constant population size models). There seems a nice parallel here and this suggests that these kinds of approaches should probably be better integrated into comparative methods,.
+
+Lines 263-269: it may be more useful to be explicit here that LRTs assume that the LR statistic is asymptotically chi-square distributed and that this is unlikely the case here (perhaps you could show this using the simulations?). Link this to lines 288-299 to show how to obtain a simulated distribution for the LRT.
+
+lines 404-407: This works the other way too; not incorporating measurement error could lead one to reject a “high phylogenetic signal” model like EB in favor of BM when EB is intact the true model.
+
+
+Figure 2 legend what are the black and red dashed lines?
+
+Signed: Graham Slater
+
+References
+
+Baele, G., Lemey, P., Bedford, T., Rambaut, A., Suchard, M. A., & Alekseyenko, A. V. (2012). Improving the accuracy of demographic and molecular clock model comparison while accommodating phylogenetic uncertainty. Molecular biology and evolution, 29(9), 2157-2167.
+
+
+Benson, R. B., Frigot, R. A., Goswami, A., Andres, B., & Butler, R. J. (2014). Competition and constraint drove Cope's rule in the evolution of giant flying reptiles. Nature communications, 5.
+
+Hansen, T. F. (1997). Stabilizing selection and the comparative analysis of adaptation. Evolution, 1341-1351.
+
+Revell, L. J. (2010). Phylogenetic signal and linear regression on species data. Methods in Ecology and Evolution, 1(4), 319-329.
+
+
+
+\end{letter}
+\end{document}
