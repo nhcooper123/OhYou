@@ -34,11 +34,11 @@ Later we have clarified what we mean by Type I error.
 
 \textcolor{blue}{L89 - The year range given here and that in the figure/figure caption are different.}
 
-Yes this is correct. We meant to show that there have been lots of papers just within the last few years, and the figure was to show how these have increased over a slightly longer timeframe. We have rephrased to make this distinction clearer.
+Yes this is correct. We meant to show that there have been lots of papers just within the last few years, and the figure was to show how these have increased over a slightly longer time-frame. We have rephrased to make this distinction clearer.
 
 \textcolor{blue}{L102 - This explanation seems a little incomplete. Why isn't it?}
 
-In population genetics stabilising selection describes selection within a population of a species towards a fitness optimum. This is quite a different process biologically to the branching evolution of trait along a phylogeny and among different species towards an optimum trait value. We have added some explanation here to hopefully make this clearer.
+In population genetics stabilising selection describes selection within a species towards a fitness optimum. This is quite a different process biologically to the branching evolution of trait along a phylogeny and among different species towards an optimum trait value. We have added some explanation here to hopefully make this clearer. The population vs. clade level difference is key.
 
 \textcolor{blue}{L124 - This also seems incomplete. Maybe insert "merely"?}
 
@@ -46,11 +46,14 @@ Added merely.
 
 \textcolor{blue}{L156 - I think it would be helpful to discuss mu a bit more. Questions I would like to see answered include: Presumably this is the trait "optimum"? What does it mean to have an optimum outside of the range of the tip values? What if mu is unrealistic, e.g., continuous measure is wingspan and mu is 1000km? If mu is large/far from the tip mean does that mean alpha can be small and the model still be a better fit? etc.}
 
-Because of the way that mu is estimated it will never fall outside the tip values or be wildly unrealistic, as it is essentially just a mean of the tip values weighted by branch length. We have added clarification to the text.
+Yes mu is the optimal value. We have clarified this in the text. 
+
+mu can sometimes be wildly inaccurate, though this is generally in implementations where the root state is estimated too leading to strange values appearing optimal on the likelihood surface. This is generally fixed by not estimating the root state, and instead using mu as the root state or a root state that is distributed according to the stationary distribution of the OU process. My feeling is that this happens rarely (most implementations don't estimate the root state) and hopefully people would notice this and take any results with a large pinch of salt. We have added a brief statement to the discussion to alert people to this fact. We did not go into mu too much here as our focus was on alpha since this is the parameter people tend to interpret evolutionarily.
 
 \textcolor{blue}{L167 - I'm not totally clear what is meant by tree height (I think I know, but would prefer it to be defined explicitly), nor how or why it scales with alpha.}
 
-****
+Tree height is, probably as you suspected, the maximum height from the root to the tips of the tree. We have added this to the text. Alpha will scale negatively with tree height because the longer/taller the tree is, the more time there is for a trait to evolve back towards the optimum thus alpha - the strength of the force pulling the trait back towards the optimum, can be smaller. We have also added this to the text.
+
 \textcolor{blue}{L188 - Lol.}
 
 :)
@@ -77,7 +80,6 @@ Corrected.
 \textcolor{blue}{L325 - Do you mean "regardless OF"?}
 
 Corrected.
-
 
 \textcolor{blue}{L330 - Potential pregnancy (missing period).}
 
