@@ -28,9 +28,7 @@ Changed to core.
 
 \textcolor{blue}{L28 (and L199) - I'm not sure if Type 1 error is the correct term to use as this is (to my mind) a frequentists term. I realise that we are (in a sense) rejecting the null of Brownian motion (albeit falsely) and that the LRT gives us a p-value to do so. However, the notion isn't necessarily generalisable to, e.g., three or more models. Perhaps the authors could just state explicitly what they mean by Type I errors to avoid confusion.}
 
-Fair point. We mentioned what we mean by Type I error slightly above this point, so have replaced it with "and thus more prone to this problem" rather than repeating it in the abstract.
-
-Later we have clarified what we mean by Type I error.
+Fair point. We mentioned what we mean by Type I error slightly above this point, so have replaced it with "and thus more prone to this problem" rather than repeating it in the abstract. Later in the manuscript we have clarified what we mean by Type I error when we first mention it.
 
 \textcolor{blue}{L89 - The year range given here and that in the figure/figure caption are different.}
 
@@ -52,7 +50,7 @@ mu can sometimes be wildly inaccurate, though this is generally in implementatio
 
 \textcolor{blue}{L167 - I'm not totally clear what is meant by tree height (I think I know, but would prefer it to be defined explicitly), nor how or why it scales with alpha.}
 
-Tree height is, probably as you suspected, the maximum height from the root to the tips of the tree. We have added this to the text. Alpha will scale negatively with tree height because the longer/taller the tree is, the more time there is for a trait to evolve back towards the optimum thus alpha - the strength of the force pulling the trait back towards the optimum, can be smaller. We have also added this to the text.
+Tree height is, probably as you suspected, the maximum height from the root to the tips of the tree. We have added this to the text. Alpha will scale negatively with tree height because the longer/taller the tree is, the more time there is for a trait to evolve back towards the optimum thus alpha - the strength of the force pulling the trait back towards the optimum - can be smaller. We have also added this to the text.
 
 \textcolor{blue}{L188 - Lol.}
 
@@ -64,7 +62,9 @@ Tree height is, probably as you suspected, the maximum height from the root to t
 
 \textcolor{blue}{L263 - This paragraph could do with some unpacking. What asymptotic properties? How is alpha bounded? etc.}
 
+We have clarified what we mean by bounded (alpha must be 0 or greater) and reworded this section.
 ***
+
 \textcolor{blue}{L267 - Does this extend, then, to AIC(c)s? (As many people use AIC instead of the LRT and fit more than two models this could be important.)}
 
 ***
@@ -119,9 +119,9 @@ We have added more breaks to this figure.
 
 \textcolor{blue}{
 \textbf{Referee: 2 (Graham Slater)}\\
-In this article, Cooper and colleagues explore through simulations one of phylogenetic comparative biologists worst kept but most ignored secrets - that the OU model (or, more specifically the single stationary peak version of the OU model) has poor statistical performance. Using a large number of simulated phylogenies derived under different branching processes, they find that: 1) OU has an undesirably high Type I error rate using Likelihood Ratio Tests (LRT), particularly for small trees; 2) ML estimates of the OU $\alpha$ - parameter are erroneously biased towards large values for small trees, and; 3) when measurement error is not accounted for, large datasets, rather than small datasets become more biased towards erroneously favoring OU. The authors provide a suite of practical recommendations for users fitting OU models to comparative datasets and even demonstrate, rather nicely, that using Bayesian model comparison machinery can lead to lower false positive rates than are obtained through ML methods.}
+In this article, Cooper and colleagues explore through simulations one of phylogenetic comparative biologists worst kept but most ignored secrets - that the OU model (or, more specifically the single stationary peak version of the OU model) has poor statistical performance. Using a large number of simulated phylogenies derived under different branching processes, they find that: 1) OU has an undesirably high Type I error rate using Likelihood Ratio Tests (LRT), particularly for small trees; 2) ML estimates of the OU $\alpha$ - parameter are erroneously biased towards large values for small trees, and; 3) when measurement error is not accounted for, large datasets, rather than small datasets become more biased towards erroneously favoring OU. The authors provide a suite of practical recommendations for users fitting OU models to comparative datasets and even demonstrate, rather nicely, that using Bayesian model comparison machinery can lead to lower false positive rates than are obtained through ML methods.
 
-Overall, this is a nice contribution that will make a useful reference piece for comparative biologists using PCMs. BJLS is an appropriate outlet - although not normally associated with these kinds of papers, many contributions use these kinds of methods and I'm sure this one will be much read and cited.
+Overall, this is a nice contribution that will make a useful reference piece for comparative biologists using PCMs. BJLS is an appropriate outlet - although not normally associated with these kinds of papers, many contributions use these kinds of methods and I'm sure this one will be much read and cited.}
 
 We thank the reviewer for their positive comments.
 
