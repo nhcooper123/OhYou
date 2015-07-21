@@ -58,7 +58,7 @@ Tree height is, probably as you suspected, the maximum height from the root to t
 
 \textcolor{blue}{L219 - Why did the authors chose a Yule model here and a birth-death earlier? Does it mean one is ultrametric and the other not? (Maybe this relates to the fossil point below.)}
 
-\textcolor{red}{Gavin?}
+\textcolor{red}{As noted above, all of the simulated trees were ultrametric. }
 
 \textcolor{blue}{L263 - This paragraph could do with some unpacking. What asymptotic properties? How is alpha bounded? etc.}
 
@@ -97,13 +97,16 @@ Yes that's correct, for example in GEIGER the default max is alpha = 150. We hav
 
 If t1/2 is very high then it suggests it will take twice that long to reach the optimal trait value for the species. Thus it suggests that selection for that optimum is extremely weak at best. For example if t1/2 is 100 million years, then it suggests that a species will take 200 million years to reach the trait optimum. This is hardly suggestive of a strong selective pressure towards that optimum. We have added this example to help clarify this point in the text.
 
+\textcolor{red}{Not sure this is quite right - isn't the half-life the time it takes to get halfway to the optimum? I don't think it is a linear process so the halfway point in trait value is not also the halfway point in time it will take to get the optimum}
+
+
 \textcolor{blue}{L382 - Could or should? (Conflict of interest: I am a palaeobiologist!) It seems like fossils could really help as by definition they have smaller values of T, and hence are closer to the root, and hence are better at constraining the root, and hence (potentially) help with model choice in general. (E.g., AFAIK you can only really favour a trend model if you have fossils in the tree.) In addition, when the authors simulate the birth-death models are they using non-ultrametric trees? Or just pruning extinct tips? If the latter then they aren't really testing whether fossils can help, but maybe this could be mentioned as a possible future simulation study.}
 
-\textcolor{red}{Gavin?}
+\textcolor{red}{The reviewer is correct that we do not include fossil taxa in our simulations. We used birth-death trees as a means of assessing the impact of different tree shapes rather than explicitly testing the impact of fossil taxa. The issue of whether fossil taxa should or could be included is not straightforward. If fossil taxa can be reliably placed in the phylogeny then we anticipate that they will typically improve model accuracy, i.e. they should be included. On the other hand, if placement of fossil taxa is unreliable then they also have the potential to mislead analyses. GT - CHECK SANSOM and WILLS PAPER FOR EXAMPLE OF BAD PLACEMENT.  }
 
 \textcolor{blue}{L385 - Maybe I'm missing something here, but to my mind a non-ultrametric tree is not special in terms of co-variance. Rather it is the variances that are unusual. I.e., the diagonal of the VCV will not just be the same number (same T) for all species. In other words if you modified a non-ultrametric tree to make it ultrametric by making all tips range through to the "present" you would only be modifying the diagonal.}
 
-\textcolor{red}{Gavin?}
+\textcolor{red}{The key point here is not that the tree itself is special but rather how the OU model is fitted. For ultrametric trees it is possible to fit the OU model simply by adjusting the branch lengths in the tree directly. This is not possible for non-ultrametric trees. The problem is that related species can effectively become more similar to one another than to themselves - an inherently not tree-like pattern. This means that the OU model can only be computed using the variance-covariance matrix, and not with the tree itself. The important point from an end-user perspective is that some software is not suitable for fitting the OU model to non-ultrametric trees.}
 
 \textcolor{blue}{L414 - Epilogue is fine in terms of content, but language is very informal ("vaguely", "messy", "!"). Maybe this isn't an issue, but does read to me as a definite shift in tone from the rest of the paper.}
 
@@ -112,7 +115,7 @@ We have made this less informal in tone.
 \textcolor{blue}{Figure 2 caption - I think this caption could do more to explain the plot. What is meant by "rooty"? What is meant by "tippy"? What does each line represent? What are the dashed lines? etc.}
 
 % We have added details to this Figure caption.
-\textcolor{red}{Gavin?}
+\textcolor{red}{This is Rob's figure originally - tippy etc is a hangover from earlier version.}
 
 \textcolor{blue}{Figure 3 - Would be nice to have more "breaks" in the histogram to help visualise how the data is really distributed. The binning seems too coarse at the moment.}
 
@@ -129,15 +132,21 @@ We thank the reviewer for their positive comments.
 
 \textcolor{blue}{I think the authors could do a better job of emphasizing the implications of OU model parameters on the expected outcomes of the process with respect to their own simulations, perhaps by adding a section after line 211 on page 9 that explores alpha estimates and their associated phylogenetic half-lives. If the aim here is to caution readers that a best-fitting OU process does not always translate to evolution about a constrained peak, then showing this with parameter estimates from the simulations would be a useful contribution. This kind of constructive comment would also help those readers who would view this only as a critique of OU models.}
 
-\textcolor{red}{Gavin? We may need to discuss this as I'm not entirely sure what Graham means?}
+\textcolor{red}{We agree that a half-life ~4 times the height of the tree is no different from Brownian motion in any meaningful biological sense. This is exactly the point. It is not uncommon to see interpretations of models based only on model fit and not on the the model parameters hence our emphasis is on problems with model fitting. However, the point about parameter interpretation is equally important and we have added a new paragraph (lines XX-XX) to discuss this explicitly.
+
+GT: we could add a figure or a couple of examples that for a given simulation set compared half lifes or alphas for simulations that favoured OU vs favoured BM. - maybe this is Graham's point?}
 
 \textcolor{blue}{As I thought about this, it also occurred to me that it would probably be useful to more completely lay out how the OU process works. I suspect (from my own dealings with authors during reviews) that many do not have an intuitive feel for how the model works still. Based on this, I'd suggest that the authors move their appendix to the main ms and integrate it with the OU model outline on lines 139-174. It may additionally be useful to illustrate the process, both as a diffusion process and as its effects on the phylogenetic variance covariance structure. These are suggestions only, but I suspect that providing a more complete background to the models would further aid naive readers / students who are to be the main beneficiaries of this paper.}
 
 We moved the details of the model to the appendix for the same reasons that the reviewer mentions - that it was aimed at naive readers/students. There is evidence to suggest that rather than helping naive readers, too many equations actually impedes understanding and communication of concepts (see Fawcett and Higginson, 2012 PNAS; http://www.pnas.org/content/109/29/11735.short), thus we prefer to keep this as it is so as not to discourage people from reading further.
-\textcolor{red}{Not sure if you agree with me here, but I didn't really want to move the appendix back into the paper as I think it's confusing.}
+\textcolor{red}{Not sure if you agree with me here, but I didn't really want to move the appendix back into the paper as I think it's confusing.
+
+GT: I agree, although wondered whether we could do anything like a TREE-style box. Maybe we can make the point that this is an in-print appendix, like what they did in the olden days, rather than online supplementary material.}
 
 Illustrating the process however is a nice idea so we have added a figure to the paper that does this. 
-\textcolor{red}{Do you have code handy to make a figure for this? I'd have to write some from scratch and I'm meant to be on holiday...}
+\textcolor{red}{Do you have code handy to make a figure for this? I'd have to write some from scratch and I'm meant to be on holiday...
+
+GT: I don't. I think we could flag figure 4 here - it already does what Graham is suggesting with respect to covariances. Perhaps combining this with a diffusion process for alpha = 0, 1, 10 would be sufficient. It could be a three column figure with the covariances, diffusion process and tree transform.}
 
 \textcolor{blue}{\textbf{Minor comments}\\
 \textbf{SSP vs single peak OU.}\\
@@ -158,7 +167,7 @@ Sorry for the error, we have removed the citation (but yes it's in there later a
 
 \textcolor{blue}{Baele, G., Lemey, P., Bedford, T., Rambaut, A., Suchard, M. A., \& Alekseyenko, A. V. (2012). Improving the accuracy of demographic and molecular clock model comparison while accommodating phylogenetic uncertainty. Molecular biology and evolution, 29(9), 2157-2167.}
 
-\textcolor{red}{Gavin?}
+\textcolor{red}{One for Chris and Andrew to comment on I think.}
 
 \textcolor{blue}{Lines 263-269: it may be more useful to be explicit here that LRTs assume that the LR statistic is asymptotically chi-square distributed and that this is unlikely the case here (perhaps you could show this using the simulations?). Link this to lines 288-299 to show how to obtain a simulated distribution for the LRT.}
 
@@ -171,7 +180,7 @@ We have added a comment in the text to say that measurement error can also favou
 \textcolor{blue}{Figure 2 legend what are the black and red dashed lines?}
 
 % We have added details to this Figure caption.
-\textcolor{red}{Gavin?}
+\textcolor{red}{Fig 2 is Rob's. I assume that the black line is just alpha = 0 and the red line is the critical value of the chi-square distribution to highlight the cases where the Brownian model would be rejected.}
 
 Let us know if you require any further information,
 
