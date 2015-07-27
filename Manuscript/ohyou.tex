@@ -120,7 +120,7 @@
 
   The majority of papers use the OU model to model the evolution of a continuous character (Table \ref{table.uses}; Supporting Information) therefore, we focus on this use of the OU model in our simulations below. 
   The principles here also apply to a range of other macroevolutionary models that can be fit to continuous data and compared using model testing procedures (e.g., $\kappa$, $\lambda$, $\delta$, ACDC, Early Burst; \citealp{Pagel:1997aa,Pagel:1999aa,Blomberg:2003aa,Harmon:2008aa}).
-  Note that we focus on OU models with a single stationary optimum trait value because these are more commonly used (Table \ref{table.uses}; Supporting Information) and easier to simulate.  For discussions on the performance of multiple optima OU models we refer the reader to \citep{beaulieu2012ouwie}.
+  Note that we focus on OU models with a single stationary optimum trait value because these are more commonly used (Table \ref{table.uses}; Supporting Information) and easier to simulate.  For discussions on the performance of multiple optima OU models we refer the reader to \citet{beaulieu2012ouwie}.
 
     \begin{table}[!htbp]
       \begin{center}
@@ -162,7 +162,8 @@
     The model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant. 
     Because the direction of change in trait values at each step is random, Brownian motion is often described as a ``random walk''.
     The model assumes the correlation structure among trait values is proportional to the extent of shared ancestry for pairs of species. 
-    This means that close relatives will be more similar in their trait values than more distant relatives. It also means that variance in the trait will increase (linearly) in proportion to time. 
+    This means that close relatives will be more similar in their trait values than more distant relatives. 
+    It also means that variance in the trait will increase (linearly) in proportion to time. 
     The model has two parameters, the Brownian rate parameter, $\sigma^2$ and the state of the root at time zero, $X(0)$. 
 
    The OU model \citep{hansen1997stabilizing,Butler:2004aa} is a random walk where trait values revert back towards some ``optimal'' value, $\mu$ (also called $\theta$) with an attraction strength proportional to the parameter $\alpha$. 
@@ -174,7 +175,8 @@
     
     \noindent
     Note that this model has two parameters in addition to those of the Brownian model: $\alpha$ and $\mu$. 
-    $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean, $\mu$, if they evolve away from it.$\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$.
+    $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean, $\mu$, if they evolve away from it.
+     $\alpha$ is sometimes referred to as the ``rubber band'' parameter because of the way it pulls traits back towards $\mu$.
     The parameter $\mu$ is a long-term mean, and it is assumed that species traits evolve around this value. 
     For more details see the Appendix.
     
@@ -187,7 +189,7 @@
     Eventually, when $\alpha$ is really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present.
     Note that $\alpha$ scales with tree height (i.e. the maximum distance from the root of the tree to the tips); taller trees will have lower $\alpha$ values, all else being equal, because there is more time for traits to return to the optimum value thus the strength of the pull towards the optimum, $\alpha$, can be smaller.
     Thus $\alpha$ values need to be interpreted relative to tree height.Generally the simplest solution is to rescale tree heights to 1 \citep[e.g.,][simulations below]{ives2010phylogenetic}. 
-    \citet{ives2010phylogenetic} suggest interpreting $log( \alpha)$ (after rescaling trees to a height of 1) rather than raw $\alpha$. They equate $-log( \alpha) = -4$ as a very low, almost Brownian value, and $-log( \alpha) = 4$ as a very high value. 
+    \citet{ives2010phylogenetic} suggest interpreting $log( \alpha)$ (after rescaling trees to a height of 1) rather than raw $\alpha$. They equate $-log( \alpha) = 4$ as a very low, almost Brownian value, and $-log( \alpha) = -4$ as a very high value. 
     Others \citep[e.g.][]{slater2015iterative,slater2013robust,hansen2012interpreting} prefer to use the ``phylogenetic half-life'': $t_\frac{1}{2}$ (see ``Recommendations for interpreting $\alpha$'' below).  
   
 \section{Performance of the OU model}
@@ -447,7 +449,7 @@
   We should therefore not use any statistical model without thinking carefully about the limits in terms of both data and interpretation. 
 
 \section{Epilogue: The challenges of open and reproducible science}
-  At the symposium that generated this special issue, one of us (NC) gave a talk on Open Science and reproducibility. 
+  At the symposium that generated the special issue this paper is part of (the Linnaean Society's ``Radiations and Extinctions in Deep Time''symposium in November 2014), one of us (NC) gave a talk on Open Science and reproducibility. 
   We have therefore tried to make this paper as open and reproducible as possible. 
   All simulated phylogenies, data, and R code are available on GitHub: \href{https://github.com/nhcooper123/OhYou}{github.com/nhcooper123/OhYou}. However, although our R code is provided, it is disorganised and thus difficult to use. 
   We also do not provide an automated way of reproducing the data collection for our literature review. 
@@ -470,6 +472,7 @@
 \bibliography{ohyou}
 
 % Appendix
+\newpage
 \section{Appendix}
   \label{section:models}
   \setcounter{equation}{0}
@@ -538,24 +541,5 @@
     Similarly, in equation \ref{equation:OUrate}, the covariance between traits tends to a constant because $T$ becomes large relative to $t_{ij}$.
     Consequently for large groups the model implies that the imprint of history is weak.\\
   \end{enumerate}
-
-\newpage
-\section{Figure legends}
-
-\noindent
-\textbf{Figure 1}: The number of ecology, evolutionary biology and palaeontology papers published between 2005 and 2014 containing the phrase ``Ornstein Uhlenbeck'', as a proportion of the total number of ecology, evolutionary biology or palaeontology papers published that year. See Supporting Information for details.\\
-
-\noindent
-\textbf{Figure 2}: Examples of profile likelihoods for selected simulated datasets. In all cases the ``true'' value of $\alpha$ is 0.
-
-\noindent
-\textbf{Figure 3}: The number of taxa in phylogenies used to fit OU models in ecology, evolutionary biology and palaeontology papers published between 2005 and 2014. Two studies with \textgreater 3000 taxa have been omitted for clarity. See Supporting Information for details.
-
-\noindent
-\textbf{Figure 4}: Scaling of expected trait similarity with time since evolutionary divergence predicted by the Ornstein Uhlenbeck model. The covariance between species' traits values is scaled by the intra-specific trait variance (i.e. equal to correlation between species' traits). This is plotted against the relative time of shared history (time at which species branched from each other, divided by the total tree height: $\frac{t_{ij}}{T}$).
-      
-
-\newpage
-\section{Tables}
 
 \end{document}
