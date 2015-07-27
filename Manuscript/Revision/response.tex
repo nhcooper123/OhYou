@@ -65,6 +65,7 @@ We have clarified what we mean by bounded (alpha must be 0 or greater) and rewor
 \textcolor{blue}{L267 - Does this extend, then, to AIC(c)s? (As many people use AIC instead of the LRT and fit more than two models this could be important.)}
 
 \textcolor{red}{Rob?}
+% NC: Need to add something here still...
 
 \textcolor{blue}{L283 - "in fitting model" missing "the"?.}
 
@@ -96,7 +97,7 @@ If t1/2 is very high then it suggests it will take twice that long to reach the 
 
 \textcolor{blue}{L382 - Could or should? (Conflict of interest: I am a palaeobiologist!) It seems like fossils could really help as by definition they have smaller values of T, and hence are closer to the root, and hence are better at constraining the root, and hence (potentially) help with model choice in general. (E.g., AFAIK you can only really favour a trend model if you have fossils in the tree.) In addition, when the authors simulate the birth-death models are they using non-ultrametric trees? Or just pruning extinct tips? If the latter then they aren't really testing whether fossils can help, but maybe this could be mentioned as a possible future simulation study.}
 
-The reviewer is correct that we do not include fossil taxa in our simulations. We used birth-death trees as a means of assessing the impact of different tree shapes rather than explicitly testing the impact of fossil taxa. The issue of whether fossil taxa should or could be included is not straightforward. If fossil taxa can be reliably placed in the phylogeny then we anticipate that they will typically improve model accuracy, i.e. they should be included. On the other hand, if placement of fossil taxa is unreliable then they also have the potential to mislead analyses. % GT - CHECK SANSOM and WILLS PAPER FOR EXAMPLE OF BAD PLACEMENT.
+The reviewer is correct that we do not include fossil taxa in our simulations. We used birth-death trees as a means of assessing the impact of different tree shapes rather than explicitly testing the impact of fossil taxa. The issue of whether fossil taxa should or could be included is not straightforward. If fossil taxa can be reliably placed in the phylogeny then we anticipate that they will typically improve model accuracy, i.e. they should be included. On the other hand, if placement of fossil taxa is unreliable then they also have the potential to mislead analyses (see Sansom \& Wills 2012 for examples).
 
 \textcolor{blue}{L385 - Maybe I'm missing something here, but to my mind a non-ultrametric tree is not special in terms of co-variance. Rather it is the variances that are unusual. I.e., the diagonal of the VCV will not just be the same number (same T) for all species. In other words if you modified a non-ultrametric tree to make it ultrametric by making all tips range through to the "present" you would only be modifying the diagonal.}
 
@@ -127,18 +128,14 @@ We thank the reviewer for their positive comments.
 
 \textcolor{blue}{I think the authors could do a better job of emphasizing the implications of OU model parameters on the expected outcomes of the process with respect to their own simulations, perhaps by adding a section after line 211 on page 9 that explores alpha estimates and their associated phylogenetic half-lives. If the aim here is to caution readers that a best-fitting OU process does not always translate to evolution about a constrained peak, then showing this with parameter estimates from the simulations would be a useful contribution. This kind of constructive comment would also help those readers who would view this only as a critique of OU models.}
 
-We agree that a half-life ~4 times the height of the tree is no different from Brownian motion in any meaningful biological sense. This is exactly the point. It is not uncommon to see interpretations of models based only on model fit and not on the the model parameters hence our emphasis is on problems with model fitting. However, the point about parameter interpretation is equally important and we have added a new paragraph (lines XX-XX) % NC: ADD LINE NUMBERS
+We agree that a half-life approximately 4 times the height of the tree is no different from Brownian motion in any meaningful biological sense. This is exactly the point. It is not uncommon to see interpretations of models based only on model fit and not on the the model parameters hence our emphasis is on problems with model fitting. However, the point about parameter interpretation is equally important and we have added a new paragraph (lines XX-XX) % NC: ADD LINE NUMBERS
 to discuss this explicitly. 
 
 Also yes, HPDs = quantiles. We have changed this throughout.
 
-% GT: we could add a figure or a couple of examples that for a given simulation set compared half lifes or alphas for simulations that favoured OU vs favoured BM. - maybe this is Graham's point?
-
 \textcolor{blue}{As I thought about this, it also occurred to me that it would probably be useful to more completely lay out how the OU process works. I suspect (from my own dealings with authors during reviews) that many do not have an intuitive feel for how the model works still. Based on this, I'd suggest that the authors move their appendix to the main ms and integrate it with the OU model outline on lines 139-174. It may additionally be useful to illustrate the process, both as a diffusion process and as its effects on the phylogenetic variance covariance structure. These are suggestions only, but I suspect that providing a more complete background to the models would further aid naive readers / students who are to be the main beneficiaries of this paper.}
 
 We moved the details of the model to the appendix for the same reasons that the reviewer mentions - that it was aimed at naive readers/students. There is evidence to suggest that rather than helping naive readers, too many equations actually impedes understanding and communication of concepts (see Fawcett and Higginson, 2012 PNAS; http://www.pnas.org/content/109/29/11735.short), thus we prefer to keep this as it is so as not to discourage people from reading further. However, note that this is an in-print appendix, rather than online appendix, so will appear associated with the paper.
-
-% NC: For now not mentioning the figure suggestion at all and hoping that this is just going to Anjali rather than back to Graham!
 
 \textcolor{blue}{\textbf{Minor comments}\\
 \textbf{SSP vs single peak OU.}\\
@@ -157,9 +154,7 @@ Sorry for the error, we have removed the citation (but yes it's in there later a
 
 \textcolor{blue}{The stepping stone analyses and results are very interesting. In Baele et al. (2012), which introduced path sampling for Bayesian demographic model selection using the BEAST software, the authors showed via simulation that Path Sampling and Stepping Stones performed much better than harmonic mean estimators or other model choice metrics at selecting a time homogeneous model over exponential growth (and also at choosing weak exponential growth over constant population size models). There seems a nice parallel here and this suggests that these kinds of approaches should probably be better integrated into comparative methods.}
 
-\textcolor{blue}{Baele, G., Lemey, P., Bedford, T., Rambaut, A., Suchard, M. A., \& Alekseyenko, A. V. (2012). Improving the accuracy of demographic and molecular clock model comparison while accommodating phylogenetic uncertainty. Molecular biology and evolution, 29(9), 2157-2167.}
-
-\textcolor{red}{Chris and Andrew?}
+We agree that Stepping Stones is better than the Harmonic Mean to estimate the marginal likelihood. And we agree that stepping stone sampling should be the method of choice for Bayesian comparative analyses. We have added a brief mention that Baele et al 2012 show that using stepping stone sampling is preferable to using harmonic means.
 
 \textcolor{blue}{Lines 263-269: it may be more useful to be explicit here that LRTs assume that the LR statistic is asymptotically chi-square distributed and that this is unlikely the case here (perhaps you could show this using the simulations?). Link this to lines 288-299 to show how to obtain a simulated distribution for the LRT.}
 
