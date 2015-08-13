@@ -1,4 +1,4 @@
-# Making figures 
+# Making figures 1 and 3
 
 # Read in data
 ds <- read.delim("Data/papers.txt")
