@@ -18,15 +18,17 @@ The Supporting Information file is available in PDF format [here](https://github
 Code needed to run the Maximum Likelihood simulations and make the figures in the paper can be found in the Analyses folder. 
 
 * `OUsims.R` provides all R code for simulating trees and data (GHT).
-* `OUfigures.R` provides all R code for making the simulations figures in the paper (GHT).
-* `OhYouFigures.R` provides all R code for making the figures and table for the literature review (NC).
-* `PagelParamPlots.R` provides all R code for making additional figures that were not used in the final version of the manuscript(GHT).
+* `OUfigures.R` provides all R code for making the simulations figures (Figure 4 and some removed in the revision and reworked as Tables 2-6) in the paper (GHT).
+* `OhYouFigures.R` provides all R code for making the figures (1 and 3) and table for the literature review (NC).
+* `plotFig2.R` provides all R code for making Figure 2 (RPF).
+* `PagelParamPlots.R` provides all R code for making additional figures that were not used in the final version of the manuscript (GHT).
 
 ### Simulated data and literature review data
 
 * `OU_simulations.rda` contains all the data from the OU simulations.
 * `papers.txt` contains the number of papers found in the literature review.
 * `literature.txt` contains a summary of the papers from the literature review.
+* `ProfileDataRootyLam50.csv`, `ProfileDataRootyOU50.csv`, `ProfileDataTippyLam50.csv`, `ProfileDataTippyOU50.csv`, `ProfileDataYuleLam50.csv` and `ProfileDataYuleOU50.csv` contain Likelihood profile data used to construct Figure 2. 
 
 ### Useful(?) functions
 
