@@ -5,8 +5,8 @@
 \usepackage[osf]{mathpazo}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
-\signature{Natalie Cooper \\ Gavin Thomas \\ Chris Venditti \\ Andrew Meade \\ Rob Freckleton}
-\address{Department of Life Sciences \\ Natural History Museum \\ Cromwell Road \\ London, SW7 5BD \\ nhcooper12@gmail.com}
+\signature{Natalie Cooper, Gavin Thomas \\ Chris Venditti, Andrew Meade, \\ and Rob Freckleton}
+\address{}
 \longindentation=0pt
 \begin{document}
 
@@ -65,8 +65,6 @@ We have clarified what we mean by bounded (alpha must be 0 or greater) and rewor
 \textcolor{blue}{L267 - Does this extend, then, to AIC(c)s? (As many people use AIC instead of the LRT and fit more than two models this could be important.)}
 
 AIC is a little tricky - in one sense there is no problem with calculating AIC itself. Comparisons of AICs however are probably dodgy - e.g. if you compare AIC of BM and OU model, the test is basically much the same as LRT anyway, so we are not sure that would be a sensible approach. For more complex models the AIC approach has problems that are unrelated to AIC, e.g. how do you calculate effective numbers of parameters? Unfortunately these problems are hard to pin down, and decisions are more related to personal opinions than clearly citable examples. We would tend to avoid using AIC for comparative questions, but not everyone agrees. So the short answer is yes, but we'd prefer not to open that particular can of worms here! We have however added a brief comment to the manuscript to mention this potential problem.
-
-% Note that these issues will also apply when using the Akaike Information Criteria (AIC) to compare models, as this is essentially the same as performing a Likelihood ratio test. AIC also presents other difficulties when used for complex models such as those use in phylogenetic comparative analyses, so we tend to avoid them it these reasons. 
 
 \textcolor{blue}{L283 - "in fitting model" missing "the"?.}
 
@@ -127,7 +125,7 @@ We thank the reviewer for their positive comments.
 
 \textcolor{blue}{I think the authors could do a better job of emphasizing the implications of OU model parameters on the expected outcomes of the process with respect to their own simulations, perhaps by adding a section after line 211 on page 9 that explores alpha estimates and their associated phylogenetic half-lives. If the aim here is to caution readers that a best-fitting OU process does not always translate to evolution about a constrained peak, then showing this with parameter estimates from the simulations would be a useful contribution. This kind of constructive comment would also help those readers who would view this only as a critique of OU models.}
 
-We agree that a half-life approximately 4 times the height of the tree is no different from Brownian motion in any meaningful biological sense. This is exactly the point. It is not uncommon to see interpretations of models based only on model fit and not on the the model parameters hence our emphasis is on problems with model fitting. However, the point about parameter interpretation is equally important and we have added a new paragraph (lines XX-XX) % NC: ADD LINE NUMBERS
+We agree that a half-life approximately 4 times the height of the tree is no different from Brownian motion in any meaningful biological sense. This is exactly the point. It is not uncommon to see interpretations of models based only on model fit and not on the the model parameters hence our emphasis is on problems with model fitting. However, the point about parameter interpretation is equally important and we have added a new paragraph (lines 273-282).
 to discuss this explicitly. 
 
 Also yes, HPDs = quantiles. We have changed this throughout.
@@ -165,9 +163,9 @@ We have added a comment in the text to say that measurement error can also favou
 
 \textcolor{blue}{Figure 2 legend what are the black and red dashed lines?}
 
-We have added details to this Figure caption. Tippy trees are those with distributed disproportionately late in the clade history (i.e. nearer to the present). Rooty trees are those with branching events distributed disproportionately early in the clades history (nearer to the root). In all cases the "true" value of alpha is 0 (black dashed line). The red dashed line is -1.92 log-likelihood units from the maximum: using log-likelihood ratio tests, values of α yielding values higher than this would be considered statistically indistinguishable from the maximum likelihood value.  
+We have added details to this Figure caption. See our response to reviewer 1 above.
 
-Let us know if you require any further information,
+We hope we have responded to all comments appropriately,
 
 \closing{Yours sincerely,}
 
