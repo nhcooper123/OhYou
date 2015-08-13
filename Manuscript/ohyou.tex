@@ -82,7 +82,7 @@
   We use simulations to demonstrate the inherent bias in estimating the core parameter of the OU model, $\alpha$ that describes the strength of pull towards a central value (typically referred to as the trait or selective optima). We discuss the intricacies of interpreting OU models biologically, and provide advice for appropriate use of OU models in phylogenetic comparative analyses. 
   We also show that very small amounts of intraspecific trait variation (including measurement error) can profoundly affect on the performance of models. 
   These findings will be applicable to other models of evolution, but we focus on the OU model because of its widespread use and because of the ambiguity in the link between pattern and process when interpreting estimates of the $\alpha$ parameter. 
-  We are not the first to describe these problems \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}. 
+  We are not the first to describe some of these problems \citep[e.g.,][]{ho2013asymptotic,ho2014intrinsic,boettiger2012your,hansen2012interpreting,ives2010phylogenetic}. 
   However widespread use of the model is clear evidence that many are unaware of the potential problems. We use a simulation approach to summarize the problems and to generate practical recommendations of how to deal with them. 
 
 \section{Uses of the OU model}
@@ -90,6 +90,7 @@
   This may partly be because these models are now easy to implement apply via packages in R \citep[e.g. ouch, GEIGER and OUwie;][]{Butler:2004aa,Harmon:2008aa,beaulieu2012ouwie}. 
   Additionally, although the OU model is pattern-based, it has a number of attractive biological interpretations. 
   For example, fit to an OU model is used as evidence for processes such as phylogenetic niche conservatism, convergent evolution and stabilising selection \citep[e.g.,][]{Wiens:2010aa,christin2013anatomical,ingram2013surface}. 
+  
   It is important to note however, that although the OU model is frequently described and interpreted as a model of ``'stabilising selection'', this is inaccurate and misleading. 
   As formulated by \citet{hansen1997stabilizing}, a trait has a primary optimum that is the mean of individual species optimum for that trait. 
   Under this formulation, $\alpha$ can be considered as the strength of the pull towards a central trait value \citep[the primary optimum;][]{hansen2012adaptive}. 
@@ -110,12 +111,12 @@
   The latter represents evolution under multiple selective regimes, and may be more biologically realistic for many datasets. 
   OU models with various numbers of optima are often included in the pool of evolutionary models being compared \citep[e.g.,][]{christin2013anatomical}(Table \ref{table.uses})
   OU models are also commonly used model phylogenetically structured residual error in evolutionary correlations (\citealp{revell2010phylogenetic}; often colloquially referred to as ``controlling for phylogeny''; Table \ref{table.uses}; Supporting Information).  
-  Phylogenetic generalised least squares (PGLS) models incorporate information about the relationships among species into the error term of a generalised least squares model. 
+  As an extension beyond modeling single traits, phylogenetic generalised least squares (PGLS) models incorporate information about the relationships among species into the error term of a generalised least squares model. 
   This error term generally consists of a variance-covariance matrix of the phylogeny, but various transformations are used (e.g., Pagel's $\lambda$; \citealp{Pagel:1997aa}) to improve the fit of the model to the data. 
   The $\alpha$ parameter from an OU model can also be used to transform the tree and the variance-covariance matrix.
   This is rarely interpreted as corresponding to any kind of process,
   ; instead it improves the fit of the PGLS models \citep[e.g.,][]{blankers2012ecological}. 
-  It is not clear that it was originally intended that the OU model would merely be used in such a context.
+  However it is not clear that it was originally intended that the OU model would merely be used in such a context.
   Finally, the OU model is also used to reconstruct ancestral states \citep{martins1999estimation} and to detect clade-wide convergent evolution \citep{ingram2013surface,uyeda2014novel}. 
 
   The majority of papers use the OU model to model the evolution of a continuous character (Table \ref{table.uses}; Supporting Information) therefore, we focus on this use of the OU model in our simulations below. 
@@ -238,10 +239,10 @@
     \begin{figure}[!htbp]
       \centering
       \includegraphics[width=6cm, height=12cm, keepaspectratio=true]{Figures/OhYou_Figure2.pdf}
-      \caption{Examples of profile likelihoods for selected simulated datasets for tippy (A), rooty (B) and Yule (C) simulated trees. 
+      \caption{Examples of profile likelihoods for selected simulated datasets for tippy (A), rooty (B) and Yule (C) simulated trees of 50 taxa. 
       Each solid black line represents one simulated dataset selected at random. 
       Tippy trees are those with branching events distributed disproportionately late in the clade's history (i.e. nearer to the present).
-      Rooty trees are those with branching events distributed disproportionately early in the clade's history (i.e. nearer to the root). In all cases the ``true'', value of $\alpha$ is 0 (black dashed line). The red dashed line is... % FIX!!!
+      Rooty trees are those with branching events distributed disproportionately early in the clade's history (i.e. nearer to the root). In all cases the ``true'', value of $\alpha$ is 0 (black dashed line). The red dashed line represents -1.92 log-likelihood units from the maximum: using log-likelihood ratio tests, values of α yielding values higher than this would be considered statistically indistinguishable from the maximum likelihood value.  
       }
       \label{figure:ouprofiles}
 \end{figure}
@@ -306,9 +307,10 @@
   \item \textbf{Type I error rates are high when sample size is low.} 
   The results of the simulations indicate that, in general, analyses based on small datasets are prone to biases that decrease only slowly as the size of the dataset increases.  
   \item \textbf{Likelihood ratio tests are untrustworthy.}
-  All Likelihood ratio tests assume that the Likelihood ratio statistic is asymptotically $\chi^2$ distributed. 
-  This is unlikely to be the case here because $\alpha$ is bounded (i.e. it cannot be any smaller than zero) and has a non-linear effect on the expected variances. 
-  Our simulations indicate that Likelihood ratio tests should not be relied upon for analyses with small sample sizes, and that for robust inference and testing, alternatives, such as simulation and MCMC, should be considered (see Recommendations and potential solutions (i) and (ii) below).
+  All Likelihood ratio tests assume that the Likelihood ratio statistic is asymptotically (i.e. as sample sizes become large) $\chi^2$ distributed. 
+  In the OU model $\alpha$ is bounded (i.e. it cannot be any smaller than zero) and has a non-linear effect on the expected variances, so the assumptions of the Likelihood ratio test are not likely to be upheld for small samples. 
+  Our simulations indicate that Likelihood ratio tests should not be relied upon for analyses with small sample sizes, and that for robust inference and testing, alternatives, such as simulation and MCMC, should be considered (see Recommendations and potential solutions (i) and (ii) below). Note that these issues will also apply when using the Akaike Information Criteria (AIC) to compare models, as this is essentially the same as performing a Likelihood ratio test. 
+  AIC also presents other difficulties when used for complex models such as those use in phylogenetic comparative analyses, so we recommend avoiding them it these reasons.
   \item \textbf{Measurement error increases Type I error rates.} 
   Our results show that a simple Brownian process can be mistaken for an OU process when a small amount of error is added to the data. 
   The effects of measurement error become more severe with increasing tree size.
@@ -333,10 +335,10 @@
       \item \textbf{Consider Bayesian approaches.}
       An alternative but less explored approach is to use Bayesian methods. 
       Bayesian model fitting has not been widely available for OU model fitting until recently but is now possible in R packages including diversitree \citep{FitzJohn:2012aa} and GEIGER \citep[the Single Stationary Peak model in \texttt{fitContinuousMCMC};][]{Harmon:2008aa} and stand alone software including BayesTraits \citep{pagel2013bayestraits}.
-      Below we explore Bayesian methods as a possible remedy to the limitations of fitting OU models in a likelihood framework.
-	
-	    We repeated our simulations in a Bayesian framework implemented in BayesTraits \citep{pagel2013bayestraits}. 
-      We determined fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}. 
+
+      We explored Bayesian methods as a possible remedy to the limitations of fitting OU models in a likelihood framework.
+      We repeated our simulations in a Bayesian framework implemented in BayesTraits \citep{pagel2013bayestraits}. 
+      We determined the fit to an OU model using Bayes factors estimated from a stepping stone sampling procedure \citep{xie2010improving}. 
       The marginal likelihoods of the models were calculated using a stepping stone sampler in which fifty stones were drawn from a beta distribution with (alpha = 0.4 and beta = 1). 
       Each stone was sampled for 20000 iterations (with the first 5000 iterations discarded). 
       We use stepping stone sampling as it has been shown to estimate the marginal Likelihood better than the harmonic mean \citep{baele2012improving}. 
@@ -348,7 +350,7 @@
       For all analyses we used a uniform -100 to 100 prior for $\mu$ and uniform 0 to 100 prior for $\sigma^2$. 
       
       Table \ref{tables:bayesian} shows the results from the exponential prior with mean = 10. 
-      This is a broad, liberal prior, but our results are similar regardless of priors. %add links to this
+      This is a broad, liberal prior, but our results are similar regardless of priors. 
       The Bayesian approach results in highly conservative rejection rates regardless of tree shape in the absence of measurement error. 
       While this is encouraging from the perspective of falsely rejecting the Brownian null model, it is also indicative of potentially low statistical power, although testing would be required to confirm this. 
       The Bayesian approach also appears to more readily handle low levels of measurement error (Table \ref{tables:bayesian_error}). 
@@ -374,7 +376,7 @@
     \begin{landscape}
       \begin{table}[!htbp]
         \begin{center}
-        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.) using Bayesian methods. The value of $\alpha$ is the median across simulated data sets based on modal estimates from the posterior distribution. The rejection rate is the proportion of Ornstein Uhlenbeck  models favoured relative to a Brownian motion model.} %NC: Might need to modify legend
+        \caption{Rejection rate and $\alpha$ estimates for data simulated under a constant rate Brownian model with 0, 1, 5, or 10\% measurement error (m.e.) using Bayesian methods. The value of $\alpha$ is the median across simulated data sets based on modal estimates from the posterior distribution. The rejection rate is the proportion of Ornstein Uhlenbeck  models favoured relative to a Brownian motion model.} 
         \bigskip
         \input{Tables/OU_yule_error_BayesTraits.tex}
         \label{tables:bayesian_error}
