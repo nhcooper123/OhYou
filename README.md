@@ -28,7 +28,7 @@ Code needed to run the Maximum Likelihood simulations and make the figures in th
 * `OU_simulations.rda` contains all the data from the OU simulations.
 * `papers.txt` contains the number of papers found in the literature review.
 * `literature.txt` contains a summary of the papers from the literature review.
-* `ProfileDataRootyLam50.csv`, `ProfileDataRootyOU50.csv`, `ProfileDataTippyLam50.csv`, `ProfileDataTippyOU50.csv`, `ProfileDataYuleLam50.csv` and `ProfileDataYuleOU50.csv` contain Likelihood profile data used to construct Figure 2. 
+* `ProfileDataRootyOU50.csv`, `ProfileDataTippyOU50.csv` and `ProfileDataYuleOU50.csv` contain Likelihood profile data used to construct Figure 2. 
 
 ### Useful(?) functions
 
