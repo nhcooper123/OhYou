@@ -64,8 +64,9 @@ We have clarified what we mean by bounded (alpha must be 0 or greater) and rewor
 
 \textcolor{blue}{L267 - Does this extend, then, to AIC(c)s? (As many people use AIC instead of the LRT and fit more than two models this could be important.)}
 
-\textcolor{red}{Rob?}
-% NC: Need to add something here still...
+AIC is a little tricky - in one sense there is no problem with calculating AIC itself. Comparisons of AICs however are probably dodgy - e.g. if you compare AIC of BM and OU model, the test is basically much the same as LRT anyway, so we are not sure that would be a sensible approach. For more complex models the AIC approach has problems that are unrelated to AIC, e.g. how do you calculate effective numbers of parameters? Unfortunately these problems are hard to pin down, and decisions are more related to personal opinions than clearly citable examples. We would tend to avoid using AIC for comparative questions, but not everyone agrees. So the short answer is yes, but we'd prefer not to open that particular can of worms here! We have however added a brief comment to the manuscript to mention this potential problem.
+
+% Note that these issues will also apply when using the Akaike Information Criteria (AIC) to compare models, as this is essentially the same as performing a Likelihood ratio test. AIC also presents other difficulties when used for complex models such as those use in phylogenetic comparative analyses, so we tend to avoid them it these reasons. 
 
 \textcolor{blue}{L283 - "in fitting model" missing "the"?.}
 
@@ -109,9 +110,7 @@ We have made this less informal in tone.
 
 \textcolor{blue}{Figure 2 caption - I think this caption could do more to explain the plot. What is meant by "rooty"? What is meant by "tippy"? What does each line represent? What are the dashed lines? etc.}
 
-We have added details to this Figure caption. Tippy trees are those with distributed disproportionately late in the clade history (i.e. nearer to the present). Rooty trees are those with branching events distributed disproportionately early in the clades history (nearer to the root). In all cases the "true" value of alpha is 0 (black dashed line). The red dashed line is ... % NC: Need to add this!
-
-\textcolor{red}{Rob?}
+We have added details to this Figure caption. Tippy trees are those with distributed disproportionately late in the clade history (i.e. nearer to the present). Rooty trees are those with branching events distributed disproportionately early in the clades history (nearer to the root). In all cases the "true" value of alpha is 0 (black dashed line). The red dashed line is -1.92 log-likelihood units from the maximum: using log-likelihood ratio tests, values of $\alpha$ yielding values higher than this would be considered statistically indistinguishable from the maximum likelihood value.  
 
 \textcolor{blue}{Figure 3 - Would be nice to have more "breaks" in the histogram to help visualise how the data is really distributed. The binning seems too coarse at the moment.}
 
@@ -166,9 +165,7 @@ We have added a comment in the text to say that measurement error can also favou
 
 \textcolor{blue}{Figure 2 legend what are the black and red dashed lines?}
 
-We have added details to this Figure caption. Tippy trees are those with distributed disproportionately late in the clade history (i.e. nearer to the present). Rooty trees are those with branching events distributed disproportionately early in the clades history (nearer to the root). In all cases the "true" value of alpha is 0 (black dashed line). The red dashed line is ... % NC: Need to add this!
-
-\textcolor{red}{Rob?}
+We have added details to this Figure caption. Tippy trees are those with distributed disproportionately late in the clade history (i.e. nearer to the present). Rooty trees are those with branching events distributed disproportionately early in the clades history (nearer to the root). In all cases the "true" value of alpha is 0 (black dashed line). The red dashed line is -1.92 log-likelihood units from the maximum: using log-likelihood ratio tests, values of α yielding values higher than this would be considered statistically indistinguishable from the maximum likelihood value.  
 
 Let us know if you require any further information,
 
